@@ -1,0 +1,95 @@
+
+
+
+<!-- ================== BEGIN BASE JS ================== -->
+<script src="{{site_url}}/Public/color_admin_v1.5/admin/template_content_html/assets/plugins/jquery/jquery-1.9.1.min.js"></script>
+<script src="{{site_url}}/Public/color_admin_v1.5/admin/template_content_html/assets/plugins/jquery/jquery-migrate-1.1.0.min.js"></script>
+<script src="{{site_url}}/Public/color_admin_v1.5/admin/template_content_html/assets/plugins/jquery-ui/ui/minified/jquery-ui.min.js"></script>
+<script src="{{site_url}}/Public/color_admin_v1.5/admin/template_content_html/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+<!--[if lt IE 9]>
+    <script src="assets/crossbrowserjs/html5shiv.js"></script>
+    <script src="assets/crossbrowserjs/respond.min.js"></script>
+    <script src="assets/crossbrowserjs/excanvas.min.js"></script>
+    <![endif]{{site_url}}-->
+<script src="{{site_url}}/Public/color_admin_v1.5/admin/template_content_html/assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<!--<script src="{{site_url}}/Public/color_admin_v1.5/admin/template_content_html/assets/plugins/jquery-cookie/jquery.cookie.js"></script>
+--><!-- ================== END BASE JS ================== -->
+
+<!-- ================== BEGIN PAGE LEVEL JS ================== -->
+<!--<script src="{{site_url}}/Public/color_admin_v1.5/admin/template_content_html/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+-->
+
+
+<script src="{{site_url}}/Public/color_admin_v1.5/admin/template_content_html/assets/js/apps.min.js"></script>
+
+
+
+
+<!--<script src="{{site_url}}/Public/color_admin_v1.5/admin/template_content_html/assets/plugins/DataTables/js/jquery.dataTables.js"></script>-->
+
+
+<!--<script src="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/js/table-manage-default.demo.min.js"></script>
+<script src="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/plugins/gritter/js/jquery.gritter.js"></script>
+<script src="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/js/ui-modal-notification.demo.min.js"></script>
+<script src="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/js/jquery.validate.min.js"></script>
+<script src="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/js/jquery.validate.unobtrusive.min.js"></script>-->
+<script src="{{site_url}}/Public/color_admin_v1.5/admin/template_content_html/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+<script src="{{site_url}}/Public/color_admin_v1.5/admin/template_content_html/assets/plugins/bootstrap-datepicker/js/locales/bootstrap-datepicker.pt-BR.js"></script>
+<!-- ================== BEGIN PAGE LEVEL JS  ->>> pegar filtro da tabela  ================== -->
+
+<!--<script src="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/plugins/masked-input/masked-input.js"></script>
+<script src="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/plugins/masked-input/masked-input.min.js"></script>-->
+
+
+
+
+
+
+
+<!-- ================== END GE LEVEL JS ================== -->
+<!-- ================== END PAGE LEVEL JS  ->>> pegar filtro da tabela  ================== -->
+
+
+
+
+
+
+
+
+
+<!-- ================== END PAGE LEVEL JS ================== -->
+
+
+<script>
+    $(document).ready(function () {
+		
+		$('[name="data_inicial"],[name="data_final"]').datepicker({
+			format: 'dd/mm/yyyy',                
+			autoclose:true,
+			todayHighlight:true,
+			language: "pt-BR",
+			todayBtn: "linked"
+		});
+	
+
+        App.init();
+        //FormSliderSwitcher.init();
+
+        //BEGIN PAGE LEVEL JS  ->>> pegar filtro da tabela
+        //TableManageDefault.init();
+        // END PAGE LEVEL JS  ->>> pegar filtro da tabela 
+
+        //BEGIN PAGE LEVEL JS  ->>> janela modal( inserir desconto anuncio)
+       //Notification.init();
+        // END PAGE LEVEL JS  ->>> janela modal( inserir desconto anuncio)
+
+
+
+    });
+</script>
+
+
+
+
+</body>
+</html>

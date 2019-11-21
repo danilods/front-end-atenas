@@ -1,0 +1,145 @@
+{% include 'Site/Partials/header1.html' %}
+
+
+
+<!-- begin #content -->
+<div id="content" class="content">
+
+    <!-- begin breadcrumb -->
+   
+    <!-- begin page-header -->
+
+
+    <div class="panel panel-primary " data-sortable-id="form-stuff-1">
+        <div class="panel-heading">
+            <div class="panel-heading-btn">
+                
+                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+               
+            </div>
+            <h4 class="panel-title">Filtros de Busca</h4>
+        </div>
+        <div class="panel-body">
+            <Legend>Pesquisar Recomendações de Segurança de Voo </Legend>
+            <form class="form-horizontal" action="busca" method="GET">
+
+                <div class="form-group">
+                    <label class="col-md-1 control-label">Matrícula:</label>
+                    <div class="col-md-2">
+                        <input type="text" name="matricula" class="form-control" placeholder="Matricula" />
+                    </div>
+                    <div class="form-group">
+                                     <label class="col-md-1 control-label">Período:</label>
+                                    <div class="col-md-3">
+                                        <div class="input-group input-daterange">
+                                            <input type="text" class="form-control" name="start" placeholder="Data Inicial" />
+                                            <span class="input-group-addon">até</span>
+                                            <input type="text" class="form-control" name="end" placeholder="Data Final" />
+                                        </div>
+                                    </div>
+                                </div>
+                
+                    <label class="col-md-1 control-label">Localidade:</label>
+                    <div class="col-md-2">
+                        <input type="text" name="localidade" id="localidade" class="form-control" placeholder="cidade" />
+                    </div>
+                
+                    <label class="col-md-1 control-label">Status:</label>
+                    <div class="col-md-2">
+                        <select class="form-control selectpicker" data-size="10" data-live-search="false" data-style="btn-primary">
+                                        <option value="" selected>Status da recomendação:</option>
+                                        <option value="CUMPRIDA">CUMPRIDA</option>
+                                        <option value="AGUARDANDO RESPOSTA">AGUARDANDO RESPOSTA</option>
+                                    </select>
+                    </div>
+                    </div>
+                <div class="form-group">
+                    <div class="col-md-2 col-sm-6">
+                        <button type="submit"  class="btn btn-primary">Pesquisar</button>
+                    </div>
+                </div>
+            
+                
+            </form>   
+            </div> 
+            </div>          
+
+            <!-- begin row -->
+            <div class="row">
+                <!-- begin col-12 -->
+                <div class="col-sm-offset-0 col-md-13">
+                    <!-- begin panel -->
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <div class="panel-heading-btn">
+                               
+                            </div>
+                            <h4 class="panel-title">Recomendações de Segurança de Voo</h4>
+                        </div>
+                        <div class="alert alert-info fade in">
+                            
+                            Consulte a situação das recomendações de Segurança de Voo. Você poderá utilizar o campo pesquisar para realizar uma busca rápida aos registros, digitando qualquer informação que esteja na tabela. 
+                        </div>
+                        <div class="panel-body">
+
+                            <div class="table-responsive">
+                                <table id="lista" class="table table-striped table-bordered table-hover" role="grid">
+                                    <thead>
+                                        <tr>
+                                            <th>NÚMERO</th>
+                                            <th>DATA</th>
+                                           
+                                            <th>RECOMENDAÇÃO DE SEGURANÇA DE VOO</th>
+                                            
+
+                                            <th>DESTINATÁRIO</th>
+                                            <th>MATRICULA</th>
+                                            <th>TIPO</th>
+                                            
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        {% block content %}
+
+                                        {% for relatorio in relatorios %}
+                                        <tr class="odd gradeX">
+
+                                            <td>{{relatorio.numero_rsv|convert_encoding('UTF-8', 'iso-8859-1')}}</td>
+
+                                            <td>  {{relatorio.dia_assinatura}}  </td>
+                                           
+                                            
+                                            <td>  {{relatorio.texto_recomendacao|convert_encoding('UTF-8', 'iso-8859-1')}}  </td>
+                                            <td>  {{relatorio.nome_destinatario|convert_encoding('UTF-8', 'iso-8859-1')}}  </td>
+                                             <td>  {{relatorio.matricula}}  </td>
+                                             <td>  {{relatorio.tipo}}  </td>
+                                           
+    
+                                            
+
+
+                                        </tr>
+                                        {% endfor %}
+
+                                        {% endblock %}
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end panel -->
+                </div>
+                <!-- end col-12 -->
+            </div>
+            <!-- end row -->
+            <!-- begin scroll to top btn -->
+            <a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i class="fa fa-angle-up"></i></a>
+            <!-- end scroll to top btn -->
+        </div>
+    </div> 
+</div>
+
+<!-- end panel -->
+{% include 'Site/Partials/footer1.html' %}

@@ -1,0 +1,767 @@
+
+
+
+<!-- ================== BEGIN BASE JS ================== -->
+<script src="{{site_url}}/Public/color_admin_v1.5/admin/template_content_html/assets/plugins/jquery/jquery-1.9.1.min.js"></script>
+<script src="{{site_url}}/Public/color_admin_v1.5/admin/template_content_html/assets/plugins/jquery/jquery-migrate-1.1.0.min.js"></script>
+<script src="{{site_url}}/Public/color_admin_v1.5/admin/template_content_html/assets/plugins/jquery-ui/ui/minified/jquery-ui.min.js"></script>
+<script src="{{site_url}}/Public/color_admin_v1.5/admin/template_content_html/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+<!--[if lt IE 9]>
+    <script src="assets/crossbrowserjs/html5shiv.js"></script>
+    <script src="assets/crossbrowserjs/respond.min.js"></script>
+    <script src="assets/crossbrowserjs/excanvas.min.js"></script>
+    <![endif]{{site_url}}-->
+<script src="{{site_url}}/Public/color_admin_v1.5/admin/template_content_html/assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<script src="{{site_url}}/Public/color_admin_v1.5/admin/template_content_html/assets/plugins/jquery-cookie/jquery.cookie.js"></script>
+
+<script src="{{site_url}}/Public/color_admin_v1.5/admin/template_content_html/assets/js/apps.min.js"></script>
+
+<script src="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/plugins/gritter/js/jquery.gritter.js"></script>
+<script src="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/js/ui-modal-notification.demo.min.js"></script>
+<script src="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/js/jquery.validate.min.js"></script>
+<script src="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/js/jquery.validate.unobtrusive.min.js"></script>
+<script src="{{site_url}}/Public/color_admin_v1.5/admin/template_content_html/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+<script src="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/plugins/bootstrap-datepicker/js/locales/bootstrap-datepicker.pt-BR.js"></script>
+<script src="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/plugins/masked-input/masked-input.js"></script>
+<script src="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/plugins/masked-input/masked-input.min.js"></script>
+<script src='https://www.google.com/recaptcha/api.js?hl=pt-BR'></script>
+
+<!-- ================== END GE LEVEL JS ================== -->
+<!-- ================== END PAGE LEVEL JS  ->>> pegar filtro da tabela  ================== -->
+
+
+<script type="text/javascript">
+ $(document).ready(function () {
+
+    document.getElementById('detalhado').style.display = 'none'
+    document.getElementById('localidade').style.display='none'
+
+});
+</script>
+
+
+<script type="text/javascript">
+    function verifica() {
+        if (document.forms[0].email.value.length == 0) {
+            alert('Por favor, informe o seu EMAIL.');
+            document.frmEnvia.email.focus();
+            return false;
+        }
+        return true;
+    }
+
+    function checarEmail(){
+        if( document.forms[0].email.value==""
+                || document.forms[0].email.value.indexOf('@')==-1
+                || document.forms[0].email.value.indexOf('.')==-1 )
+        {
+            alert( "Por favor, informe um E-MAIL válido!" );
+            return false;
+        }
+    }
+</script>
+
+
+
+<script>
+$('#telefone1')
+.mask("(99) 9999-99999")
+.live('focusout', function (event) {
+var target, phone, element;
+target = (event.currentTarget) ? event.currentTarget : event.srcElement;
+phone = target.value.replace(/\D/g, '');
+element = $(target);
+element.unmask();
+if(phone.length > 10) {
+element.mask("(99) 99999-9999");
+} else {
+element.mask("(99) 9999-9999");
+}
+});
+</script>
+
+
+<script>
+    $('#telefone2')
+            .mask("(99) 9999-9999?9")
+            .live('focusout', function (event) {
+                var target, phone, element;
+                target = (event.currentTarget) ? event.currentTarget : event.srcElement;
+                phone = target.value.replace(/\D/g, '');
+                element = $(target);
+                element.unmask();
+                if(phone.length > 10) {
+                    element.mask("(99) 99999-999?9");
+                } else {
+                    element.mask("(99) 9999-9999");
+                }
+            });
+</script>
+
+
+
+
+<script type="text/javascript">
+
+function simplificado() {
+document.getElementById('simplificado').style.display = ''
+document.getElementById('detalhado').style.display = 'none'
+$("#info_aeronave_simplificado").show();
+}
+
+function detalhado() {
+document.getElementById('simplificado').style.display = ''
+document.getElementById('detalhado').style.display = ''
+$("#info_aeronave_simplificado").hide();
+}
+
+function foraAerodromo(obj){
+
+
+    if (obj.checked == true) {
+
+             document.getElementById('icao').disabled = false;
+             document.getElementById('icao').value="*** - FORA DE AERODROMO";
+        document.getElementById('icao_oculto').value="*** - FORA DE AERODROMO";
+
+        document.getElementById('localidade').style.display='';
+    }
+    else {
+
+             document.getElementById('icao').disabled = false;
+             document.getElementById('icao').value="";
+             document.getElementById('localidade').style.display='none';
+        document.getElementById('icao_oculto').value="";
+
+
+
+
+    }
+
+   
+}
+
+function cidadeDesconhecida(obj){
+
+    if (obj.checked==true) {
+
+        document.getElementById('estado').disabled = false;
+        document.getElementById('estado').value="28";
+		document.getElementById('cidade').disabled = false;
+        document.getElementById('cidade').value="5570";
+		$('.sobrecontato').html('(61) 9994-9554 <i class="fa fa-envelope"></i> notifica@cenipa.aer.mil.br');
+
+    }
+    else{
+        document.getElementById('estado').disabled = false;
+        document.getElementById('estado').value="";
+		document.getElementById('cidade').disabled = false;
+        document.getElementById('cidade').value="";
+		$('.sobrecontato').html('');
+
+    }
+
+
+}
+
+function aeronaveDesconhecida(obj){
+
+    if (obj.checked==true) {
+
+        document.getElementById('matricula_simples').value="DESCONHECIDO";
+		document.getElementById('fabricante_simplificado').value="DESCONHECIDO";
+		document.getElementById('modelo_simplificado').value="DESCONHECIDO";
+
+        document.getElementById('matricula_oculto').value = "MATRÍCULA DESCONHECIDA";
+        document.getElementById('fabricante_oculto').value="DESCONHECIDO";
+        document.getElementById('modelo_oculto').value="DESCONHECIDO";
+    }
+    else{
+        document.getElementById('matricula_simples').value="";
+
+		document.getElementById('fabricante_simplificado').value="";
+		document.getElementById('modelo_simplificado').value="";
+
+        document.getElementById('matricula_oculto').value = "";
+        document.getElementById('fabricante_oculto').value="";
+   document.getElementById('modelo_oculto').value="";
+    }
+
+
+}
+
+
+</script>
+
+<script>
+	$("#hora_ocorrencia, #hora_ocorrencia_utc").mask("99:99");
+	//$('#latitude').mask("99�99''99'N")
+	//$('#longitude').mask("99�99''99'W")
+	$("#form_notificacao").validate();
+
+    $( "#calendario" ).datepicker({
+		format: 'dd/mm/yyyy',                
+		autoclose:true,
+		todayHighlight:true,
+		language: "pt-BR",
+		todayBtn: "linked",
+
+	});
+
+
+
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+     $('.input_aerodromo').autocomplete({
+     	minLength: 1,
+     	delay:0,
+    source: function( request, response ) {
+                $.ajax({
+                    url: "../../confDados/jsonAerodromo.php",
+                    dataType: "json",
+                    
+                    data: {term: request.term},
+                    success: function(data) {
+                                response($.map(data, function(item) {
+                                return {
+                                    id: item.id,
+                                    label: item.icao, 
+                                    cidade_estado: item.cidade_estado
+                                  
+                                    };
+                            }));
+                        }
+                       
+                    });
+                },
+              
+                select: function(event, ui){
+            $("#cidade_estado").val(ui.item.cidade_estado);
+            $("#cidade_estado").attr('disabled', true);
+            $("#id_decolagem_aerodromo").val(ui.item.id);
+        }
+               
+            
+            });
+    });
+    
+    
+    
+</script>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+     $('.input_aerodromo_pouso').autocomplete({
+     	minLength: 1,
+     	delay:0,
+    source: function( request, response ) {
+                $.ajax({
+                    url: "../../confDados/jsonAerodromo.php",
+                    dataType: "json",
+                    
+                    data: {term: request.term},
+                    success: function(data) {
+                                response($.map(data, function(item) {
+                                return {
+                                    id: item.id,
+                                    label: item.icao, 
+                                    cidade_estado: item.cidade_estado
+                                  
+                                    };
+                            }));
+                        }
+                       
+                    });
+                },
+             
+                select: function(event, ui){
+            $("#pouso_cidade").val(ui.item.cidade_estado);
+            $("#pouso_cidade").attr('disabled', true);
+             $("#input_pouso_aerodromo").val(ui.item.id);
+        }
+               
+            
+            });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+     $('.input_aerodromo_alternativo').autocomplete({
+     	minLength: 1,
+     	delay:0,
+    source: function( request, response ) {
+                $.ajax({
+                    url: "../../confDados/jsonAerodromo.php",
+                    dataType: "json",
+                    
+                    data: {term: request.term},
+                    success: function(data) {
+                                response($.map(data, function(item) {
+                                return {
+                                    id: item.id,
+                                    label: item.icao, 
+                                    cidade_estado: item.cidade_estado
+                                  
+                                    };
+                            }));
+                        }
+                       
+                    });
+                },
+               
+                select: function(event, ui){
+            $("#pouso_alternativo").val(ui.item.cidade_estado);
+            $("#pouso_alternativo").attr('disabled', true);
+            $("#input_pouso_alternativo").val(ui.item.id);
+        }
+               
+            
+            });
+    });
+    
+    
+    
+</script>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+     $('.input_aerodromo_ocorrencia').autocomplete({
+     	minLength: 1,
+     	delay:0,
+    source: function( request, response ) {
+                $.ajax({
+                    url: "../../confDados/jsonAerodromo.php",
+                    dataType: "json",
+                    
+                    data: {term: request.term},
+                    success: function(data) {
+                                response($.map(data, function(item) {
+                                return {
+                                    id: item.id,
+                                    cidade_id: item.cidade_id,
+                                    label: item.icao, 
+                                    cidade_estado: item.cidade_estado
+                                  
+                                    };
+                            }));
+                        }
+                       
+                    });
+                },
+                
+                select: function(event, ui){
+            $("#cidade_estado_ocorrencia").val(ui.item.cidade_estado);
+                    $("#cidade_estado_ocorrencia_oculto").val(ui.item.cidade_estado);
+            $("#cidade_estado_ocorrencia").attr('disabled', true);
+            $("#id_aerodromo_ocorrencia").val(ui.item.id);
+             $("#id_cidade_ocorrencia").val(ui.item.cidade_id);
+        }
+               
+            
+            });
+    });
+    
+    
+    
+</script>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+	
+	$("select[name=estado]").change(function () {
+            $("select[name=cidade]").html('<option value="0">Carregando...</option>');
+            $.post("../../confDados/jsonCidadeInput.php",
+                    {estado: $(this).val()},
+					function (valor) {
+						$("select[name=cidade]").html(valor);
+					}
+            )
+        });
+		
+	$("select[name=cidade]").change(function () {
+		$(".estado_nome").val($("#estado option:selected").text());
+		$(".cidade_nome").val($("#cidade option:selected").text());
+	});
+	
+	
+	
+	
+	
+	
+	
+	
+	
+     $('#estado_cidade').autocomplete({
+     	minLength: 1,
+     	delay:0,
+    source: function( request, response ) {
+                $.ajax({
+                    url: "../../confDados/jsonCidade.php",
+                    dataType: "json",
+                    
+                    data: {term: request.term},
+                    success: function(data) {
+					
+                                response($.map(data, function(item) {
+                                return {
+                                    id: item.id,
+                                    label: item.cidade_estado
+                                    
+                                  
+                                    };
+                            }));
+                        }
+                       
+                    });
+                },
+                autoFocus:true,
+                
+
+              
+                select: function(event, ui){
+
+             $(".estado_cidade").val(ui.item.cidade_estado);
+             $("#estado_cidade_oculto").val(ui.item.cidade_estado);
+			 $(".estado_id").val(ui.item.id);
+			 
+			 $.get('../../confDados/InfoContatoSeripa.php',{term:ui.item.id}, function(dado){
+				$(".sobrecontato").html(dado[0].telefone+ '  <i class="fa fa-envelope"></i> ' + dado[0].email);
+			 });
+			 
+           
+        }
+            
+            });
+    });
+    
+    
+    
+</script>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+     $('.input_operador').autocomplete({
+     	minLength: 1,
+     	delay:0,
+    source: function( request, response ) {
+                $.ajax({
+                    url: "../../confDados/jsonOperador.php",
+                    dataType: "json",
+                    
+                    data: {term: request.term},
+                    success: function(data) {
+                                response($.map(data, function(item) {
+                                return {
+                                    id: item.id,
+                                    label: item.nome_operador 
+                                    
+                                  
+                                    };
+                            }));
+                        }
+                       
+                    });
+                },
+             
+              
+                select: function(event, ui){
+
+             $("#operador_id").val(ui.item.id);
+           
+        }
+            
+            });
+    });
+    
+    
+    
+</script>
+    
+    
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+     $('.input_registro').autocomplete({
+     	minLength: 1,
+     	delay:0,
+    source: function( request, response ) {
+                $.ajax({
+                    url: "../../confDados/jsonAeronaveCategoria.php",
+                    dataType: "json",
+                    
+                    data: {term: request.term},
+                    success: function(data) {
+                                response($.map(data, function(item) {
+                                return {
+                                    id: item.id,
+                                    label: item.nome, 
+                                    aviacao: item.aviacao
+                                  
+                                    };
+                            }));
+                        }
+                       
+                    });
+                },
+              
+                  select: function(event, ui){
+            $("#operacao").val(ui.item.aviacao);
+            $("#operacao").attr('disabled', true);
+            $("#categoria_id").val(ui.item.id);
+        }
+               
+            
+            });
+    });
+    
+    
+    
+</script>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+     $('.input_cod_anac').autocomplete({
+     	minLength: 1,
+     	delay:0,
+    source: function( request, response ) {
+                $.ajax({
+                    url: "../../confDados/jsonTripulante.php",
+                    dataType: "json",
+                    
+                    data: {term: request.term},
+                    success: function(data) {
+                                response($.map(data, function(item) {
+                                return {
+                                    id_trip: item.id_trip,
+                                    label: item.codigo, 
+                                    nacionalidade: item.nacionalidade,
+                                    nome: item.nome
+                                  
+                                    };
+                            }));
+                        }
+                       
+                    });
+                },
+                
+                
+               select: function(event, ui){
+            $("#nacionalidade").val(ui.item.nacionalidade);
+			$("#nome_completo").val(ui.item.nome);
+			$("#id_anac").val(ui.item.id_trip);
+        }
+            
+            });
+    });
+    
+    
+    
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+     $('.input_nome').autocomplete({
+     	minLength: 1,
+     	delay:0,
+    source: function( request, response ) {
+                $.ajax({
+                    url: "../../confDados/jsonTripulante.php",
+                    dataType: "json",
+                    
+                    data: {term: request.term},
+                    success: function(data) {
+                                response($.map(data, function(item) {
+                                return {
+                                    id: item.id,
+                                    label: item.nome, 
+                                    nacionalidade : item.nacionalidade,
+                                    codigo: item.codigo
+                                  
+                                    };
+                            }));
+                        }
+                       
+                    });
+                },
+               
+                select: function(event, ui){
+            $("#cod").val(ui.item.codigo);
+                        $("#nacionalidade").val(ui.item.nacionalidade)
+        }
+               
+            
+            });
+    });
+    
+    
+    
+</script>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+     $('.input_matricula').autocomplete({
+     	minLength: 1,
+     	delay:0,
+    source: function( request, response ) {
+                $.ajax({
+                    url: "../../confDados/json.php",
+                    dataType: "json",
+                    
+                    data: {term: request.term},
+                    success: function(data) {
+                                response($.map(data, function(item) {
+                                return {
+                                    id: item.id,
+                                    label: item.name,
+                                    ano: item.ano,
+                                    equipamento: item.equipamento,
+                                    fabricante: item.fabricante,
+                                    modelo: item.modelo,
+                                    motor: item.tipo_motor,
+                                    peso_decolagem: item.peso
+                                    };
+                            }));
+                        }
+                       
+                    });
+                },
+              
+                 select: function(event, ui){
+                        $("#ano_aeronave").val(ui.item.ano);
+                        $("#equipamento").val(ui.item.equipamento);
+						$("#fabricante").val(ui.item.fabricante);
+                        $("#modelo").val(ui.item.modelo);
+                        $("#fabricante_oculto").val(ui.item.fabricante);
+                        $("#modelo_oculto").val(ui.item.modelo);
+                        $("#motor").val(ui.item.motor);
+                        $("#peso").val(ui.item.peso_decolagem);
+                        $("#id_aeronave").val(ui.item.id);
+        }
+               
+            
+            });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.input_matricula_simplificado').autocomplete({
+        	minLength: 1,
+     		delay:0,
+            source: function( request, response ) {
+                $.ajax({
+                    url: "../../confDados/json.php",
+                    dataType: "json",
+
+                    data: {term: request.term},
+                    success: function(data) {
+                        response($.map(data, function(item) {
+                            return {
+                                id: item.id,
+                                label: item.name,
+                                fabricante: item.fabricante,
+                                modelo: item.modelo
+
+                            };
+                        }));
+                    }
+
+                });
+            },
+            
+            select: function(event, ui){
+                $("#fabricante_simplificado").val(ui.item.fabricante);
+                $("#modelo_simplificado").val(ui.item.modelo);
+
+                $("#motricula_ocultoo").val(ui.item.label);
+
+                $("#fabricante_oculto").val(ui.item.fabricante);
+                $("#modelo_oculto").val(ui.item.modelo);
+            }
+
+
+        });
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ================== END PAGE LEVEL JS ================== -->
+
+
+<script>
+    $(document).ready(function () {
+	
+	$('input, radio, checkbox, select, textarea').click(function(){
+		if (!$('[name="tipoFicha"]').is(':checked') ){
+			alert('Selecione o tipo de Notificacao: Simplificada ou Completa.');
+		}
+	});
+	
+	
+	/*$("[name='tipoFicha']").click(function(){
+		$("#fase_operacao").html('<option value="0">Carregando...</option>');
+		$.post('../../confDados/jsonFaseVoo.php', function(data){
+			$("#fase_operacao").html(data);
+            $("#ficha").val("simplificado");
+		})	
+	});*/
+	/*$("[name='tipoFicha']").click(function(){
+		$("#registro").html('<option value="0">Carregando...</option>');
+		$.post('#', function(data){
+			$("#registro").html(data);
+		})	
+	});*/
+	/*$("[name='tipoFicha']").click(function(){
+		$("#categoria_operacao").html('<option value="0">Carregando...</option>');
+		$.post('../../confDados/jsonCategoria.php', function(data){
+			$("#categoria_operacao").html(data);
+            $("#ficha").val("detalhado");
+		})	
+	});
+	*/
+	
+
+        App.init();
+        FormSliderSwitcher.init();
+
+        //BEGIN PAGE LEVEL JS  ->>> pegar filtro da tabela
+        TableManageDefault.init();
+        // END PAGE LEVEL JS  ->>> pegar filtro da tabela 
+
+        //BEGIN PAGE LEVEL JS  ->>> janela modal( inserir desconto anuncio)
+        Notification.init();
+        // END PAGE LEVEL JS  ->>> janela modal( inserir desconto anuncio)
+
+
+
+    });
+</script>
+
+
+
+
+</body>
+</html>

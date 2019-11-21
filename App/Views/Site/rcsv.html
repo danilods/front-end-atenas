@@ -1,0 +1,1050 @@
+﻿<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<head>
+	<meta charset="utf-8" />
+	<title>{% block titulo %} {{titulo }} {% endblock %}</title>
+	<meta charset="utf-8">
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta content="RSCSV" name="description" />
+	<meta content="CENIPA" name="author" />
+	
+	<!-- ================== BEGIN BASE CSS STYLE ================== -->
+	<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+	<link href="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css" rel="stylesheet" />
+	<link href="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+	<link href="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/css/animate.min.css" rel="stylesheet" />
+	<link href="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/css/style.min.css" rel="stylesheet" />
+	<link href="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/css/style-responsive.min.css" rel="stylesheet" />
+	<link href="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/css/theme/default.css" rel="stylesheet" id="theme" />
+	<!-- ================== END BASE CSS STYLE ================== -->
+	
+	<!-- ================== BEGIN PAGE LEVEL STYLE ================== -->
+	<link href="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/plugins/bootstrap-wizard/css/bwizard.min.css" rel="stylesheet" />
+	<link href="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/plugins/parsley/src/parsley.css" rel="stylesheet" />
+    <link href="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/plugins/bootstrap-datepicker/css/datepicker.css" rel="stylesheet" />
+	<link href="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/plugins/bootstrap-datepicker/css/datepicker3.css" rel="stylesheet" />
+	<!-- ================== END PAGE LEVEL STYLE ================== -->
+	
+	<!-- ================== BEGIN BASE JS ================== -->
+	<script src="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/plugins/pace/pace.min.js"></script>
+	<!-- ================== END BASE JS ================== -->
+</head>
+<body>
+
+		<!-- begin #content -->
+		<div id="content" class="content">
+		
+			
+			
+		
+			
+			<!-- begin row -->
+			<div class="row">
+                <!-- begin col-12 -->
+			    <div class="col-md-10">
+				
+				<div class="banner" style="margin-bottom:20px;">
+				<img class="img-responsive" alt="Responsive image" width="100%" src="Public/Images/logo_rcsv.jpg">
+			</div>
+			        <!-- begin panel -->
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">Formulário Relato ao CENIPA para segurança de voo (RCSV)</h4>
+                        </div>
+                        <div class="panel-body">
+                            <form action="/rcsv/cadastrar" method="POST" data-parsley-validate="true" name="form-wizard" enctype="multipart/form-data">
+								<div id="wizard">
+									<ol>
+										<li>
+										    RCSV 
+										    <small>O que é o Relato ao CENIPA para segurança de voo (RCSV)</small>
+										</li>
+										<li>
+										    Sobre qual área
+										    <small>Orientações sobre Denúncias e violações.</small>
+										</li>
+										<li>
+										    Tipo de reporte 
+										    <small>Informações referentes ao tipo de relato a ser reportado e a área específica de atuação.</small>
+										</li>
+										<li>
+										    Área específica
+										    <small>Informações detalhadas para a área específica do relator.</small>
+										</li>
+									</ol>
+									<!-- begin wizard step-1 -->
+									<div class="wizard-step-1">
+                                        <fieldset>
+                                            <!-- begin row -->
+                                            <div class="row">
+                                                <!-- begin col-4 -->
+                                                <div class="col-md-12 col-xs-12">
+													<legend><b><i class="fa fa-angle-right"></i> RCSV</b></legend>
+													<h4><p style="margin-botton:20px">O Relato ao CENIPA para segurança de voo (RCSV) é uma ferramenta de prevenção do SIPAER cuja finalidade é relatar ao CENIPA uma situação com potencial de risco para a segurança de voo, na qual a utilização do RELPREV não se demonstrou eficaz, ou mesmo, quando a organização relacionada com a situação de risco não dispor de um Elo-SIPAER.</p></h4>
+													<br><br><legend><b><i class="fa fa-angle-right"></i> Aplicabilidade</b></legend>
+													<h4><b style="margin-botton:12px">O RCSV deverá ser utilizado nas seguintes circunstâncias:</b><br> 
+<ul>
+<li>a) quando a organização envolvida na situação de risco em questão não possuir um Elo-SIPAER habilitado para gerenciar o Relato de Prevenção (RELPREV) na localidade;</li> 
+<li>b) quando o funcionamento do Relato de Prevenção (RELPREV) da organização envolvida não for efetivo;</li> 
+<li>c) quando a cultura da organização envolvida não estiver em consonância com os princípios que regem o SIPAER; e</li>
+<li>d) quando houver a preocupação em se preservar a identidade do relator.</li>
+</ul>
+</h4>
+                                                </div>
+                                               
+                                            </div>
+                                            <!-- end row -->
+										</fieldset>
+									</div>
+									
+									<div class="wizard-step-2">
+                                        <fieldset>
+                                            <!-- begin row -->
+                                            <div class="row">
+                                                <!-- begin col-4 -->
+                                                <div class="col-md-12 col-xs-12">
+													<h3 align="center" class="text-danger"><b>ATENÇÃO</b></h3>
+													<h4><b><i class="fa fa-angle-right"></i> DENÚNCIA:</b> Relatos de violações intencionais dos regulamentos em vigor, contravenções penais ou crimes relacionados à atividade aérea, devem ser encaminhados à ANAC! <a href="http://www2.anac.gov.br/arus/focus/faleconosco/validarUsuario.asp" target="_blank">clique aqui</a></h4>
+													<h4><b><i class="fa fa-angle-right"></i> TRÁFEGO AÉREO:</b> Reportes envolvendo tráfego aéreo devem, prioritariamente, ser encaminhados ao ELO SIPAER responsável (DECEA)! <a href="http://servicos.decea.gov.br/relprev/" target="_blank">clique aqui.</a></h4>
+                                                </div>                                               
+                                            </div>
+                                            <!-- end row -->
+										</fieldset>
+									</div>
+									
+									<div class="wizard-step-3">
+                                        <fieldset>
+                                            <legend class="pull-left width-full">Identifique-se</legend>
+                                            <!-- begin row -->
+                                            <div class="row">
+                                                <!-- begin col-4 -->
+                                                <div class="col-md-4">
+													<div class="form-group block1">
+														<label>Tipo de notificador</label>
+														<select name="tipo_notificador" id="tipo_notificador" class="form-control" data-parsley-group="wizard-step-3" required>
+															<option value="">Selecione...</option>
+                                                            <option value="1">TRIPULANTE</option>
+                                                            <option value="2">PESSOAL DE MANUTENÇÃO</option>
+                                                            <option value="3">PESSOAL ATS</option>
+                                                            <option value="4">PESSOAL DE APOIO</option>
+                                                            <option value="5">PASSAGEIRO</option>
+															<option value="8">EQUIPE DE RAMPA</option>
+
+														</select>
+													</div>
+                                                </div>
+                                                <!-- end col-4 -->
+                                                <!-- begin col-4 -->
+                                                <div class="col-md-4">
+													<div class="form-group">
+														<label>Tipo</label>
+														<select name="tipo" class="form-control" data-parsley-group="wizard-step-3" required>
+															<option value="">Selecione...</option>
+                                                            <option value="asdf">Selecione o tipo de notificador</option>
+														</select>
+													</div>
+                                                </div>
+												
+												<div class="col-md-4">
+													<div class="form-group">
+														<label>Aviação</label>
+														<select name="aviacao" id="aviacao" class="form-control" data-parsley-group="wizard-step-3" required>
+															<option value="">Selecione...</option>
+                                                            <option value="CIVIL">CIVIL</option>
+															<option value="ESTRANGEIRA">ESTRANGEIRA</option>
+															<option value="MILITAR">MILITAR</option>
+														</select>
+													</div>
+                                                </div>
+                                               
+                                            </div>
+                                            <!-- end row -->
+										</fieldset>
+									</div>
+									<!-- end wizard step-1 -->
+									<!-- begin wizard step-2 -->
+									<div class="wizard-step-4">
+                                      <div id="gerais">
+										<fieldset>
+											<legend class="pull-left width-full">Informações Gerais</legend>
+                                            <!-- begin row -->
+                                            <div class="row">
+                                                <div class="col-md-2">
+													<div class="form-group">
+														<label>Data da ocorrência</label>
+														<input type="text" name="data" id="data" data-provide="datepicker" placeholder="00/00/0000" class="form-control" data-parsley-group="wizard-step-4"  required />
+													</div>
+                                                </div>
+												
+												<div class="col-md-2">
+													<div class="form-group">
+														<label>Hora da ocorrência</label>
+														<input type="text" name="hora_local" id="hora_local" placeholder="00:00" class="form-control" data-parsley-group="wizard-step-4"  required />
+													</div>
+                                                </div>
+                                                
+                                                <div class="col-md-2">
+													<div class="form-group">
+														<label>Uf</label>
+                                                        <select name="estado" class="form-control" id="estado" data-parsley-group="wizard-step-4" data-parsley-type="number" required>
+                                                            <option value="">SELECIONE O ESTADO</option>
+                                                            {% for uf in estado %}
+                                                                <option value="{{uf.id}}">{{uf.nome|convert_encoding('UTF-8', 'iso-8859-1')}} - {{uf.nome_codigo|convert_encoding('UTF-8', 'iso-8859-1')}}</option>
+                                                            {% endfor %}
+                                                        </select>
+														
+													</div>
+                                                </div>
+                                                
+                                                <div class="col-md-3">
+													<div class="form-group">
+														<label>Cidade</label>
+														<select name="cidade" class="form-control" id="cidade" data-parsley-group="wizard-step-4" data-parsley-type="number" required>
+                                                            <option value="0" disabled="disabled">ESCOLHA UM ESTADO</option>
+                                                        </select>
+													</div>
+                                                </div>
+												
+												<div class="col-md-3">
+													<div class="form-group">
+														<label>Local da situação de perigo</label>
+														<select name="local_situacao" class="form-control" id="local_situacao" data-parsley-group="wizard-step-4" required>
+                                                            <option value="">Selecione...</option>
+                                                            <option value="1">AERÓDROMO</option>
+															<option value="2">ÁREA ADMINISTRATIVA</option>
+															<option value="3">ÓRGÃO ATS</option>
+															<option value="4">HANGAR</option>																																			<option value="7">PISTA/PISTA DE TÁXI</option>
+															<option value="8">EM VOO</option>
+															<option value="9">OUTRO</option>
+                                                        </select>
+													</div>
+                                                </div>
+												
+												<div id="aerodromo" class="col-md-3" style="display:none;">
+													<div class="form-group">
+														<label>Aeródromo</label>
+                                                        <input class="input_aerodromo_ocorrencia form-control" type="text" name="aerodromo_icao_ocorrencia" id="icao" placeholder="ICAO Ex: SBBR" data-parsley-group="wizard-step-4" required />
+														<div>
+															<label><span style="font-size:10px;"><input type="checkbox" name="checkaerodromo"  value="***" onclick="foraAerodromo(this);" id="check_aerodromo" /> FORA DE AERODROMO</span></label>
+														</div>
+														<input type="hidden" name="aerodromo_id" class="aerodromo_id" id="aerodromo_id" value="3628"/>
+													</div>
+                                                </div>
+                                                
+                                            </div>
+											
+											<div class="row">
+											
+                                            
+											
+											
+											<div class="col-md-3">
+													<div class="form-group">
+														<label>Consequência da ocorrência</label>
+														<select name="consequencia_ocorrencia" class="form-control" data-parsley-group="wizard-step-4" required>
+															<option value="">Selecione...</option>
+                                                            {% for consequencia_ocorrencia in consequencia_ocorrencia %}
+
+                                                                    <option value="{{consequencia_ocorrencia.id|convert_encoding('UTF-8', 'iso-8859-1')}}">{{consequencia_ocorrencia.nome_consequencia|convert_encoding('UTF-8', 'iso-8859-1')}}</option>
+                                                                    {% endfor %}
+														</select>
+													</div>
+                                                </div>
+											</div>
+                                      
+										</fieldset>
+                                      </div>
+                                      
+                                      <div id="tripulante">
+										<fieldset>
+											<legend class="pull-left width-full">Piloto</legend>
+                                            <!-- begin row -->
+                                            <div class="row">
+                                                
+                                                <div id="aeronave_militar" class="col-md-3">
+													<div class="form-group">
+														<label>Matrícula Aeronave</label>
+														<input type="text"  name="matricula_simples" id="matricula_simples" class="form-control" placeholder="EX: FAB1234" data-parsley-group="wizard-step-4"  required/>
+														<div>
+															<label><span style="font-size:10px;"><input type="checkbox" name="aeronave_Desconhecida"  value="***" onclick="aeronaveDesconhecida(this);" id="aeronave_Desconhecida" /> NÃO FOI POSSÍVEL IDENTIFICAR A MATRÍCULA</span></label>
+														</div>
+														<input type="hidden" name="matricula_anv_id" id="matricula_anv_id" class="matricula_anv_id" value="39146"/>
+													</div>
+                                                </div>
+												
+												
+												<div id="aeronave_civil" class="col-md-3">
+													<div class="form-group">
+														<label>Matrícula Aeronave</label>
+														<input type="text"  name="matricula_simples" id="matricula_simples" class="input_matricula_simplificado form-control" placeholder="EX: PTXXX" data-parsley-group="wizard-step-4"  required/>
+														<div>
+															<label><span style="font-size:10px;"><input type="checkbox" name="aeronave_Desconhecida"  value="***" onclick="aeronaveDesconhecida(this);" id="aeronave_Desconhecida" /> NÃO FOI POSSÍVEL IDENTIFICAR A MATRÍCULA</span></label>
+														</div>
+														<input type="hidden" name="matricula_anv_id" id="matricula_anv_id" class="matricula_anv_id" value="39146"/>
+													</div>
+                                                </div>
+												
+												<div id="aeronave_estrangeira" class="col-md-3">
+													<div class="form-group">
+														<label>Matrícula Aeronave</label>
+														<input type="text"  name="matricula_simples" id="matricula_simples" class="form-control" placeholder="EX: OLM1234" data-parsley-group="wizard-step-4"  required/>
+														<div>
+															<label><span style="font-size:10px;"><input type="checkbox" name="aeronave_Desconhecida"  value="***" onclick="aeronaveDesconhecida(this);" id="aeronave_Desconhecida" /> NÃO FOI POSSÍVEL IDENTIFICAR A MATRÍCULA</span></label>
+														</div>
+														<input type="hidden" name="matricula_anv_id" id="matricula_anv_id" class="matricula_anv_id" value="39146"/>
+													</div>
+                                                </div>
+                                                
+                                                
+                                                <div class="col-md-3">
+													<div class="form-group">
+														<label>Categoria</label>
+														<select name="categoria" class="form-control" data-parsley-group="wizard-step-4" required>
+                                                        	<option value="">Selecione...</option>
+															{% for categoria_aeronave in categoria_aeronave %}
+
+                                                                    <option value="{{categoria_aeronave.id|convert_encoding('UTF-8', 'iso-8859-1')}}">{{categoria_aeronave.nome_codigo|convert_encoding('UTF-8', 'iso-8859-1')}} - {{categoria_aeronave.nome|convert_encoding('UTF-8', 'iso-8859-1')}}</option>
+                                                                    {% endfor %}
+														</select>
+													</div>
+                                                </div>
+												
+												<div class="col-md-3">
+													<div class="form-group">
+														<label>Missão</label>
+														<select name="missao" class="form-control" data-parsley-group="wizard-step-4" required>
+															<option value="">Selecione...</option>
+                                                            {% for tipo_missao in tipo_missao %}
+
+                                                                    <option value="{{tipo_missao.id|convert_encoding('UTF-8', 'iso-8859-1')}}">{{tipo_missao.tipo_missao|convert_encoding('UTF-8', 'iso-8859-1')}}</option>
+                                                                    {% endfor %}
+														</select>
+													</div>
+                                                </div>
+                                                
+                                                <div class="col-md-3">
+													<div class="form-group">
+														<label>Regras de Voo</label>
+														<select name="regra" class="form-control" data-parsley-group="wizard-step-4" required>
+															<option value="">Selecione...</option>
+                                                            <option value="VFR">VFR</option>
+                                                            <option value="IFR">IFR</option>
+															<option value="***">***</option>
+														</select>
+													</div>
+                                                </div>
+												                                               
+                                                 
+                                                
+                                            </div>
+                                            
+                                            <div class="row">
+                                                <!-- begin col-6 -->
+                                               
+                                                
+                                                
+                                                <!-- end col-6 -->
+                                                <!-- begin col-6 -->
+                                                <div class="col-md-3">
+													<div class="form-group">
+														<label>Fase de Voo</label>
+														 <select name="fase_operacao" id="fase_operacao" class="form-control" data-parsley-group="wizard-step-4" required>
+															
+														</select>												
+                                                      </div>
+                                                </div>
+                                                <!-- end col-6 -->
+                                            </div>
+                                           
+                                      
+										</fieldset>
+                                      </div>
+                                      
+                                      <div id="controlador">
+										<fieldset>
+											<legend class="pull-left width-full">Controlador</legend>
+                                            
+                                            
+                                            <div class="row">
+                                                <!-- begin col-6 -->
+                                                <div class="col-md-3">
+													<div class="form-group">
+														<label>Regras de Voo</label>
+														<select name="regra" class="form-control" data-parsley-group="wizard-step-4" required>
+															<option value="">Selecione...</option>
+                                                            <option value="VFR">VFR</option>
+                                                            <option value="IFR">IFR</option>
+															<option value="***">***</option>
+														</select>
+													</div>
+                                                </div>
+                                                <!-- end col-6 -->
+                                                <!-- begin col-6 -->
+                                                <div class="col-md-3">
+													<div class="form-group">
+														<label>Fase de Voo</label>
+														 <select name="fase_operacao" id="fase_operacao" class="form-control" data-parsley-group="wizard-step-4" required>
+															
+														</select>												
+                                                      </div>
+                                                </div>
+                                                
+                                                <!-- end col-6 -->
+                                            </div>
+                                            <!-- end row -->
+                                      
+										</fieldset>
+                                      </div>
+                                      
+                                      <div id="manutencao">
+										<fieldset>
+											<legend class="pull-left width-full">Manutenção</legend>
+                                            <!-- begin row -->
+                                            <div class="row">
+												  <div id="aeronave_militar" class="col-md-3">
+													<div class="form-group">
+														<label>Matrícula Anv</label>
+														<input type="text"  name="matricula_simples" id="matricula_simples" class="form-control" placeholder="EX: FAB1234" data-parsley-group="wizard-step-4"  required/>
+														<div>
+															<label><span style="font-size:10px;"><input type="checkbox" name="aeronave_Desconhecida"  value="***" onclick="aeronaveDesconhecida(this);" id="aeronave_Desconhecida" /> NÃO FOI POSSÍVEL IDENTIFICAR A MATRÍCULA</span></label>
+														</div>
+														<input type="hidden" name="matricula_anv_id" id="matricula_anv_id" class="matricula_anv_id" value="39146"/>
+													</div>
+                                                </div>
+												
+												
+												<div id="aeronave_civil" class="col-md-3">
+													<div class="form-group">
+														<label>Matrícula Anv</label>
+														<input type="text"  name="matricula_simples" id="matricula_simples" class="input_matricula_simplificado form-control" placeholder="EX: PTXXX" data-parsley-group="wizard-step-4"  required/>
+														<div>
+															<label><span style="font-size:10px;"><input type="checkbox" name="aeronave_Desconhecida"  value="***" onclick="aeronaveDesconhecida(this);" id="aeronave_Desconhecida" /> NÃO FOI POSSÍVEL IDENTIFICAR A MATRÍCULA</span></label>
+														</div>
+														<input type="hidden" name="matricula_anv_id" id="matricula_anv_id" class="matricula_anv_id" value="39146"/>
+													</div>
+                                                </div>
+												
+												<div id="aeronave_estrangeira" class="col-md-3">
+													<div class="form-group">
+														<label>Matrícula Aeronave</label>
+														<input type="text"  name="matricula_simples" id="matricula_simples" class="form-control" placeholder="EX: OLM1234" data-parsley-group="wizard-step-4"  required/>
+														<div>
+															<label><span style="font-size:10px;"><input type="checkbox" name="aeronave_Desconhecida"  value="***" onclick="aeronaveDesconhecida(this);" id="aeronave_Desconhecida" /> NÃO FOI POSSÍVEL IDENTIFICAR A MATRÍCULA</span></label>
+														</div>
+														<input type="hidden" name="matricula_anv_id" id="matricula_anv_id" class="matricula_anv_id" value="39146"/>
+													</div>
+                                                </div>
+												
+												<div class="col-md-3">
+													<div class="form-group">
+														<label>Missão</label>
+														<select name="missao" class="form-control" data-parsley-group="wizard-step-4" required>
+															<option value="">Selecione...</option>
+                                                            {% for tipo_missao in tipo_missao %}
+
+                                                                    <option value="{{tipo_missao.id|convert_encoding('UTF-8', 'iso-8859-1')}}">{{tipo_missao.tipo_missao|convert_encoding('UTF-8', 'iso-8859-1')}}</option>
+                                                                    {% endfor %}
+														</select>
+													</div>
+                                                </div>
+                                            
+                                            </div>
+                                     
+
+                                      
+										</fieldset>
+                                      </div>
+                                      
+                                      <div id="comissario">
+										<fieldset>
+											<legend class="pull-left width-full">Comissário</legend>
+                                            <!-- begin row -->
+                                            <div class="row">
+                                                <!-- begin col-6 -->
+                                              <div id="aeronave_militar" class="col-md-3">
+													<div class="form-group">
+														<label>Matrícula Anv</label>
+														<input type="text"  name="matricula_simples" id="matricula_simples" class="form-control" placeholder="EX: FAB1234" data-parsley-group="wizard-step-4"  required/>
+														<div>
+															<label><span style="font-size:10px;"><input type="checkbox" name="aeronave_Desconhecida"  value="***" onclick="aeronaveDesconhecida(this);" id="aeronave_Desconhecida" /> NÃO FOI POSSÍVEL IDENTIFICAR A MATRÍCULA</span></label>
+														</div>
+														<input type="hidden" name="matricula_anv_id" id="matricula_anv_id" class="matricula_anv_id" value="0"/>
+													</div>
+                                                </div>
+												
+												
+												<div id="aeronave_civil" class="col-md-3">
+													<div class="form-group">
+														<label>Matrícula Anv</label>
+														<input type="text"  name="matricula_simples" id="matricula_simples" class="input_matricula_simplificado form-control" placeholder="EX: PTXXX" data-parsley-group="wizard-step-4"  required/>
+														<div>
+															<label><span style="font-size:10px;"><input type="checkbox" name="aeronave_Desconhecida"  value="***" onclick="aeronaveDesconhecida(this);" id="aeronave_Desconhecida" /> NÃO FOI POSSÍVEL IDENTIFICAR A MATRÍCULA</span></label>
+														</div>
+														<input type="hidden" name="matricula_anv_id" id="matricula_anv_id" class="matricula_anv_id" value="0"/>
+													</div>
+                                                </div>
+												
+												<div id="aeronave_estrangeira" class="col-md-3">
+													<div class="form-group">
+														<label>Matrícula Aeronave</label>
+														<input type="text"  name="matricula_simples" id="matricula_simples" class="form-control" placeholder="EX: OLM1234" data-parsley-group="wizard-step-4"  required/>
+														<div>
+															<label><span style="font-size:10px;"><input type="checkbox" name="aeronave_Desconhecida"  value="***" onclick="aeronaveDesconhecida(this);" id="aeronave_Desconhecida" /> NÃO FOI POSSÍVEL IDENTIFICAR A MATRÍCULA</span></label>
+														</div>
+														<input type="hidden" name="matricula_anv_id" id="matricula_anv_id" class="matricula_anv_id" value="39146"/>
+													</div>
+                                                </div>
+            
+                                            </div>
+                                      
+										</fieldset>
+                                      </div>
+									  
+									<div id="observacao">
+										<fieldset>
+											<legend class="pull-left width-full">Descreve a situação</legend>
+                                            <!-- begin row -->
+                                            <div class="row">
+                                                <!-- begin col-6 -->
+                                                <div class="col-md-12">
+													<div class="form-group">
+														<textarea class="form-control" id="message" name="historico_ocorrencia" rows="10"  placeholder="Descreva as circunstâncias da ocorrência aeronáutica." data-parsley-group="wizard-step-4" required></textarea>
+														
+													</div>
+                                                </div>
+												
+												
+												
+                                                <!-- end col-6 -->
+                                                <!-- begin col-6 -->
+                                               
+                                                
+                                              
+                                                <!-- end col-6 -->
+                                            </div>
+											
+											<!--
+											<div class="row">
+											<div class="col-md-3">
+												<label class="btn btn-success btn-file">
+													<i class="fa fa-paperclip"></i> Clique para anexar um arquivo <input type="file" name="arquivo" style="display: none;">
+												</label>
+												
+												</div>
+											
+											<div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label>Descrição do arquivo</label>
+                                                        <div class="controls">
+                                                            <input type="text" name="descricao_arquivo" class="form-control" data-parsley-group="wizard-step-4" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+											</div>
+										-->
+
+                                            <!-- end row -->
+                                      
+										</fieldset>
+																		
+										<fieldset>
+											<legend class="pull-left width-full">Dados Pessoais</legend>
+                                            <!-- begin row -->
+                                            <div class="row">
+                                                <!-- begin col-4 -->
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label>Nome</label>
+                                                        <div class="controls">
+                                                            <input type="text" id="nome" name="nome" placeholder="José" class="form-control" data-parsley-group="wizard-step-4" required />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label>CPF <small>(Somente numeral)</small></label>
+                                                        <div class="controls">
+                                                            <input type="text" name="cpf" id="cpf" placeholder="000000000-00" class="form-control" data-parsley-group="wizard-step-4" required />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label>E-mail</label>
+                                                        <div class="controls">
+                                                            <input type="text" name="email" id="email" placeholder="usuario@hotmail.com" class="form-control" data-parsley-group="wizard-step-4" required />
+                                                        </div>
+                                                    </div>
+                                                </div>
+												<div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label>Nº habilitação</label>
+                                                        <div class="controls">
+                                                            <input type="text" name="habilitacao" id="habilitacao" placeholder="00000-00" class="form-control" data-parsley-group="wizard-step-4" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- end col-6 -->
+                                            </div>
+                                            
+                                            <!-- begin row -->
+                                            <div class="row">
+                                                <!-- begin col-4 -->
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label>Telefone</label>
+                                                        <div class="controls">
+                                                            <input type="text" id="telefone" name="telefone" placeholder="(xx) xxxxx-xxxx" class="form-control" data-parsley-group="wizard-step-4" required />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- end col-4 -->
+                                                <!-- begin col-4 -->
+                                                
+                                                <!-- end col-4 -->
+                                                <!-- begin col-4 -->
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Orgão/Empresa <small>(* Digite as iniciais do órgão/empresa, selecione a opção sugerida ou marque o campo "outro órgão")</small></label>
+                                                        <div class="controls">
+                                                            <input type="text" name="empresa" id="empresa" placeholder="Digite o nome do órgão ou empresa" class="form-control" data-parsley-group="wizard-step-4" />
+                                                        </div>
+														
+														<label><span style="font-size:10px;"><input type="checkbox" name="checkaerodromo"  value="***" onclick="outroOrgao(this);" id="check_orgao" /> ÓRGÃO OU EMPRESA NÃO ECONTRADA</span></label>
+													     <input type="hidden" name="orgao_id" class="orgao_id" id="orgao_id" value="1140"/>
+
+                                                    </div>
+                                                </div>
+												
+												<div id="orgao" class="col-md-4" style="display:none">
+                                                    <div class="form-group">
+                                                        <label>Forneça o nome do ÓRGÃO/EMPRESA</small></label>
+                                                        <div class="controls">
+                                                            <input type="text" name="empresa_text" id="empresa_text" placeholder="Forneça o nome do órgão ou empresa" class="form-control" data-parsley-group="wizard-step-4" />
+                                                        </div>
+							
+
+                                                    </div>
+                                                </div>
+												
+												
+                                                <!-- end col-6 -->
+											
+                                            </div>
+											
+											<div class="row">
+											<div>
+												<div class="jumbotron m-b-0 text-center">
+													<h4>Para concluir, clique no botão abaixo 'enviar informações'!</h4>
+													<button type="submit" id="" name="submit"  class="btn btn-success btn-lg"><i class="fa fa-check"></i> Enviar informações</button>
+												</div>
+											</div>
+											
+											</div>
+											
+                                            <!-- end row -->
+                                        </fieldset>
+									
+                                      </div>
+									</div>
+									<!-- end wizard step-2 -->
+									<!-- begin wizard step-3 -->
+
+									<!-- end wizard step-3 -->
+									<!-- begin wizard step-4 -->
+									
+									<!-- end wizard step-4 -->
+								</form>
+                        </div>
+                    </div>
+                    <!-- end panel -->
+                </div>
+                <!-- end col-12 -->
+            </div>
+            <!-- end row -->
+		</div>
+		
+	
+	
+	
+		<!-- end #content -->
+
+        <!-- end theme-panel -->
+		
+		<!-- begin scroll to top btn -->
+		<a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i class="fa fa-angle-up"></i></a>
+		<!-- end scroll to top btn -->
+	<!-- end page container -->
+	
+	<!-- ================== BEGIN BASE JS ================== -->
+	<script src="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/plugins/jquery/jquery-1.9.1.min.js"></script>
+	<script src="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/plugins/jquery/jquery-migrate-1.1.0.min.js"></script>
+	<script src="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/plugins/jquery-ui/ui/minified/jquery-ui.min.js"></script>
+	<script src="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+	<!--[if lt IE 9]>
+		<script src="assets/crossbrowserjs/html5shiv.js"></script>
+		<script src="assets/crossbrowserjs/respond.min.js"></script>
+		<script src="assets/crossbrowserjs/excanvas.min.js"></script>
+	<![endif]-->
+	<script src="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+	<script src="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/plugins/jquery-cookie/jquery.cookie.js"></script>
+    <script src="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+    <script src="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/plugins/bootstrap-datepicker/js/locales/bootstrap-datepicker.pt-BR.js"></script>
+
+	<!-- ================== END BASE JS ================== -->
+	
+	<!-- ================== BEGIN PAGE LEVEL JS ================== -->
+	<script src="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/plugins/parsley/dist/parsley.js"></script>
+	<script src="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/plugins/bootstrap-wizard/js/bwizard.js"></script>
+	<script src="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/js/form-wizards-validation.demo.min.js"></script>
+	<script src="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/js/apps.min.js"></script>
+	<script src="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/plugins/masked-input/masked-input.js"></script>
+    <script src="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/plugins/masked-input/masked-input.min.js"></script>
+	<!-- ================== END PAGE LEVEL JS ================== -->
+	
+	<script>
+		$(document).ready(function() {
+			App.init();
+			FormWizardValidation.init();
+			
+			$("[rel='fechar']").on('click',function(){
+				$("#info").remove();
+			});
+			
+			$("#hora_local").mask("99:99");
+			$("#cpf").mask("999.999.999-99");
+			
+			$( "#data" ).datepicker({
+				format: 'dd/mm/yyyy',                
+				autoclose:true,
+				todayHighlight:true,
+				language: "pt-BR",
+				todayBtn: "linked",
+		
+			});
+			
+			$("select[name=estado]").change(function () {
+            $("select[name=cidade]").html('<option value="0">Carregando...</option>');
+            $.post("Public/select2/jsonCidadeInput.php",
+                    {estado: $(this).val()},
+					function (valor) {
+						$("select[name=cidade]").html(valor);
+						
+					}
+            )
+        	});
+			
+			$("#local_situacao").change(function (){
+					var valor = $("#local_situacao").val();
+					
+					if(valor==1){
+						$("#aerodromo").show();
+					}else{
+						$("#aerodromo").hide();
+						$(".input_aerodromo_ocorrencia").removeAttr('required');
+						
+					}
+			
+			});
+			
+			
+			
+			
+			function TestaCPF(cpf) {
+			var strCPF = cpf.replace(/[^\d]+/g,'');
+			var Soma;
+			var Resto;
+			Soma = 0;   
+			//strCPF  = RetiraCaracteresInvalidos(strCPF,11);
+			if (strCPF == "00000000000")
+			return false;
+			for (i=1; i<=9; i++)
+			Soma = Soma + parseInt(strCPF.substring(i-1, i)) * (11 - i); 
+			Resto = (Soma * 10) % 11;
+			if ((Resto == 10) || (Resto == 11)) 
+			Resto = 0;
+			if (Resto != parseInt(strCPF.substring(9, 10)) )
+			return false;
+			Soma = 0;
+			for (i = 1; i <= 10; i++)
+			   Soma = Soma + parseInt(strCPF.substring(i-1, i)) * (12 - i);
+			Resto = (Soma * 10) % 11;
+			if ((Resto == 10) || (Resto == 11)) 
+			Resto = 0;
+			if (Resto != parseInt(strCPF.substring(10, 11) ) )
+				return false;
+			return true;
+		}
+			$("#email, #telefone, #habilitacao, #empresa").on('click', function(){
+				var cpf = TestaCPF($("#cpf").val());
+				if(cpf==false){
+					alert('CPF inválido! Verifique possíveis erros.');
+					$("#cpf").val(null);
+				}
+			});
+			
+			$("#email, #telefone, #habilitacao, #empresa").on('keyup', function(){
+				var cpf = TestaCPF($("#cpf").val());
+				if(cpf==false){
+					alert('CPF inválido! Verifique possíveis erros.');
+					$("#cpf").val(null);
+				}
+			});
+			
+			$('.input_matricula_simplificado').autocomplete({
+        	minLength: 1,
+     		delay:0,
+            source: function( request, response ) {
+                $.ajax({
+                    url: "Public/select2/jsonMatriculaAnv.php",
+                    dataType: "json",
+
+                    data: {term: request.term},
+                    success: function(data) {
+                        response($.map(data, function(item) {
+                            return {
+                                id: item.id,
+                                label: item.name
+
+                            };
+                        }));
+                    }
+
+                });
+				},
+				select: function(event, ui){
+				$(".matricula_anv_id").val(ui.item.id);
+			}
+               
+            
+            });
+		
+		     $('.input_aerodromo_ocorrencia').autocomplete({
+					source: function( request, response ) {
+								$.ajax({
+									url: "Public/select2/jsonAerodromo.php",
+									dataType: "json",
+									
+									data: {term: request.term},
+									success: function(data) {
+												response($.map(data, function(item) {
+												return {
+													id: item.id,
+													cidade_id: item.cidade_id,
+													label: item.icao, 
+													cidade_estado: item.cidade_estado
+												  
+													};
+											}));
+										}
+									   
+									});
+								},
+								autoFocus:true,
+								minLength: 1,
+								select: function(event, ui){
+								$(".aerodromo_id").val(ui.item.id);
+						}
+            
+            });
+			
+			
+			$('#empresa').autocomplete({
+					source: function( request, response ) {
+								$.ajax({
+									url: "Public/select2/jsonOrgao.php",
+									dataType: "json",
+									
+									data: {term: request.term},
+									success: function(data) {
+												response($.map(data, function(item) {
+												return {
+													id: item.id,
+													label: item.nome_elo,
+													nome: item.nome_elo
+				
+													};
+											}));
+										}
+									   
+									});
+								},
+								autoFocus:true,
+								minLength: 1,
+								select: function(event, ui){
+								$("#empresa").val(ui.item.nome_elo);
+								$("#orgao_id").val(ui.item.id);
+						}
+            
+            });
+					
+			$("select[name=tipo_notificador]").change(function () {
+            $("select[name=tipo]").html('<option value="0">Carregando...</option>');
+            $.get("../../confDados/jsonRcsvTipoNotificador.php",
+                    {tipo_notificador: $(this).val()},
+					function (valor) {
+						$("select[name=tipo]").html(valor);
+					}
+            )
+			});
+			
+
+
+			$("#tipo_notificador").change(function(){
+				var dado = $(this).val();
+				if(dado==1){
+					$("#controlador, #comissario, #manutencao").remove();
+				}else if(dado==2){
+					$("#tripulante, #comissario, #controlador").remove();
+				}else if(dado==3){
+					$("#tripulante, #comissario, #manutencao").remove();
+				}else if(dado==4){
+					$("#tripulante, #comissario, #controlador").remove();
+				}else if(dado==8){
+					$("#tripulante, #comissario, #controlador").remove();
+				}else if(dado==5 || dado==6 || dado==7){
+					$("#tripulante, #controlador, #manutencao, #comissario").remove();
+				}
+				$.post('Public/select2/jsonFaseVoo_id.php', function(data){
+					$("#fase_operacao").html(data);
+				});
+			
+			});
+			
+			$("#aviacao").change(function(){
+				var dado = $(this).val();
+				if(dado=="MILITAR"){
+					$('#aeronave_civil').remove();
+					$('#aeronave_estrangeira').remove();
+					$(".matricula_anv_id").val(39146);
+				}else if(dado=="CIVIL"){
+					$('#aeronave_militar').remove();
+					$('#aeronave_estrangeira').remove();
+				}else{
+					$('#aeronave_civil').remove();
+					$('#aeronave_militar').remove();
+					$(".matricula_anv_id").val(39146);
+				}
+			
+			
+			});
+			
+			
+			
+			
+			
+		function valida_form (){
+			
+			if(document.getElementById("nome").value.length < 3){
+				alert('Por favor, preencha o campo nome');
+				document.getElementById("nome").focus();
+				return false
+				}
+				
+				
+				var nome = document.getElementById("nome").value;
+				var cpf = document.getElementById("cpf").value;
+				var email = document.getElementById("email").value;
+
+		
+		
+					if(nome == '') {
+						alert("Por favor, preencha o campo nome");
+						nome.focus();
+						return false;
+
+						
+					}
+					
+					else if(cpf == '') {
+						alert("Por favor, preencha o campo cpf");
+						cpf.focus();
+						return false;
+
+						
+						
+					}
+					
+					else if(email == '') {
+						alert("Por favor, preencha o campo email");
+						email.focus();
+						return false;
+
+						
+						
+					}
+		}
+			
+			
+
+			
+});
+
+	
+	
+
+
+function foraAerodromo(obj){
+	if (obj.checked == true) {
+
+			 document.getElementById('icao').disabled = true;
+			 document.getElementById('icao').value="*** - FORA DE AERODROMO";
+			 document.getElementById('aerodromo_id').value=3628;
+			 
+	}
+	else {
+
+			 document.getElementById('icao').disabled = false;
+			 document.getElementById('icao').value="";
+			 document.getElementById('aerodromo_id').value="";
+
+	}
+}
+
+function outroOrgao(obj){
+	if (obj.checked == true) {
+
+			 document.getElementById('empresa').disabled = true;
+			 document.getElementById('empresa').value="OUTRO ÓRGÃO OU EMPRESA";
+			 document.getElementById('orgao_id').value=1140;
+			 $("#orgao").show();
+
+			 
+			 
+	}
+	else {
+
+			 document.getElementById('empresa').disabled = false;
+			 document.getElementById('empresa').value="";
+			 document.getElementById('orgao_id').value=1140;
+			 $("#orgao").hide();
+	}
+}
+
+
+function aeronaveDesconhecida(obj){
+	if (obj.checked == true) {
+
+			 document.getElementById('matricula_simples').disabled = true;
+			 document.getElementById('matricula_simples').value="*** - DESCONHECIDO";
+			 document.getElementById('matricula_anv_id').value=39146;
+	}
+	else {
+
+			 document.getElementById('matricula_simples').disabled = false;
+			 document.getElementById('matricula_simples').value="";
+			 document.getElementById('matricula_anv_id').value="";
+
+	}
+}
+
+
+
+	</script>
+</body>
+</html>

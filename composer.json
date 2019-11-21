@@ -1,0 +1,30 @@
+{
+    "name": "danilodesouza",
+    "require": {
+        "phpmailer/phpmailer": "dev-master",
+        "php-activerecord/php-activerecord": "dev-master",
+        "patchwork/utf8": "dev-master",
+        "illuminate/support":"5.1.x-dev",
+        "php" : ">=5.4.0",
+        "illuminate/contracts": "5.1.x-dev",
+        "twig/twig": "dev-master",
+        "google/recaptcha": "~1.1"
+    },
+    "autoload":{
+        "psr-4":{
+            "Acme\\Classes\\":"Acme/Classes",
+            "App\\Models\\" : "App/Models",
+            "App\\Models\\Admin\\" : "App/Models/Admin",
+            "App\\Models\\Site\\" : "App/Models/Site",
+            "App\\Controllers\\" : "App/Controllers",
+            "App\\Controllers\\Admin\\" : "App/Controllers/Admin",
+            "App\\Controllers\\Erro\\" : "App/Controllers/Erro",
+            "App\\Controllers\\Site\\" : "App/Controllers/Site",
+            "App\\Core\\" : "App/Core",
+            "Acme\\Traits\\" : "Acme/Traits"
+        }
+    },
+    "files":[
+        "vendor/illuminate/support/helpers.php"
+    ]
+}

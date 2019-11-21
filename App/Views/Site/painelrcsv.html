@@ -1,0 +1,560 @@
+﻿<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+    <!--<![endif]-->
+    <head>
+        <meta charset="utf-8" />
+        <title>{% block titulo %} {{titulo }} {% endblock %}</title>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+        <meta content="RSCSV" name="description" />
+        <meta content="CENIPA" name="author" />
+
+        <!-- ================== BEGIN BASE CSS STYLE ================== -->
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+        <link href="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css" rel="stylesheet" />
+        <link href="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+        <link href="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/css/animate.min.css" rel="stylesheet" />
+        <link href="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/css/style.min.css" rel="stylesheet" />
+        <link href="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/css/style-responsive.min.css" rel="stylesheet" />
+        <link href="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/css/theme/default.css" rel="stylesheet" id="theme" />
+        <!-- ================== END BASE CSS STYLE ================== -->
+
+        <!-- ================== BEGIN PAGE LEVEL STYLE ================== -->
+
+        <link href="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/plugins/parsley/src/parsley.css" rel="stylesheet" />
+        <link href="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/plugins/bootstrap-datepicker/css/datepicker.css" rel="stylesheet" />
+        <link href="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/plugins/bootstrap-datepicker/css/datepicker3.css" rel="stylesheet" />
+        <!-- ================== END PAGE LEVEL STYLE ================== -->
+
+        <!-- ================== BEGIN BASE JS ================== -->
+        <script src="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/plugins/pace/pace.min.js"></script>
+        <!-- ================== END BASE JS ================== -->
+    </head>
+    <body>
+
+
+
+
+
+            <section class="conteudo">
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="nav-tabs-custom">
+
+                            <div class="tab-content">
+                                <div class="chart tab-pane active" id="graf-basico-chart">
+
+                                    <div class="box-header">
+                                        <h4 class="box-title"><i class="fa fa-search"></i> Selecione o período:</h4>
+
+                                    </div>
+                                    <div class="box-body">
+                                        <div class="row">
+                                            <div class="form-group">
+
+                                                <div class="col-sm-4">
+                                                    <div class="input-group">
+                                                        <div class="input-group">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-calendar"></i>
+                                                            </div>
+                                                            <input type="text" name="periodo_1" class="column_filter_date form-control data"  id="periodo_1" placeholder="Data inicial"  />
+                                                        </div>
+                                                        <span class="input-group-addon">a</span>
+                                                        <input type="text" name="periodo_2" class="column_filter_date form-control data"  id="periodo_2" placeholder="data final" />
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="col-sm-2 col-lg-2">
+                                                    <input type="submit" id="filtrarBasico" class="btn btn-success btn-flat" value="Clique para gerar Gráficos"/>
+																									<a class="btn btn-primary btn-flat" href="http://rcsv.cenipa.intraer/admin/dashboard">Voltar</a></p>
+
+                                                </div>
+												    
+
+                                            </div>
+                                        </div>
+                                        <section>
+										
+											<div class="col-lg-12" style="margin-top: 20px;">
+                                                <div class="box box-primary">
+                                                    <div id="quantidadeTotalOcorrenciaChart"></div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-6" style="margin-top: 20px;">
+                                                <div class="box box-primary">
+                                                    <div id="quantidadeTipoNotificadorChart"></div>
+                                                </div>
+                                            </div>
+											
+											<div class="col-lg-6" style="margin-top: 20px;">
+                                                <div class="box box-primary">
+                                                    <div id="quantidadeLocalidadeOcorrenciaChart"></div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="col-lg-6" style="margin-top: 20px;">
+                                                <div class="box box-primary">
+                                                    <div id="quantidadeConsequenciaOcorrenciaChart"></div>
+                                                </div>
+                                            </div>
+											
+											<div class="col-lg-6" style="margin-top: 20px;">
+                                                <div class="box box-primary">
+                                                    <div id="quantidadeNotificadorOcorrenciaChart"></div>
+                                                </div>
+                                            </div>
+											
+											<div class="col-lg-12" style="margin-top: 20px;">
+                                                <div class="box box-primary">
+                                                    <div id="quantidadeClassificacaoOcorrenciaChart"></div>
+                                                </div>
+                                            </div>
+											
+											<div class="col-lg-12" style="margin-top: 20px;">
+                                                <div class="box box-primary">
+                                                    <div id="quantidadeSituacaoOcorrenciaChart"></div>
+                                                </div>
+                                            </div>
+											
+											
+											
+											
+											
+											
+											
+
+
+                                        </section>
+
+                                    </div>
+
+                                    <div class="box-footer">
+                                        .
+                                    </div>
+
+
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+                </div><!-- /.row (main row) -->
+
+
+
+            </section><!-- /.content -->
+
+
+
+
+            <!-- end #content -->
+
+            <!-- end theme-panel -->
+
+            <!-- begin scroll to top btn -->
+            <a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i class="fa fa-angle-up"></i></a>
+            <!-- end scroll to top btn -->
+            <!-- end page container -->
+
+
+            <!-- ================== END PAGE LEVEL JS ================== -->
+<script type="text/javascript" src="{{site_url}}Public/highcharts/jquery.min.highcharts.js"></script>
+<script src="{{site_url}}Public/highcharts/highcharts.js"></script>
+<script src="{{site_url}}Public/highcharts/modules/data.js"></script>
+<script src="{{site_url}}Public/highcharts/modules/drilldown.js"></script>
+
+<script>
+    $(document).ready(function () {
+        App.init();
+
+
+        $(".data").datepicker({
+            format: 'dd/mm/yyyy',
+            autoclose: true,
+            todayHighlight: true,
+            language: "pt-BR",
+            todayBtn: "linked"
+        });
+
+
+        $("#filtrarBasico").on('click', function (e) {
+            e.preventDefault();
+
+            var pr1 = $("#periodo_1").val();
+            var pr2 = $("#periodo_2").val();
+            
+            if (pr1 == '' || pr2 == '') {
+                alert("Necessário preencher o período para gerar os Gráficos!");
+                exit();
+            }
+
+            var optionsquantidadeTipoNotificadorChart = {
+                chart: {
+                    renderTo: 'quantidadeTipoNotificadorChart',
+                    type: 'pie'
+                },
+                title: {
+                    text: 'Gráfico por Tipo de Reporte '
+                },
+                xAxis: {
+                    type: 'category'
+                },
+                yAxis: {
+                    title: {
+                        text: 'Total de Ocorrências por Tipo de Reporte '
+                    }
+
+                },
+                legend: {
+                    enabled: false
+                },
+                credits: {
+                    enabled: false
+                },
+
+		plotOptions: {
+   		     pie: {
+     		       allowPointSelect: true,
+      			      cursor: 'pointer',
+      			      dataLabels: {
+       			         enabled: true,
+      			          format: '<b>{point.name}</b>: {point.y} relatos',
+     		      		     style: {
+      		             		 color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+       			         }
+    		        }
+    		    }
+   		 },
+
+                              tooltip: {
+                    headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                    pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> do total<br/>'
+                },
+                series: [{}]
+            };
+
+            $.getJSON('../../confDados/json_painel_rcsv.php', {acao: 'tipo_reporte', pr1: pr1, pr2: pr2}, function (data) {
+                optionsquantidadeTipoNotificadorChart.series[0].data = data;
+                var chart = new Highcharts.Chart(optionsquantidadeTipoNotificadorChart);
+            });
+            
+			
+			
+			var optionsquantidadeTotalOcorrenciaChart = {
+                chart: {
+                    renderTo: 'quantidadeTotalOcorrenciaChart',
+                    type: 'line'
+                },
+                title: {
+                    text: 'Total de relatos por mês '
+                },
+                xAxis: {
+                    type: 'category'
+                },
+                yAxis: {
+                    title: {
+                        text: 'Total de Ocorrências por mês '
+                    }
+
+                },
+                legend: {
+                    enabled: false
+                },
+                credits: {
+                    enabled: false
+                },
+                plotOptions: {
+                    series: {
+                        borderWidth: 0,
+						
+                        dataLabels: {
+                            enabled: true
+                        }
+                    }
+                },
+                tooltip: {
+                    headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                    pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> do total<br/>'
+                },
+                series: [{}]
+            };
+
+            $.getJSON('../../confDados/json_painel_rcsv.php', {acao: 'teste', pr1: pr1, pr2: pr2}, function (data) {
+                optionsquantidadeTotalOcorrenciaChart.series[0].data = data;
+                var chart = new Highcharts.Chart(optionsquantidadeTotalOcorrenciaChart);
+            });
+            
+            
+            
+            
+             var optionsquantidadeConsequenciaOcorrenciaChart = {
+                chart: {
+                    renderTo: 'quantidadeConsequenciaOcorrenciaChart',
+                    type: 'column'
+                },
+                title: {
+                    text: 'Gráfico por Tipo Consequência '
+                },
+                xAxis: {
+                    type: 'category'
+                },
+                yAxis: {
+                    title: {
+                        text: 'Total de Ocorrências por Tipo de Consequência '
+                    }
+
+                },
+                legend: {
+                    enabled: false
+                },
+                credits: {
+                    enabled: false
+                },
+                plotOptions: {
+                    series: {
+                        borderWidth: 0,
+                        dataLabels: {
+                            enabled: true,
+                            format: '{point.y:.0f}'
+                        }
+                    }
+                },
+                tooltip: {
+                    headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                    pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.0f}</b> do total<br/>'
+                },
+                series: [{}]
+            };
+
+            $.getJSON('../../confDados/json_painel_rcsv.php', {acao: 'consequencia_ocorrencia', pr1: pr1, pr2: pr2}, function (data) {
+                optionsquantidadeConsequenciaOcorrenciaChart.series[0].data = data;
+                var chart = new Highcharts.Chart(optionsquantidadeConsequenciaOcorrenciaChart);
+            });
+			
+			
+			
+			var optionsquantidadeClassificaoOcorrenciaChart = {
+                chart: {
+                    renderTo: 'quantidadeClassificacaoOcorrenciaChart',
+                    type: 'column'
+                },
+                title: {
+                    text: 'Gráfico por Classificação '
+                },
+                xAxis: {
+                    type: 'category'
+                },
+                yAxis: {
+                    title: {
+                        text: 'Total de Ocorrências por classificação '
+                    }
+
+                },
+                legend: {
+                    enabled: false
+                },
+                credits: {
+                    enabled: false
+                },
+                plotOptions: {
+                    series: {
+                        borderWidth: 0,
+                        dataLabels: {
+                            enabled: true,
+                            format: '{point.y:.0f}'
+                        }
+                    }
+                },
+                tooltip: {
+                    headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                    pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.0f}</b> do total<br/>'
+                },
+                series: [{}]
+            };
+
+            $.getJSON('../../confDados/json_painel_rcsv.php', {acao: 'classificacao', pr1: pr1, pr2: pr2}, function (data) {
+                optionsquantidadeClassificaoOcorrenciaChart.series[0].data = data;
+                var chart = new Highcharts.Chart(optionsquantidadeClassificaoOcorrenciaChart);
+            });
+			
+			
+			
+			var optionsquantidadeSituacaoOcorrenciaChart = {
+                chart: {
+                    renderTo: 'quantidadeSituacaoOcorrenciaChart',
+                    type: 'column'
+                },
+                title: {
+                    text: 'Gráfico por Situação Observada '
+                },
+                xAxis: {
+                    type: 'category'
+                },
+                yAxis: {
+                    title: {
+                        text: 'Total de Ocorrências por Situação Observada '
+                    }
+
+                },
+                legend: {
+                    enabled: false
+                },
+                credits: {
+                    enabled: false
+                },
+                plotOptions: {
+                    series: {
+                        borderWidth: 0,
+                        dataLabels: {
+                            enabled: true,
+                            format: '{point.y:.0f}'
+                        }
+                    }
+                },
+                tooltip: {
+                    headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                    pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.0f}</b> do total<br/>'
+                },
+                series: [{}]
+            };
+
+            $.getJSON('../../confDados/json_painel_rcsv.php', {acao: 'situacao', pr1: pr1, pr2: pr2}, function (data) {
+                optionsquantidadeSituacaoOcorrenciaChart.series[0].data = data;
+                var chart = new Highcharts.Chart(optionsquantidadeSituacaoOcorrenciaChart);
+            });
+			
+			
+			
+			var optionsquantidadeLocalidadeOcorrenciaChart = {
+                chart: {
+                    renderTo: 'quantidadeLocalidadeOcorrenciaChart',
+                    type: 'column'
+                },
+                title: {
+                    text: 'Gráfico por Localidade '
+                },
+                xAxis: {
+                    type: 'category'
+                },
+                yAxis: {
+                    title: {
+                        text: 'Total de Ocorrências por Localidade '
+                    }
+
+                },
+                legend: {
+                    enabled: false
+                },
+                credits: {
+                    enabled: false
+                },
+                plotOptions: {
+                    series: {
+                        borderWidth: 0,
+                        dataLabels: {
+                            enabled: true,
+                            format: '{point.y:.0f}'
+                        }
+                    }
+                },
+                tooltip: {
+                    headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                    pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.0f}</b> do total<br/>'
+                },
+                series: [{}]
+            };
+
+            $.getJSON('../../confDados/json_painel_rcsv.php', {acao: 'localidade', pr1: pr1, pr2: pr2}, function (data) {
+                optionsquantidadeLocalidadeOcorrenciaChart.series[0].data = data;
+                var chart = new Highcharts.Chart(optionsquantidadeLocalidadeOcorrenciaChart);
+            });
+			
+			
+			
+			var optionsquantidadeNotificadorOcorrenciaChart = {
+                chart: {
+                    renderTo: 'quantidadeNotificadorOcorrenciaChart',
+                    type: 'column'
+                },
+                title: {
+                    text: 'Gráfico por Notificador '
+                },
+                xAxis: {
+                    type: 'category'
+                },
+                yAxis: {
+                    title: {
+                        text: 'Total de Ocorrências por tipo de notificador '
+                    }
+
+                },
+                legend: {
+                    enabled: false
+                },
+                credits: {
+                    enabled: false
+                },
+                plotOptions: {
+                    series: {
+                        borderWidth: 0,
+                        dataLabels: {
+                            enabled: true,
+                            format: '{point.y:.0f}'
+                        }
+                    }
+                },
+                tooltip: {
+                    headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                    pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.0f}</b> do total<br/>'
+                },
+                series: [{}]
+            };
+
+            $.getJSON('../../confDados/json_painel_rcsv.php', {acao: 'notificador', pr1: pr1, pr2: pr2}, function (data) {
+				optionsquantidadeNotificadorOcorrenciaChart.series = data.series;
+                optionsquantidadeNotificadorOcorrenciaChart.drilldown = data.drilldown;
+                var chart = new Highcharts.Chart(optionsquantidadeNotificadorOcorrenciaChart);
+            });
+            
+            
+            
+        });
+		
+		
+    });
+
+
+
+            </script>
+            <!-- ================== BEGIN BASE JS ================== -->
+            <script src="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/plugins/jquery/jquery-1.9.1.min.js"></script>
+            <script src="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/plugins/jquery/jquery-migrate-1.1.0.min.js"></script>
+            <script src="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/plugins/jquery-ui/ui/minified/jquery-ui.min.js"></script>
+            <script src="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+            <script src="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+            <script src="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+            <script src="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/plugins/bootstrap-datepicker/js/locales/bootstrap-datepicker.pt-BR.js"></script>
+
+            <!-- ================== END BASE JS ================== -->
+
+
+            <script src="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/js/apps.min.js"></script>
+    </body>
+</html>

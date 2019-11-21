@@ -1,0 +1,342 @@
+﻿{% include 'Site/Partials/header.html' %}
+
+
+
+{%block session%}
+
+{{session}}
+
+{%endblock%}
+
+<style>
+body{
+  background-color: #f1f1f1;
+}
+.main-timeline-section{
+  position: relative; 
+  width: 100%;  
+  margin:auto; 
+  height:300px;
+  margin-top:30px;
+}
+.main-timeline-section .timeline-start,
+.main-timeline-section .timeline-end{
+  position: absolute;
+  background:#F2635F;
+  border-radius:100px;
+  top:50%;
+  transform: translateY(-50%);
+  width:30px;
+  height:30px;
+}
+.main-timeline-section .timeline-end{
+  right:0px;
+}
+.main-timeline-section .conference-center-line{
+  position: absolute;
+  width:100%;
+  height:5px;
+  top:50%;
+  transform: translateY(-50%);
+  background:#F2635F;
+}
+.timeline-article{
+    margin-left: 15%;
+    position: relative;
+    min-height: 300px;
+    float:left;
+}
+.timeline-article .content-date{
+    position: absolute;
+    top: 35%;
+    left: -30px; 
+    font-size:15px;
+	white-space: nowrap;
+	font-weight: bold;
+}
+.timeline-article .meta-date{
+    position: absolute;
+    top: 50%;
+    left: 0px;
+    transform: translateY(-50%); 
+    width:20px;
+    height:20px;
+    border-radius: 100%;
+    background:#fff;
+    border:1px solid #F2635F;
+}
+.timeline-article .meta-date-vermelho{
+    position: absolute;
+    top: 50%;
+    left: 0px;
+    transform: translateY(-50%); 
+    width:20px;
+    height:20px;
+    border-radius: 100%;
+    background:#f2635f;
+    border:1px solid #F2635F;
+}
+.timeline-article .meta-date-verde{
+    position: absolute;
+    top: 50%;
+    left: 0px;
+    transform: translateY(-50%); 
+    width:20px;
+    height:20px;
+    border-radius: 100%;
+    background:#00acac;
+    border:1px solid #00acac;
+}
+.timeline-article .content-box{
+  box-shadow: 2px 2px 4px 0px #c1c1c1;
+  border:1px solid #00acac;
+  border-radius: 5px;
+  background-color: #fff;
+  width: 180px;
+  position: absolute;
+  top: 60%;
+  left: -80px; 
+  padding:10px;
+}
+.timeline-article-top .content-box:before{
+  content: " ";
+  position:absolute; 
+  left:50%;
+  transform: translateX(-50%);
+  top:-20px;
+  border:10px solid transparent;
+  border-bottom-color: #00acac;
+}
+.timeline-article-bottom .content-date{
+  top: 59%;
+}
+.timeline-article-bottom .content-box{
+  top: 0%;
+}
+.timeline-article-bottom .content-box:before{
+  content: " ";
+  position:absolute; 
+  left:50%;
+  transform: translateX(-50%);
+  bottom:-20px;
+  border:10px solid transparent;
+  border-top-color:#00acac;
+}
+
+.circulo-verde{
+	background: #00acac none repeat scroll 0 0;
+    border-radius: 100%;
+    height: 20px;
+    margin-left: -30px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+}
+.circulo-pendente{
+	background: #FFF none repeat scroll 0 0;
+	border:1px solid #F2635F;
+    border-radius: 100%;
+    height: 20px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+}
+
+
+@media (max-width:460px){
+  body{
+    display: none;
+  }
+}
+</style>
+<div class="col-md-10 col-md-offset-1">
+
+
+<div id="content" class="content">
+
+
+	<div class="banner" style="margin-bottom:25px;">
+
+		<img class="img-responsive" alt="Responsive image" width="100%" src="/Public/Images/banner.png">
+
+	</div>
+
+{% block informacoes %} 
+<div class="panel panel-success" data-sortable-id="ui-widget-6">
+<div class="panel-heading">
+<h4 class="panel-title"> <i class="fa fa-file-text-o"></i> Informações da Ordem de Serviço: <span class="btn btn-sm btn-primary">{{ informacoes.numero_ordem_servico }}</span></h4>
+</div>
+  
+<div class="panel-body">
+<h4>Sr(a) {{ informacoes.nome }}, abaixo está apresentado a Timeline de acompanhamento da sua Ordem de Serviço.</h4>
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-12 col-sm-12 col-xs-12">
+			{% block status_os %}
+
+{% if status_os.numero == 7 %}
+					
+<div class="alert alert-danger"><span style="font-size:12px; color:#000"><b>Atenção:</b> Ordem de serviço cancelada! Para maiores esclarecimentos fone: 61-3364-8810</span></div>
+			
+{% else %}
+			<section class="main-timeline-section">
+			    <div class="timeline-start"></div>
+			    <div class="conference-center-line"></div>
+			    <div class="conference-timeline-content">
+				
+				
+					
+					<div class="timeline-article timeline-article-bottom">
+				        <div class="content-date">
+			          		<span>PENDENTE</span>
+				        </div>
+
+						{% if status_os.numero >= 1 %}
+						<div class="meta-date-verde"></div>
+				        <div class="content-box">
+				        	<p>Sua ordem de serviço está em análise pelo Chefe do Setor/Divisão.</p>
+				        </div>
+						{% else %}
+						<div class="meta-date"></div>
+				        <div class="content-box box-text">
+				        	<p>Sua ordem de serviço está em análise pelo Chefe do Setor/Divisão.</p>
+				        </div>						
+						{%endif%}
+	
+				    </div> 
+					
+					<div class="timeline-article timeline-article-top">
+				        <div class="content-date">
+			          		<span>ANALISADA</span>
+				        </div>
+
+						{% if status_os.numero >= 2 %}
+						<div class="meta-date-verde"></div>
+				        <div class="content-box">
+				        	<p>Sua ordem de serviço foi analisada pelo setor Administrativo e encaminhada ao Chefe da Unidade.</p>
+				        </div>
+						{% else %}
+						<div class="meta-date"></div>
+				        <div class="content-box box-text">
+				        	<p>Sua ordem de serviço foi analisada pelo setor Administrativo e encaminhada ao Chefe da Unidade.</p>
+				        </div>						
+						{%endif%}
+		
+				    </div>
+					
+					 <div class="timeline-article timeline-article-bottom">
+				        <div class="content-date">
+			          		<span>CONFIRMADA</span>
+				        </div>
+
+						{% if status_os.numero >= 3 %}
+						<div class="meta-date-verde"></div>
+				        <div class="content-box">
+				        	<p>Sua ordem de serviço foi confirmada pelo Chefe do Setor/Divisão e encaminhada ao Ordenador de Despesas.</p>
+				        </div>
+						{% else %}
+						<div class="meta-date"></div>
+				        <div class="content-box box-text">
+				        	<p>Sua ordem de serviço foi confirmada pelo Chefe do Setor/Divisão e encaminhada ao Ordenador de Despesas.</p>
+				        </div>						
+						{%endif%}
+			
+				    </div>
+					
+					<div class="timeline-article timeline-article-top">
+				        <div class="content-date">
+			          		<span>AUTORIZADA</span>
+				        </div>
+
+						{% if status_os.numero >= 4 %}
+						<div class="meta-date-verde"></div>
+				        <div class="content-box">
+				        	<p>Sua ordem de serviço foi autorizada pelo Ordenador de Despesas e encaminhada para o setor de Diárias e Passagens.</p>
+				        </div>
+						{% else %}
+						<div class="meta-date"></div>
+				        <div class="content-box box-text">
+				        	<p>Sua ordem de serviço foi autorizada pelo Ordenador de Despesas e encaminhada para o setor de Diárias e Passagens.</p>
+				        </div>						
+						{%endif%}
+				    </div>
+					
+					 <div class="timeline-article timeline-article-bottom">
+				        <div class="content-date">
+			          		<span>EM PROCESSAMENTO</span>
+				        </div>
+						{% if status_os.numero >= 5 %}
+						<div class="meta-date-verde"></div>
+				        <div class="content-box">
+				        	<p>Sua ordem de serviço está em processamento pelo setor de Diárias e Passagens.</p>
+				        </div>
+						{% else %}
+						<div class="meta-date"></div>
+				        <div class="content-box box-text">
+				        	<p>Sua ordem de serviço está em processamento pelo setor de Diárias e Passagens.</p>
+				        </div>						
+						{%endif%}
+				    </div>
+					
+					<div class="timeline-article timeline-article-top">
+				        <div class="content-date">
+			          		<span>PROCESSADA</span>
+				        </div>
+						{% if status_os.numero >= 6 %}
+						<div class="meta-date-verde"></div>
+				        <div class="content-box">
+				        	<p>Sua ordem de serviço foi processada pelo setor de Diárias e Passagens e encaminhada para pagamento.</p>
+				        </div>
+						{% else %}
+						<div class="meta-date"></div>
+				        <div class="content-box box-text">
+				        	<p>Sua ordem de serviço foi processada pelo setor de Diárias e Passagens e encaminhada para pagamento.</p>
+				        </div>						
+						{%endif%}
+				    </div>
+					{%endif%}
+					
+			   	</div>
+			   	<div class="timeline-end"></div>
+		  	</section>
+		</div>
+		{% endblock %}
+		<div class="col-md-12 col-sm-12 col-xs-12" style="margin-top:70px;">
+			<div class="text-center"><span class="circulo-verde"></span> Fase concluída   <span class="circulo-pendente"></span> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; Fase pendente</div>
+		</div>
+		
+	</div>
+</div>
+
+
+
+</div>
+
+<div class="panel-footer">
+<a href="/consultar" class="btn btn-success">Voltar</a>
+</div>
+</div>
+
+{% endblock %}
+
+	
+	
+    <!-- end error -->
+
+    <!-- begin theme-panel -->
+
+    <!-- end theme-panel -->
+
+    <!-- begin scroll to top btn -->
+    <a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i class="fa fa-angle-up"></i></a>
+    <!-- end scroll to top btn -->
+</div>
+</div>
+
+<!-- end panel -->
+
+{% include 'Site/Partials/footer_consulta.html' %}

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8" />
+    <title>{% block titulo %} {{titulo }} {% endblock %}</title>
+	<meta name="robots" content="noindex">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+
+
+    <!-- ================== BEGIN BASE CSS STYLE ================== -->
+    <link href="{{site_url}}/Public/color_admin_v1.5/admin/template_content_html/assets/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css" rel="stylesheet" />
+
+    <link href="{{site_url}}/Public/color_admin_v1.5/admin/template_content_html/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="{{site_url}}/Public/color_admin_v1.5/admin/template_content_html/assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="{{site_url}}/Public/color_admin_v1.5/admin/template_content_html/assets/css/animate.min.css" rel="stylesheet" />
+    <link href="{{site_url}}/Public/color_admin_v1.5/admin/template_content_html/assets/css/style.min.css" rel="stylesheet" />
+    <link href="{{site_url}}/Public/color_admin_v1.5/admin/template_content_html/assets/css/style-responsive.min.css" rel="stylesheet" />
+    <link href="{{site_url}}/Public/color_admin_v1.5/admin/template_content_html/assets/css/theme/default.css" rel="stylesheet" id="theme" />
+    <link href="{{site_url}}/Public/color_admin_v1.5/admin/template_content_html/assets/plugins/bootstrap-datepicker/css/datepicker.css" rel="stylesheet" />
+    <link href="{{site_url}}/Public/color_admin_v1.5/admin/template_content_html/assets/plugins/bootstrap-datepicker/css/datepicker3.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/themes/redmond/jquery-ui.css">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
+    <link href="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/plugins/DataTables/css/data-table.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/themes/redmond/jquery-ui.css">
+
+
+
+
+
+    <!-- ================== END PAGE LEVEL STYLE ================== -->
+
+    <!-- ================== BEGIN BASE JS ================== -->
+    <style type="text/css">
+
+        .ocultar{display:none}
+
+    </style>
+
+
+
+
+    <!-- ================== END BASE JS ================== -->
+</head>
+<body>
+<div class="col-lg-10 col-lg-offset-1 col-xs-12">
+<!-- begin #page-loader -->
+<div id="logo" class="logo">
+    <img src="{{site_url}}Public/Images/barra_divop.jpg" border="10" alt="0" width="100%" align="center" >
+    </div>
+<div id="page-loader" class="fade in"><span class="spinner"></span></div>
+<!-- end #page-loader -->
+
+<!-- begin #page-container -->
+<div id="page-container" class="ffade page-without-sidebar">
+    <!-- begin #header -->
+    <div  id="header" class="">
+
+        <!-- begin container-fluid -->
+        <div class="container-fluid">
+            <!-- begin mobile sidebar expand / collapse button -->
+            <div class="navbar-header">
+
+
+            </div>
+            <!-- end mobile sidebar expand / collapse button -->
+
+            <!-- begin header navigation right -->
+
+            <!-- end header navigation right -->
+        </div>
+        <!-- end container-fluid -->
+    </div>
+
+
+<!-- begin #content -->
+<div id="content" class="content">
+
+    <!-- begin breadcrumb -->
+
+    <!-- begin page-header -->
+
+
+
+    <div class="row">
+        <!-- begin col-12 -->
+        <div class="col-sm-offset-0 col-md-13">
+            <!-- begin panel -->
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="panel-heading-btn">
+
+                    </div>
+                    <h4 class="panel-title">DIVULGAÇÃO OPERACIONAL</h4>
+                </div>
+
+                <div class="panel-body">
+
+                    <div class="table-responsive">
+                        <table id="divop" class="table table-striped table-bordered table-hover" role="grid">
+                            <thead>
+                            <tr>
+                                <th width="10%">NÚMERO DIVOP</th>
+                                <th>DATA</th>
+                                <th>TÍTULO</th>
+                                <th>DESCRIÇÃO</th>
+                                <th>DIVOP</th>
+
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            {% block content %}
+
+                            {% for divop in divops%}
+                            <tr class="odd gradeX">
+
+                                <td> {{divop.numero_atividade}} </td>
+
+
+                                <td> {{divop.dia|date('d/m/Y',false)}}  </td>
+
+                                <td>  {{divop.detalhe|convert_encoding('UTF-8', 'iso-8859-1')}}</td>
+
+                                <td>  {{divop.titulo|convert_encoding('UTF-8', 'iso-8859-1')}}  </td>
+
+                              <td>  <a href="{{site_url}}/filedivop/{{divop.anexo_prev}}" rel="" title="Ver PDF" data-toggle="tooltip"><i><img border="0" alt="" src="{{site_url}}Public/Images/pdf-icon.png" width="30" height="30"></i></a></td>
+
+                            </tr>
+                            {% endfor %}
+
+                            {% endblock %}
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- end panel -->
+        </div>
+        <!-- end col-12 -->
+    </div>
+    <!-- end row -->
+    <!-- begin scroll to top btn -->
+    <a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i class="fa fa-angle-up"></i></a>
+    <!-- end scroll to top btn -->
+</div>
+</div>
+</div>
+</div>
+
+<!-- end panel -->
+{% include 'Site/Partials/footer1.html' %}
+<script src="{{site_url}}Public/divop-data-table.js"></script>

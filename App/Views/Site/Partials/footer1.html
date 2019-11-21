@@ -1,0 +1,772 @@
+
+
+
+<!-- ================== BEGIN BASE JS ================== -->
+<script src="{{site_url}}/Public/color_admin_v1.5/admin/template_content_html/assets/plugins/jquery/jquery-1.9.1.min.js"></script>
+<script src="{{site_url}}/Public/color_admin_v1.5/admin/template_content_html/assets/plugins/jquery/jquery-migrate-1.1.0.min.js"></script>
+<script src="{{site_url}}/Public/color_admin_v1.5/admin/template_content_html/assets/plugins/jquery-ui/ui/minified/jquery-ui.min.js"></script>
+<script src="{{site_url}}/Public/color_admin_v1.5/admin/template_content_html/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+<!--[if lt IE 9]>
+    <script src="assets/crossbrowserjs/html5shiv.js"></script>
+    <script src="assets/crossbrowserjs/respond.min.js"></script>
+    <script src="assets/crossbrowserjs/excanvas.min.js"></script>
+    <![endif]{{site_url}}-->
+<script src="{{site_url}}/Public/color_admin_v1.5/admin/template_content_html/assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<script src="{{site_url}}/Public/color_admin_v1.5/admin/template_content_html/assets/plugins/jquery-cookie/jquery.cookie.js"></script>
+<!-- ================== END BASE JS ================== -->
+
+<!-- ================== BEGIN PAGE LEVEL JS ================== -->
+<script src="{{site_url}}/Public/color_admin_v1.5/admin/template_content_html/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+
+
+
+<script src="{{site_url}}/Public/color_admin_v1.5/admin/template_content_html/assets/js/apps.min.js"></script>
+
+
+<script type="text/javascript" src="/Public/jquery-2.cep-master/jquery.cep.js"></script>
+
+
+<!-- ================== BEGIN PAGE LEVEL JS  ->>> pegar filtro da tabela  ================== -->
+<script src="{{site_url}}/Public/color_admin_v1.5/admin/template_content_html/assets/plugins/DataTables/js/jquery.dataTables.js"></script>
+
+
+<script src="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/js/table-manage-default.demo.min.js"></script>
+<script src="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/plugins/gritter/js/jquery.gritter.js"></script>
+<script src="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/js/ui-modal-notification.demo.min.js"></script>
+<script src="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/js/jquery.validate.min.js"></script>
+<script src="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/js/jquery.validate.unobtrusive.min.js"></script>
+<script src="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+<script src="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/plugins/bootstrap-datepicker/js/locales/bootstrap-datepicker.pt-BR.js"></script>
+<script src="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/plugins/masked-input/masked-input.js"></script>
+<script src="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/plugins/masked-input/masked-input.min.js"></script>
+
+
+
+
+
+
+
+<!-- ================== END GE LEVEL JS ================== -->
+<!-- ================== END PAGE LEVEL JS  ->>> pegar filtro da tabela  ================== -->
+
+
+<script type="text/javascript">
+ $(document).ready(function () {
+/*
+    document.getElementById('detalhado').style.display = 'none'
+    document.getElementById('localidade').style.display='none'
+*/
+});
+</script>
+
+
+
+
+<script type="text/javascript">
+
+function simplificado() {
+document.getElementById('simplificado').style.display = ''
+document.getElementById('detalhado').style.display = 'none'
+$("#info_aeronave_simplificado").show();
+}
+
+function detalhado() {
+document.getElementById('simplificado').style.display = ''
+document.getElementById('detalhado').style.display = ''
+$("#info_aeronave_simplificado").hide();
+}
+
+function foraAerodromo(obj){
+
+
+    if (obj.checked == true) {
+
+             document.getElementById('icao').disabled = true;
+             document.getElementById('icao').value="*** - FORA DE AERODROMO";
+             document.getElementById('localidade').style.display='';
+    }
+    else {
+
+             document.getElementById('icao').disabled = false;
+             document.getElementById('icao').value="";
+             document.getElementById('localidade').style.display='none';
+
+
+            
+    }
+
+   
+}
+
+function cidadeDesconhecida(obj){
+
+    if (obj.checked==true) {
+
+        document.getElementById('estado_cidade').disabled = true;
+        document.getElementById('estado_cidade').value="DESCONHECIDO";
+
+    }
+    else{
+            document.getElementById('estado_cidade').disabled = false;
+        document.getElementById('estado_cidade').value="";
+
+    }
+
+
+}
+
+function aeronaveDesconhecida(obj){
+
+    if (obj.checked==true) {
+
+        document.getElementById('input_matricula').disabled = true;
+        document.getElementById('input_matricula').value="DESCONHECIDO";
+		document.getElementById('fabricante').value="DESCONHECIDO";
+		document.getElementById('modelo').value="DESCONHECIDO";
+    }
+    else{
+            document.getElementById('input_matricula').disabled = false;
+        document.getElementById('input_matricula').value="";
+		document.getElementById('fabricante').value="";
+		document.getElementById('modelo').value="";
+    }
+
+
+}
+
+
+</script>
+
+<script>
+
+	$("#hora_ocorrencia, #hora_ocorrencia_utc").mask("99:99");
+	$('#latitude').mask("99ª99''99'N")
+	$('#longitude').mask("99º99''99'W")
+	$("#form_notificacao").validate();
+
+	$('[name="data_ocorrencia"]').datepicker({
+		todayHighlight:true,
+		autoclose:true
+	});
+
+/*
+var cont = 0;
+
+
+do {
+
+
+$('#tripulante'+cont).bootstrapNumber({
+
+    upClass: 'success',
+    downClass: 'danger'
+});
+cont++;
+}
+while(cont<=5);
+
+// Remember set you events before call bootstrapSwitch or they will fire after bootstrapSwitch's events
+$("[name='checkbox2']").change(function() {
+    if(!confirm('Do you wanna cancel me!')) {
+        this.checked = true;
+    }
+});
+
+var cont = 0;
+
+
+do {
+
+
+$('#passageiro'+cont).bootstrapNumber({
+
+    upClass: 'success',
+    downClass: 'danger'
+});
+cont++;
+}
+while(cont<=5); 
+
+*/
+
+</script>
+
+<script>
+/*
+// Remember set you events before call bootstrapSwitch or they will fire after bootstrapSwitch's events
+$("[name='checkbox2']").change(function() {
+    if(!confirm('Do you wanna cancel me!')) {
+        this.checked = true;
+    }
+});
+
+var cont = 0;
+
+
+do {
+
+
+$('#terceiro'+cont).bootstrapNumber({
+
+    upClass: 'success',
+    downClass: 'danger'
+});
+cont++;
+}
+while(cont<=5);
+
+*/
+
+</script>
+<script type="text/javascript">
+ $(document).ready(function () {
+        $("#passageiro_total").val('0');
+        $(".soma").val('0');
+        $( ".soma" ).blur(function(){
+                        calcularpass();
+                    });
+        
+        
+    });
+
+                    function calcularpass() {
+                        var soma = 0;
+                        $( ".soma" ).each(function( indice, item ){
+                            var valor = parseInt($(item).val());
+                            console.log(valor);
+                            if ( !isNaN( valor ) ) {
+                                soma += valor;
+                            }
+                        });
+                        $( "#passageiro_total" ).val( soma );
+                    }
+
+</script>
+
+
+<script type="text/javascript">
+ $(document).ready(function () {
+        $("#terceiro_total").val('0');
+        $(".terceiro").val('0');
+        $( ".terceiro" ).blur(function(){
+                        calcularterceiro();
+                    });
+        
+        
+    });
+
+                    function calcularterceiro() {
+                        var soma = 0;
+                        $( ".terceiro" ).each(function( indice, item ){
+                            var valor = parseInt($(item).val());
+                            console.log(valor);
+                            if ( !isNaN( valor ) ) {
+                                soma += valor;
+                            }
+                        });
+                        $( "#terceiro_total" ).val( soma );
+                    }
+
+</script>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.cep').cep();
+        $('#input-demo-cep').focus();
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+     $('.input_aerodromo').autocomplete({
+    source: function( request, response ) {
+                $.ajax({
+                    url: "Public/select2/jsonAerodromo.php",
+                    dataType: "json",
+                    
+                    data: {term: request.term},
+                    success: function(data) {
+                                response($.map(data, function(item) {
+                                return {
+                                    id: item.id,
+                                    label: item.icao, 
+                                    cidade_estado: item.cidade_estado
+                                  
+                                    };
+                            }));
+                        }
+                       
+                    });
+                },
+                autoFocus:true,
+                minLength: 1,
+                select: function(event, ui){
+            $("#cidade_estado").val(ui.item.cidade_estado);
+            $("#cidade_estado").attr('disabled', true);
+            $("#id_decolagem_aerodromo").val(ui.item.id);
+        }
+               
+            
+            });
+    });
+    
+    
+    
+</script>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+     $('.input_aerodromo_pouso').autocomplete({
+    source: function( request, response ) {
+                $.ajax({
+                    url: "Public/select2/jsonAerodromo.php",
+                    dataType: "json",
+                    
+                    data: {term: request.term},
+                    success: function(data) {
+                                response($.map(data, function(item) {
+                                return {
+                                    id: item.id,
+                                    label: item.icao, 
+                                    cidade_estado: item.cidade_estado
+                                  
+                                    };
+                            }));
+                        }
+                       
+                    });
+                },
+                autoFocus:true,
+                minLength: 1,
+                select: function(event, ui){
+            $("#pouso_cidade").val(ui.item.cidade_estado);
+            $("#pouso_cidade").attr('disabled', true);
+             $("#input_pouso_aerodromo").val(ui.item.id);
+        }
+               
+            
+            });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+     $('.input_aerodromo_alternativo').autocomplete({
+    source: function( request, response ) {
+                $.ajax({
+                    url: "Public/select2/jsonAerodromo.php",
+                    dataType: "json",
+                    
+                    data: {term: request.term},
+                    success: function(data) {
+                                response($.map(data, function(item) {
+                                return {
+                                    id: item.id,
+                                    label: item.icao, 
+                                    cidade_estado: item.cidade_estado
+                                  
+                                    };
+                            }));
+                        }
+                       
+                    });
+                },
+                autoFocus:true,
+                minLength: 1,
+                select: function(event, ui){
+            $("#pouso_alternativo").val(ui.item.cidade_estado);
+            $("#pouso_alternativo").attr('disabled', true);
+            $("#input_pouso_alternativo").val(ui.item.id);
+        }
+               
+            
+            });
+    });
+    
+    
+    
+</script>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+     $('.input_aerodromo_ocorrencia').autocomplete({
+    source: function( request, response ) {
+                $.ajax({
+                    url: "Public/select2/jsonAerodromo.php",
+                    dataType: "json",
+                    
+                    data: {term: request.term},
+                    success: function(data) {
+                                response($.map(data, function(item) {
+                                return {
+                                    id: item.id,
+                                    cidade_id: item.cidade_id,
+                                    label: item.icao, 
+                                    cidade_estado: item.cidade_estado
+                                  
+                                    };
+                            }));
+                        }
+                       
+                    });
+                },
+                autoFocus:true,
+                minLength: 1,
+                select: function(event, ui){
+            $("#cidade_estado_ocorrencia").val(ui.item.cidade_estado);
+            $("#cidade_estado_ocorrencia").attr('disabled', true);
+            $("#id_aerodromo_ocorrencia").val(ui.item.id);
+             $("#id_cidade_ocorrencia").val(ui.item.cidade_id);
+        }
+               
+            
+            });
+    });
+    
+    
+    
+</script>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+     $('#estado_cidade').autocomplete({
+    source: function( request, response ) {
+                $.ajax({
+                    url: "Public/select2/jsonCidade.php",
+                    dataType: "json",
+                    
+                    data: {term: request.term},
+                    success: function(data) {
+                                response($.map(data, function(item) {
+                                return {
+                                    id: item.id,
+                                    label: item.cidade_estado
+                                    
+                                  
+                                    };
+                            }));
+                        }
+                       
+                    });
+                },
+                autoFocus:true,
+                minLength: 1,
+              
+                select: function(event, ui){
+
+             $(".estado_cidade").val(ui.item.cidade_estado);
+			 $(".estado_id").val(ui.item.id);
+           
+        }
+            
+            });
+    });
+    
+    
+    
+</script>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+     $('.input_operador').autocomplete({
+    source: function( request, response ) {
+                $.ajax({
+                    url: "Public/select2/jsonOperador.php",
+                    dataType: "json",
+                    
+                    data: {term: request.term},
+                    success: function(data) {
+                                response($.map(data, function(item) {
+                                return {
+                                    id: item.id,
+                                    label: item.nome_operador 
+                                    
+                                  
+                                    };
+                            }));
+                        }
+                       
+                    });
+                },
+                autoFocus:true,
+                minLength: 1,
+              
+                select: function(event, ui){
+
+             $("#operador_id").val(ui.item.id);
+           
+        }
+            
+            });
+    });
+    
+    
+    
+</script>
+    
+    
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+     $('.input_registro').autocomplete({
+    source: function( request, response ) {
+                $.ajax({
+                    url: "Public/select2/jsonAeronaveCategoria.php",
+                    dataType: "json",
+                    
+                    data: {term: request.term},
+                    success: function(data) {
+                                response($.map(data, function(item) {
+                                return {
+                                    id: item.id,
+                                    label: item.nome, 
+                                    aviacao: item.aviacao
+                                  
+                                    };
+                            }));
+                        }
+                       
+                    });
+                },
+                autoFocus:true,
+                minLength: 1,
+                  select: function(event, ui){
+            $("#operacao").val(ui.item.aviacao);
+            $("#operacao").attr('disabled', true);
+            $("#categoria_id").val(ui.item.id);
+        }
+               
+            
+            });
+    });
+    
+    
+    
+</script>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+     $('.input_cod_anac').autocomplete({
+    source: function( request, response ) {
+                $.ajax({
+                    url: "Public/select2/jsonTripulante.php",
+                    dataType: "json",
+                    
+                    data: {term: request.term},
+                    success: function(data) {
+                                response($.map(data, function(item) {
+                                return {
+                                    id_trip: item.id_trip,
+                                    label: item.codigo, 
+                                    nacionalidade: item.nacionalidade,
+                                    nome: item.nome
+                                  
+                                    };
+                            }));
+                        }
+                       
+                    });
+                },
+                autoFocus:true,
+                minLength: 1,
+                
+               select: function(event, ui){
+            $("#nacionalidade").val(ui.item.nacionalidade);
+			$("#nome_completo").val(ui.item.nome);
+			$("#id_anac").val(ui.item.id_trip);
+        }
+            
+            });
+    });
+    
+    
+    
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+     $('.input_nome').autocomplete({
+    source: function( request, response ) {
+                $.ajax({
+                    url: "Public/select2/jsonTripulante.php",
+                    dataType: "json",
+                    
+                    data: {term: request.term},
+                    success: function(data) {
+                                response($.map(data, function(item) {
+                                return {
+                                    id: item.id,
+                                    label: item.nome, 
+                                    nacionalidade : item.nacionalidade,
+                                    codigo: item.codigo
+                                  
+                                    };
+                            }));
+                        }
+                       
+                    });
+                },
+                autoFocus:true,
+                minLength: 1,
+                select: function(event, ui){
+            $("#cod").val(ui.item.codigo);
+                        $("#nacionalidade").val(ui.item.nacionalidade)
+        }
+               
+            
+            });
+    });
+    
+    
+    
+</script>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+     $('.input_matricula').autocomplete({
+    source: function( request, response ) {
+                $.ajax({
+                    url: "Public/select2/json.php",
+                    dataType: "json",
+                    
+                    data: {term: request.term},
+                    success: function(data) {
+                                response($.map(data, function(item) {
+                                return {
+                                    id: item.id,
+                                    label: item.name,
+                                    ano: item.ano,
+                                    equipamento: item.equipamento,
+                                    fabricante: item.fabricante,
+                                    modelo: item.modelo,
+                                    motor: item.tipo_motor,
+                                    peso_decolagem: item.peso
+                                    };
+                            }));
+                        }
+                       
+                    });
+                },
+                autoFocus:true,
+                minLength: 1,
+                 select: function(event, ui){
+                        $("#ano_aeronave").val(ui.item.ano);
+                        $("#equipamento").val(ui.item.equipamento);
+                        $("#fabricante").val(ui.item.fabricante);
+                        $("#modelo").val(ui.item.modelo);
+                        $("#motor").val(ui.item.motor);
+                        $("#peso").val(ui.item.peso_decolagem);
+                        $("#id_aeronave").val(ui.item.id);
+        }
+               
+            
+            });
+    });
+</script>
+
+
+<!-- Init Plugin -->
+<script>
+
+    window.OrderDate = function(){
+
+        jQuery.extend( jQuery.fn.dataTableExt.oSort, {
+            "date-uk-pre": function ( a ) {
+                var ukDatea = a.split('/');
+                return (ukDatea[2] + ukDatea[1] + ukDatea[0]) * 1;
+            },
+
+            "date-uk-asc": function ( a, b ) {
+                return ((a < b) ? -1 : ((a > b) ? 1 : 0));
+            },
+
+            "date-uk-desc": function ( a, b ) {
+                return ((a < b) ? 1 : ((a > b) ? -1 : 0));
+            }
+        });
+    }
+
+</script>
+
+
+
+<script>
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+
+
+    });
+</script>
+
+
+
+
+
+
+
+<!-- ================== END PAGE LEVEL JS ================== -->
+
+
+<script>
+    $(document).ready(function () {
+	/*
+	$('input, radio, checkbox, select, textarea').click(function(){
+		if (!$('[name="tipoFicha"]').is(':checked') ){
+			alert('Selecione o tipo de Notificacao: Simplificada ou Completa.');
+		}
+	});*/
+	
+	
+	$("[name='tipoFicha']").click(function(){
+		$("#fase_operacao").html('<option value="0">Carregando...</option>');
+		$.post('Public/select2/jsonFaseVoo.php', function(data){
+			$("#fase_operacao").html(data);
+		})	
+	});
+	/*$("[name='tipoFicha']").click(function(){
+		$("#registro").html('<option value="0">Carregando...</option>');
+		$.post('#', function(data){
+			$("#registro").html(data);
+		})	
+	});*/
+	$("[name='tipoFicha']").click(function(){
+		$("#categoria_operacao").html('<option value="0">Carregando...</option>');
+		$.post('Public/select2/jsonCategoria.php', function(data){
+			$("#categoria_operacao").html(data);
+		})	
+	});
+	
+	
+
+        App.init();
+        FormSliderSwitcher.init();
+
+        //BEGIN PAGE LEVEL JS  ->>> pegar filtro da tabela
+        TableManageDefault.init();
+        // END PAGE LEVEL JS  ->>> pegar filtro da tabela 
+
+        //BEGIN PAGE LEVEL JS  ->>> janela modal( inserir desconto anuncio)
+        Notification.init();
+        // END PAGE LEVEL JS  ->>> janela modal( inserir desconto anuncio)
+
+
+
+    });
+</script>
+
+
+
+
+</body>
+</html>

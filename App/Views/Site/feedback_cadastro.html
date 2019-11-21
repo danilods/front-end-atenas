@@ -1,0 +1,89 @@
+{% include 'Site/Partials/header.html' %}
+
+
+
+{%block session%}
+
+{{session}}
+
+{%endblock%}
+
+
+<div class="col-md-10 col-md-offset-1">
+
+
+<div id="content" class="content">
+
+
+	<div class="banner" style="margin-bottom:25px;">
+
+		<img class="img-responsive" alt="Responsive image" width="100%" src="/Public/Images/banner.png">
+
+	</div>
+
+
+
+
+{% block status %}
+ 
+{% if status == true %}   
+<div class="panel panel-success" data-sortable-id="ui-widget-6">
+<div class="panel-heading">
+<h4 class="panel-title"> <i class="fa fa-file-text-o"></i> Formulário de Ordem de Serviço</h4>
+</div>
+<div class="alert alert-success fade in">
+<span class="close" data-dismiss="alert">×</span>
+<i class="fa fa-check fa-2x pull-left"></i>
+<h4>Ordem de Serviço registrada com sucesso!</h4>
+</div>
+<div class="panel-body">
+<h4>Para acompanhar sua solicitação, clique no link abaixo e insira o código de acesso: </h4>
+<h4><i class="fa fa-share-square-o pull-left"></i> Código: {% block codigo %} {{ codigo }}   {% endblock %} <br>
+<i class="fa fa-envelope pull-left"></i> Link: <a href="http://os.cenipa.intraer/consultar">os.cenipa.intraer/consultar</a></h4>
+<h5>Centro de Investigação e Prevenção de Acidentes Aeronáuticos - CENIPA <br /></h5>
+
+
+</div>
+
+<div class="panel-footer">
+<a href="/" class="btn btn-success">Voltar</a>
+</div>
+</div>
+{% else %}
+<div class="panel panel-danger" data-sortable-id="ui-widget-6">
+<div class="panel-heading">
+<h4 class="panel-title"> <i class="fa fa-file-text-o"></i> Formulário de Ordem de Serviço</h4>
+</div>
+<div class="alert alert-danger fade in">
+<span class="close" data-dismiss="alert">×</span>
+<i class="fa fa-times-circle-o fa-2x pull-left"></i>
+<h4>Erro: Não foi possível registrar sua ordem de serviço! Tente novamente mais tarde.</h4>
+</div>
+<div class="panel-body">
+<h5>Centro de Investigação e Prevenção de Acidentes Aeronáuticos - CENIPA <br /></h5>
+</div>
+
+<div class="panel-footer">
+<a href="/" class="btn btn-success">Voltar</a>
+</div>
+</div>
+{% endif %}
+{% endblock %} 
+	
+	
+    <!-- end error -->
+
+    <!-- begin theme-panel -->
+
+    <!-- end theme-panel -->
+
+    <!-- begin scroll to top btn -->
+    <a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i class="fa fa-angle-up"></i></a>
+    <!-- end scroll to top btn -->
+</div>
+</div>
+
+<!-- end panel -->
+
+{% include 'Site/Partials/footer_teste.html' %}
+

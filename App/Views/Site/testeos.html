@@ -1,0 +1,461 @@
+﻿{% include 'Site/Partials/header.html' %}
+
+
+
+{%block session%}
+
+{{session}}
+
+{%endblock%}
+
+
+
+<div class="col-md-10 col-md-offset-1">
+
+
+
+<div class="content">
+	
+	<div class="banner">
+		<div style="position: absolute; right:50px;  margin-top: 50px"><a class="btn btn-lg btn-danger" href="/consultar">Clique para Consultar Ordem de Serviço</a></div>
+		<img class="img-responsive" alt="Responsive image" width="100%" src="Public/Images/banner.png">
+
+	</div>
+
+</div>
+
+<div id="content" class="content">
+
+
+
+<div class="row">
+
+	<form class="form-horizontal form-bordered" data-parsley-validate="true" name="demo-form" method="POST" action="testeos/cadastrar">
+
+				<!-- begin col-6 -->
+
+				<div class="col-md-6">
+
+					<!-- begin panel -->
+
+					<div class="panel panel-inverse">
+
+						<div class="panel-heading">
+
+							<div class="panel-heading-btn">
+
+								
+
+							</div>
+
+							<h4 class="panel-title">Ordem de serviço</h4>
+
+						</div>
+
+						<div class="panel-body panel-form">
+
+								<div class="form-group">
+
+									<label class="control-label col-md-4 col-sm-4 widget widget-stats bg-green">Deseja solicitar Passagem Aérea*:</label>
+
+									<div class="col-md-6 col-sm-6">
+
+										<div class="col-sm-3">
+
+						                        <label class="radio-inline">
+
+						                            <input name="passagem_aerea" id="passagem_aerea" value="SIM" type="radio" required />Sim
+
+						                        </label>
+
+						                     </div>
+
+						                <div class="col-sm-3">
+
+						                     <label class="radio-inline">
+
+						                          <input name="passagem_aerea" id="passagem_aerea" value="NAO" type="radio"  />Não
+
+						                     </label>
+
+						                </div>
+
+									</div>
+
+								</div>
+								
+								<div class="form-group">
+									<label class="control-label col-md-4 col-sm-4 widget widget-stats bg-green">Missão sem custo ?:</label>
+
+									<div class="col-md-6 col-sm-6">
+
+										<div class="col-sm-3">
+
+						                        <label class="check-inline">
+
+						                            <input name="missao_custo" id="missao_custo" value="1" type="checkbox"   /> Sim
+
+						                        </label>
+
+						                     </div>
+
+									</div>
+								</div>
+								
+								
+
+								<div class="form-group">
+
+									<label class="control-label col-md-4 col-sm-4">Nomes dos participantes* :</label>
+
+									<div class="col-md-8 col-sm-8">
+
+									<div class="input-group">
+
+											<input type="hidden" id="total_usuario" name="total_usuario" value="0"/>
+
+						                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+
+
+											<ul id="nomes" class="primary uso_popover" data-toggle="popover" data-placement="top"  data-content="Digite seu 'Nome de Guerra' e clique sobre ele na lista abaixo.">
+
+											</ul>
+
+										</div>
+
+
+
+                					</div>
+									 
+
+								</div>
+								 
+
+
+
+
+
+
+								
+								<div class="form-group">
+
+									<label class="control-label col-md-4 col-sm-4">Descrição da missão* :</label>
+
+									<div class="col-md-8 col-sm-8">
+
+									 <textarea class="form-control uso_popover" id="missao" name="missao" rows="2" data-toggle="popover" data-placement="bottom"  data-content="Informações relacionada com o propósito da missão."  required></textarea>
+
+									
+
+                					</div>
+
+								</div>
+								
+								
+								<div class="form-group">
+
+									<label class="control-label col-md-4 col-sm-4">OM Pagadora* :</label>
+
+									<div class="col-md-8 col-sm-8">
+
+									 <select id="om_pagadora" name="om_pagadora" class="form-control uso_popover" data-toggle="popover" data-placement="top"  data-content="OM responsável por realizar o pagamento de diárias." required>
+									 <option value="">SELECIONE OM PAGADORA</option>
+										{% for pagadora in om_pagadora %}
+											<option value="{{pagadora.id}}">{{pagadora.nome_unidade|convert_encoding('UTF-8', 'iso-8859-1')}} </option>
+										{% endfor %}
+									</select>
+									
+
+                					</div>
+
+								</div>
+
+
+
+
+								<div class="bg-success text-center"><h4>Roteiro da Missão</h4></div>
+								<input type="hidden" id="total_roteiro" name="total_roteiro" value="1"/>
+								<div id="roteiro_missao" class="roteiroMiss1" style="border:1px solid #ccc;" rel="1">
+								
+								<div id="contexto" class="text-center"></div>
+								
+								<div class="form-group">
+
+									<label class="control-label col-md-4 col-sm-4">Data do início da missão* :</label>
+
+									<div class="col-md-3 col-sm-3">
+
+                    					<input type="text" class="form-control calendario" id="data_ida" placeholder="escolha a data" name="data_ida[]" required />
+
+
+
+                					</div>
+
+                					<label class="control-label col-md-3 col-sm-3">Hora do início da missão* :</label>
+
+									<div class="col-md-2 col-sm-2">
+
+								        <input class="form-control col-md-2 hora" type="text" name="hora_inicio_missao[]" id="hora_inicio_missao" rel="hora_missao" required />
+
+                					</div>
+
+
+
+									
+
+									<label class="control-label col-md-4 col-sm-4">Data do retorno da missão* :</label>
+
+									<div class="col-md-3 col-sm-3">
+
+                    					<input type="text" class="form-control calendario" id="data_volta" placeholder="escolha a data" name="data_volta[]" required />
+
+                					</div>
+
+                					<label class="control-label col-md-3 col-sm-3">Hora do retorno da missão* :</label>
+
+									<div class="col-md-2 col-sm-2">
+
+								        <input class="form-control col-md-2 hora" type="text" name="hora_retorno_missao[]" id="hora_retorno_missao" rel="hora_retorno" required />
+
+                					</div>
+									
+									<label class="control-label col-md-4 col-sm-4">Tipo de Transporte utilizado:</label>
+
+									<div class="col-md-8 col-sm-8">
+
+									    <select class="form-control tipo_transporte" name="tipo_transporte[]" id="tipo_transporte" data-size="10" data-live-search="true" data-style="btn-inverse" required>
+
+                                            <option value="" selected>Selecione o tipo de transporte</option>
+                                            <option value="AEREO">AÉREO</option>
+                                            <option value="FERROVIARIO">FERROVIÁRIO</option>   
+											<option value="FLUVIAL">FLUVIAL</option>
+											<option value="MARITMO">MARITMO</option>
+											<option value="RODOVIARIO">RODOVIÁRIO</option> 
+											<option value="VEICULO OFICIAL">VEÍCULO OFICIAL</option>
+											<option value="VEICULO PROPRIO">VEÍCULO PRÓPRIO</option>     											
+
+                                        </select>
+
+									</div>
+									
+									<div class="col-md-12 col-sm-12 col-lg-12">
+									
+									<label class="control-label col-md-4 col-sm-4">Cidade da Missão* :</label>
+
+									<div class="col-md-8 col-sm-8">
+
+									<div class="input-group">
+
+						                    <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
+
+						                    <input class="form-control" type="text" name="cidade[]" id="cidade" placeholder="Digite a cidade da missão"  required/>
+
+											<input class="form-control input_cidade_hidden" type="hidden" id="cidade_hidden" name="cidade_hidden[]" rel="input_cidade_hidden" value="" />
+
+
+
+										</div>
+
+                					</div>
+									</div>
+
+									<label class="control-label col-md-4 col-sm-4">Adicional de deslocamento :</label>
+
+									<div class="col-md-6 col-sm-6">
+
+										<div class="col-sm-3">
+
+						                        <label class="check-inline">
+
+						                            <input name="deslocamento[]" id="deslocamento" value="1" type="checkbox"   /> Sim
+
+						                        </label>
+
+						                     </div>
+
+									</div>
+									
+									<label class="control-label col-md-4 col-sm-4">Pernoite :</label>
+
+									<div class="col-md-6 col-sm-6">
+
+										<div class="col-sm-3">
+
+						                        <label class="check-inline">
+
+						                            <input name="pernoite[]" id="pernoite" value="1" type="checkbox"  /> Sim
+
+						                        </label>
+
+						                     </div>
+
+
+									</div>
+									
+									
+
+
+								</div>
+								</div>
+									<div class="bg-info col-lg-12 text-center">
+										<a href="javascript:;" class="btn  btn-success adicionar-roteiro">Adicionar outro trecho</a>
+									</div>
+								
+
+								<div class="form-group">
+
+									
+
+								</div>
+
+								
+								<div class="form-group">
+
+									<label class="control-label col-md-4">Natureza da missão*:</label>
+
+									<div class="col-md-8">
+
+									    <select class="form-control selectpicker" name="natureza_missao" data-size="10" data-live-search="true" data-style="btn-inverse" required>
+
+                                            <option value="" selected>Selecione a natureza da missão</option>
+
+					    <option value="1">INVESTIGAÇÃO</option>
+
+                                            <option value="2">PREVENÇÃO</option>
+
+                                            <option value="3">ADMINISTRATIVA</option>
+
+                                            <option value="4">CAPACITAÇÃO</option>
+
+                                            <option value="5">OPERACIONAL/TRIPULANTE</option>
+
+                                            <option value="6">REPRESENTAÇÃO</option>
+											
+											<option value="7">OUTROS</option>
+                                          
+
+                                        </select>
+
+									</div>
+
+								</div>
+
+
+
+
+
+								<div class="form-group">
+
+									<label class="control-label col-md-4 col-sm-4">Observações :</label>
+
+									<div class="col-md-8 col-sm-8">
+
+									 <textarea class="form-control" id="observacoes" name="observacoes" rows="4"></textarea>
+
+
+
+                					</div>
+
+								</div>
+
+								
+
+								<div class="form-group">
+
+									<label class="control-label col-md-4 col-sm-4"></label>
+
+									<div class="col-md-8 col-sm-8">
+
+									<div class="bg-warning"><b>Atenção:</b><br> Caso a data de embarque seja inferior a <span class="text-danger">{{ data_embarque }}</span> preencha sua justificativa:</div>
+
+									 <textarea class="form-control" id="justificativa" name="justificativa" rows="4"></textarea>
+
+
+
+                					</div>
+
+								</div>
+
+								
+
+								<div class="form-group">
+
+									<label class="control-label col-md-4 col-sm-4"></label>
+
+									<div class="col-md-8 col-sm-8">
+
+										<button type="submit" id="" name="submit" class="btn btn-success btn-lg"><i class="fa fa-check"></i> Salvar requisição</button>
+
+                					</div>
+
+								</div>
+
+								
+
+							
+
+						</div>
+
+					</div>
+
+					<!-- end panel -->
+
+				</div>
+
+				<!-- end col-6 -->
+
+				<!-- begin col-6 -->
+
+				
+				<div class="bloco_passagem">
+					<div id="passagem" class="col-md-6">
+
+					</div>
+				</div>
+
+
+
+
+				<!-- end col-6 -->
+
+			</div>
+
+			
+
+			<!-- end row -->
+
+			</form>
+
+		</div>
+
+		<!-- end #content -->
+
+		
+
+		<!-- begin theme-panel -->
+
+		
+
+		<!-- end theme-panel -->
+
+		
+
+		<!-- begin scroll to top btn -->
+
+		<a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i class="fa fa-angle-up"></i></a>
+
+		<!-- end scroll to top btn -->
+
+	</div>
+
+
+
+{% block javascripts %}
+	
+	<script>
+
+    </script>
+{% endblock javascripts %}
+
+{% include 'Site/Partials/footer_teste.html' %}
+

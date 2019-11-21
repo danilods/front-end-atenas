@@ -1,0 +1,76 @@
+﻿{% include 'Site/Partials/header.html' %}
+
+
+
+{%block session%}
+
+{{session}}
+
+{%endblock%}
+
+
+<div class="col-md-10 col-md-offset-1">
+
+
+<div id="content" class="content">
+
+
+	<div class="banner" style="margin-bottom:25px;">
+
+		<img class="img-responsive" alt="Responsive image" width="100%" src="/Public/Images/banner.png">
+
+	</div>
+
+
+<div class="panel panel-success" data-sortable-id="ui-widget-6">
+<div class="panel-heading">
+<h4 class="panel-title"> <i class="fa fa-file-text-o"></i> Consultar status da Ordem de Serviço</h4>
+</div>
+
+<div class="panel-body">
+<div class="col-lg-4 col-md-offset-4">
+ <div class="login-content">
+                <form action="/consultar/filtro" method="POST" class="margin-bottom-0">
+                    
+                    <div class="form-group m-b-20">
+                        <label>CÓDIGO DA ORDEM DE SERVIÇO</label>
+                        <input type="text" class="form-control input-lg" name="codigo" placeholder="Digite o código da ordem de serviço" />
+                    </div>
+					<div class="form-group m-b-20">
+                        <label>CPF</label>
+                        <input type="text" class="form-control input-lg" name="cpf" placeholder="Digite seu CPF" />
+                    </div>
+                  
+                    <div class="login-buttons">
+                        <button type="submit" class="btn btn-success btn-block btn-lg">Consultar</button>
+                    </div>
+                </form>
+            </div>
+</div>
+
+</div>
+
+<div class="panel-footer">
+<a href="/" class="btn btn-success">Voltar</a>
+</div>
+</div>
+
+
+	
+	
+    <!-- end error -->
+
+    <!-- begin theme-panel -->
+
+    <!-- end theme-panel -->
+
+    <!-- begin scroll to top btn -->
+    <a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i class="fa fa-angle-up"></i></a>
+    <!-- end scroll to top btn -->
+</div>
+</div>
+
+<!-- end panel -->
+
+{% include 'Site/Partials/footer_teste.html' %}
+

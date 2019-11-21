@@ -1,0 +1,802 @@
+{% include 'Site/Partials/header.html' %}
+
+{%block session%}
+{{session}}
+{%endblock%}
+
+<style>
+    .btn-file {
+        position: relative;
+        overflow: hidden;
+    }
+    .btn-file input[type=file] {
+        position: absolute;
+        top: 0;
+        right: 0;
+        min-width: 100%;
+        min-height: 100%;
+        font-size: 100px;
+        text-align: right;
+        filter: alpha(opacity=0);
+        opacity: 0;
+        outline: none;
+        background: white;
+        cursor: inherit;
+        display: block;
+    }
+</style>
+<!-- end #sidebar -->
+
+<!-- begin #content -->
+<div id="content" class="content">
+<form id="form_notificacao" class="form-horizontal" action="/notificateste/cadastrar" method="POST" data-parsley-validate="true" enctype="multipart/form-data">
+
+<!-- begin breadcrumb -->
+
+<!-- begin page-header -->
+
+<!-- end page-header -->
+<div class="row">
+
+
+<div class="col-md-10 col-md-offset-1">
+<!-- begin panel -->
+
+<div class="conteiner">
+    <div class="banner">
+        <img class="img-responsive" alt="Responsive image" width="100%" src="Public/Images/banner.png">
+    </div>
+</div>
+<div class="panel">
+
+    <div class="panel-body">
+        <div class="form-group">
+
+            <div style="font-size:17px;">
+                <div class="col-md-3 col-md-offset-2 ">
+                       
+                    <div class="btn btn-warning botao-branco"><label><input type="radio" name="tipoFicha"  value="detalhado" onclick="detalhado()" />
+                        Ficha de Notificação completa <br><small>Possuo muitas informações sobre a ocorrência</small></label>
+
+                    </div>
+
+                   
+
+                </div>
+
+
+                <div class="col-md-3 col-md-offset-1">
+
+                     <div class="btn btn-warning botao-branco"><label data-color="white"><input type="radio" name="tipoFicha"  value="simplificado" onclick="simplificado()" />
+                        Ficha de Notificação simplificada <br><small>Não possuo muitas informações sobre a ocorrência</small></label>
+                    </div>
+
+                    <div class="col-md-1 ">
+                        <input class=" form-control" type="hidden" name="ficha" id="ficha_simples"/>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+
+        </div>
+
+
+    </div>
+</div>
+
+
+
+
+<div id="simplificado">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h4 class="panel-title pull-left">Formulário de Notificação de Ocorrência Aeronáutica</h4>
+            <div class="box-tools pull-right">
+                <a href="http://www.cenipa.aer.mil.br/cenipa/index.php/ocorrencias/telefones-de-sobreaviso" target="_blank"><small class="btn btn-xs btn-danger btn-flat"><i class="fa fa-phone"></i> Telefones de contato de sobreaviso: <span class="sobrecontato"></span></small></a>
+
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="panel-body">
+
+
+            <div class="form-group">
+                <div class="note note-info">
+                    <h5>Data e Horário da ocorrência</h5>
+                </div>
+
+
+                <div class="col-md-2">
+                    <label class="control-label">Data: </label>
+                    <input type="text" class="form-control" id="calendario" placeholder="escolha a data" name="data_ocorrencia" data-rule-required="true" data-msg-required="Campo Data é obrigatório!" />
+                </div>
+
+
+                <div class="col-md-1">
+                    <label class="control-label">Hora Local: </label>
+                    <input class="form-control col-md-2" type="text" name="hora_ocorrencia" id="hora_ocorrencia" data-rule-required="true" data-msg-required="Campo Hora é obrigatório!" />
+                </div>
+				
+				<div class="col-md-2 ">
+                
+                    <label class="control-label">UF:</label>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></span>
+						<select name="estado" class="form-control" id="estado" data-rule-required="true" data-msg-required="Campo Uf é obrigatório!">
+										<option value="">SELECIONE O ESTADO</option>
+										{% for uf in estado %}
+											<option value="{{uf.id}}">{{uf.nome|convert_encoding('UTF-8', 'iso-8859-1')}} - {{uf.nome_codigo|convert_encoding('UTF-8', 'iso-8859-1')}}</option>
+										{% endfor %}
+									</select>
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-3 ">
+                    <label class="control-label">CIDADE:</label>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></span>
+                        <select name="cidade" class="form-control" id="cidade" data-rule-required="true" data-msg-required="Campo Cidade é obrigatório!">
+                            <option value="0" disabled="disabled">ESCOLHA UM ESTADO</option>
+                        </select>
+						<input type="hidden" name="estado_nome" class="estado_nome" value="0"/>
+                        <input type="hidden" name="cidade_nome" class="cidade_nome" value="0"/>
+                    </div>
+                </div>
+				
+				
+
+                <div class="col-md-4 pull-center">
+                    <label class="control-label">AERODROMO: </label>
+
+
+                    <div class="input-group">
+									<span class="input-group-addon"><i class="glyphicon glyphicon-road"></i>
+									</span>
+
+                        <input class="input_aerodromo_ocorrencia form-control" type="text" name="aerodromo_icao_ocorrencia" id="icao" placeholder="ICAO Ex: SBBR" data-rule-required="true" data-msg-required="Campo ICAO é obrigatório!" />
+
+                    </div>
+                    <div class="col-md-8">
+                        <label>
+                            <span style="font-size:10px;margin-left: 25px"><input type="checkbox" name="checkaerodromo"  value="***" onclick="foraAerodromo(this);" id="check_aerodromo" /> A OCORRÊNCIA FOI FORA DE AERODROMO</span></label>
+                    </div>
+
+
+                </div>
+                <div id="localidade">
+                    <div class="col-md-4">
+                        <label class="control-label">Observações sobre a localidade da ocorrência: </label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-road"></i></span>
+                            <input class=" form-control" type="text" name="observacoes_local_ocorrencia" id="obs_ocorrencia" value="***" placeholder="Digite aqui as observações sobre a localidade da ocorrência. " />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-1 pull-center">
+                    <input class="input_aerodromo_ocorrencia form-control" type="hidden" name="aerodromo_icao_ocorrencia_oculto" id="icao_oculto"/>
+                </div>
+                <div class="col-md-1 pull-center">
+                    <input class="estado_cidade form-control" type="hidden" name="estado_cidade_oculto" id="estado_cidade_oculto"  />
+                </div>
+                <div class="col-md-1 pull-center">
+                    <input class="input_fabricante form-control" type="hidden" name="matricula_oculto" id="matricula_oculto"  />
+                </div>
+                <div class="col-md-1 pull-center">
+                    <input class="input_fabricante form-control" type="hidden" name="fabricante_oculto" id="fabricante_oculto"  />
+                </div>
+
+                <div class="col-md-1 pull-center">
+                    <input class="col-md-1 input_modelo form-control" type="hidden" name="modelo_oculto" id="modelo_oculto"  />
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <div class="note note-info" >
+                    <h5>Histórico da ocorrência</h5>
+                </div>
+
+                <div class="col-md-12 ">
+                    <textarea class="form-control" id="message" name="historico_ocorrencia" rows="10" data-parsley-range="[20,2000]" placeholder="Descreva as circunstâncias da ocorrência aeronáutica."></textarea>
+                </div>
+            </div>
+
+
+            <div id="info_aeronave_simplificado" class="form-group">
+                <div class="note note-info">
+                    <h5>Informações sobre aeronave</h5>
+                </div>
+                <div class="col-md-2 pull-center">
+                    <label class="label_matricula control-label" for="input_matricula">Matrícula: <small class="text-danger"> (SEM HÍFEN Ex: PTXXX)</small></label>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-road"></i></span>
+                        <input type="text"  name="matricula_simples" id="matricula_simples" class="input_matricula_simplificado form-control" placeholder="EX: PTXXX" data-rule-required="true" data-msg-required="Campo Matrícula é obrigatório!"/>
+                    </div>
+                    <div class="col-md-12">
+                        <label><span style="font-size:10px;margin-left:25px"><input type="checkbox" name="aeronave_desconhecida"  value="***" onclick="aeronaveDesconhecida(this);" id="check_aeronave" />
+									 NÃO FOI POSSÍVEL IDENTIFICAR A MATRÍCULA</span></label>
+                    </div>
+                </div>
+
+
+
+
+
+                <div class="col-md-2 pull-center">
+                    <label class="label_fabricante control-label">Fabricante: </label>
+                    <input class="input_fabricante form-control" type="text" name="fabricante_simplificado" id="fabricante_simplificado" disabled />
+                </div>
+
+                <div class="col-md-2 pull-center">
+                    <label class="label_modelo control-label">Modelo: </label>
+                    <input class="col-md-1 input_modelo form-control" type="text" name="modelo_simplificado" id="modelo_simplificado" disabled />
+                </div>
+
+
+
+
+
+                <div class="col-md-2 pull-center">
+                    <label class="control-label  ">Danos à Aeronave? </label>
+
+                    <select class="form-control selectpicker" data-size="10" name="danos_aeronave_simplificado" data-style="btn-danger" data-rule-required="true" data-msg-required="Campo Danos é obrigatório!">
+                        <option value="" selected>SELECIONE</option>
+                        <option value="SIM">SIM</option>
+                        <option value="NAO">NÃO</option>
+
+                        <option value="***">DESCONHECIDO</option>
+
+                    </select>
+
+                </div>
+                <div class="col-md-2 pull-center">
+
+                    <label class="control-label ">Lesão à pessoas? </label>
+                    <select class="form-control selectpicker" data-size="10" name="lesao_pessoas" data-style="btn-danger" data-rule-required="true" data-msg-required="Campo Danos é obrigatório!">
+                        <option value="" selected>SELECIONE</option>
+                        <option value="SIM">SIM</option>
+                        <option value="NAO">NÃO</option>
+
+                        <option value="***">DESCONHECIDO</option>
+
+                    </select>
+                </div>
+
+
+            </div>
+
+
+
+            <div class="col-md-1 ">
+                <input class="input_ano form-control" type="hidden" id="id_aeronave" name="id_aeronave" />
+            </div>
+
+
+
+        </div>
+
+
+
+
+
+
+
+
+    </div><!--fim secao-->
+
+</div><!--fim simplificado-->
+
+
+
+
+
+
+
+
+
+<div id="detalhado">
+
+<div id="_aeronave" class="">
+<div class="panel panel-primary">
+<div class="panel-heading">
+    <h4 class="panel-title"><i class="fa fa-plane"></i> <span class="_aeronave_item">Aeronave</h4>
+</div>
+
+
+
+<div class="panel-body">
+
+<h4 id="_heading_reference">Aeronave #1</h4>
+
+
+<div class="form-group">
+    <div class="col-md-1 pull-center">
+        <label class="label_matricula control-label" for="input_matricula">Matrícula:  </label>
+
+        <input type="text"  name="input_matricula[]" id="input_matricula" class="input_matricula form-control" placeholder="EX: PTXXX"  autocomplete="off" data-rule-required="true" data-msg-required="Campo Matrícula é obrigatório!"/>
+        <div>
+            <small class="text-danger"> (DIGITE A MATRÍCULA SEM HÍFEN Ex: PTXXX)</small>
+        </div>
+    </div>
+
+
+
+    <div class="col-md-1 pull-center">
+        <label class="label_ano control-label">Ano: </label>
+        <input class="input_ano form-control" type="text" id="ano_aeronave" name="ano[]" disabled />
+    </div>
+
+    <div class="col-md-2 pull-center">
+        <label class="label_dev control-label">Equipamento: </label>
+        <input class="input_dev form-control" type="text" name="equipamento[]" id="equipamento" disabled/>
+    </div>
+
+    <div class="col-md-2 pull-center">
+        <label class="label_fabricante control-label">Fabricante: </label>
+        <input class="input_fabricante form-control" type="text" name="fabricante[]" id="fabricante" disabled />
+        <!--<input class="input_fabricante form-control" type="hidden" name="fabricante_oculto[]" id="fabricante_oculto"  />-->
+    </div>
+
+    <div class="col-md-2 pull-center">
+        <label class="label_modelo control-label">Modelo: </label>
+        <input class="col-md-2 input_modelo form-control" type="text" name="modelo[]" id="modelo" disabled />
+        <!--<input class="input_modelo form-control" type="hidden" name="modelo_oculto[]" id="modelo_oculto"  />-->
+
+    </div>
+
+    <div class="col-md-2 pull-center">
+        <label class="label_mot control-label">Motorização: </label>
+        <input class="input_mot form-control" type="text" name="motor[]" id="motor" disabled />
+    </div>
+
+
+    <div class="col-md-1 pull-center">
+        <label class="label_peso control-label">PMD(kg): </label>
+
+        <input class="input_peso form-control" type="text" name="peso[]" id="peso" disabled/>
+    </div>
+
+    <div class="col-md-1 pull-center">
+        <input class="input_ano form-control" type="hidden" id="id_aeronave" name="id_aeronave" />
+    </div>
+
+    <div class="col-md-1 pull-center">
+        <input class="form-control" type="hidden" id="count_aeronave" name="count_aeronave" value="1"/>
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="note note-info">
+        <h5>Proprietário/Operador:</h5>
+    </div>
+
+    <div class="col-md-4 pull-center">
+        <label class="label_dev control-label">Proprietário/Operador: </label>
+        <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon glyphicon-pencil"></i></span>
+            <input class="input_operador form-control" type="text" name="operador[]" id="operador" data-rule-required="true" placeholder="Ex: AEROCLUBE" data-msg-required="Campo Proprietário/Operador é obrigatório!" />
+        </div>
+    </div>
+
+
+    <div class="col-md-3 pull-center">
+        <label class="control-label">Categoria: </label>
+        {% block categoria %}
+
+        <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-plane"></i></span>
+            <select class="form-control" type="text" name="categoria_operacao[]" id="categoria_operacao">
+
+                <option value="" selected>SELECIONE</option>
+                {% for categoria in categoria %}
+
+                <option value="{{categoria.nome_codigo|convert_encoding('UTF-8', 'iso-8859-1')}} - {{categoria.nome|convert_encoding('UTF-8', 'iso-8859-1')}}">{{categoria.nome_codigo|convert_encoding('UTF-8', 'iso-8859-1')}} - {{categoria.nome|convert_encoding('UTF-8', 'iso-8859-1')}}</option>
+                {% endfor %}
+             </select>
+        </div>
+
+        {% endblock %}
+    </div>
+
+    <div class="col-md-1 pull-center">
+        <input class="form-control" type="hidden" name="operador_id" id="operador_id" />
+    </div>
+    <div class="col-md-1 pull-center">
+        <input class="form-control" type="hidden" name="categoria_id" id="categoria_id" />
+    </div>
+
+</div>
+
+<div class="form-group">
+    <div class="note note-info">
+        <h5>Local da última decolagem | pouso | pouso alternativo </h5>
+    </div>
+
+
+    <div class="col-md-4 pull-center">
+        <div class="alert alert-warning fontAlert"><i class="fa fa-angle-double-down"></i> Local da última decolagem</div>
+        <label class="control-label">Aerodromo da última decolagem: </label>
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-1x fa-paper-plane"></i></span>
+            <input class="input_aerodromo col-md-1 form-control" type="text" name="input_aerodromo[]" id="input_aerodromo" placeholder="Ex: SBBR"  data-rule-required="true" data-msg-required="Campo Decolagem é obrigatório!" />
+        </div>
+        <label class="control-label">Localidade da decolagem: </label>
+        <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-pushpin"></i></span>
+            <input class="form-control" type="text" name="local_decolagem" id="cidade_estado" disabled/>
+        </div>
+        <label class="control-label">Observações sobre a localidade da ultima decolagem: </label>
+        <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-road"></i></span>
+            <input class="form-control" type="text" name="observacoes_local_decolagem[]" id="icao" />
+        </div>
+        <input class="input_aerodromo col-md-1 form-control" type="hidden" name="id_decolagem_aerodromo"  id="id_decolagem_aerodromo"  />
+
+    </div>
+
+    <div class="col-md-4 pull-center divisor">
+        <div class="alert alert-warning fontAlert"><i class="fa fa-angle-double-down"></i> Local do pouso pretendido</div>
+        <label class="control-label">Aerodromo do pouso pretendido: </label>
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-1x fa-paper-plane-o"></i></span>
+            <input class="input_aerodromo_pouso form-control" type="text" name="aerodromo_pouso[]" id="aerodromo_pouso" placeholder="Ex: SBBR" data-rule-required="true" data-msg-required="Campo Pouso é obrigatório!" />
+        </div>
+        <label class="control-label">Localidade do pouso: </label>
+        <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-pushpin"></i></span>
+            <input class="form-control" type="text" name="pouso_cidade" id="pouso_cidade" disabled/>
+        </div>
+        <label class="control-label">Observações sobre a localidade do pouso pretendido: </label>
+        <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-road"></i></span>
+            <input class="form-control" type="text" name="observacoes_local_pouso[]" id="obs_pouso" value="***"/>
+            <input class="col-md-1 form-control" type="hidden" name="id_pouso_aerodromo" id="input_pouso_aerodromo" />
+        </div>
+    </div>
+
+    <div class="col-md-4 pull-center divisor">
+        <div class="alert alert-warning fontAlert"><i class="fa fa-angle-double-down"></i> Local do pouso alternativo</div>
+        <label class="control-label">Aerodromo para pouso alternativo: </label>
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-1x fa-paper-plane-o"></i></span>
+            <input class="input_aerodromo_alternativo form-control" type="text" name="aerodromo_pouso_alternativo[]" id="aerodromo_pouso_alternativo" placeholder="Ex: SBBR" />
+        </div>
+
+        <label class="control-label">Localidade do pouso alternativo: </label>
+        <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-pushpin"></i></span>
+            <input class="form-control" type="text" name="pouso_alternativo" id="pouso_alternativo" disabled/>
+        </div>
+
+        <label class="control-label">Observações sobre a localidade do pouso alternativo: </label>
+        <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-road"></i></span>
+            <input class="form-control" type="text" name="observacoes_pouso_alternativo[]" id="obs_alternativo" value="***" />
+        </div>
+
+    </div>
+
+
+
+
+</div>
+
+
+<div class="form-group">
+    <div class="note note-info">
+        <h5>Fase de Operação e Danos à Aeronave</h5>
+    </div>
+
+    <label class="control-label col-md-2">Fase de Voo: </label>
+
+    <div class="col-md-2">
+
+        {% block fase %}
+
+        <select class="form-control " id="fase_operacao" name="fase_operacao[]" data-style="btn-primary" data-rule-required="true" data-msg-required="Campo Fase de voo é obrigatório!">
+
+
+            <option value="" selected>SELECIONE</option>
+            {% for fase in fase_voo %}
+            <option value="{{fase.nome|convert_encoding('UTF-8', 'iso-8859-1')}}">{{fase.nome|convert_encoding('UTF-8', 'iso-8859-1')}}</option>
+
+            {% endfor %}
+        </select>
+
+        {% endblock %}
+
+    </div>
+    <label class="control-label col-md-2">Danos à Aeronave? </label>
+    <div class="col-md-2">
+        <select class="form-control selectpicker" data-size="5"  name="danos_aeronave[]" data-style="btn-danger" data-rule-required="true" data-msg-required="Campo Danos é obrigatório!">
+            <option value="" selected>SELECIONE</option>
+            <option value="NENHUM">NENHUM</option>
+            <option value="LEVE">LEVE</option>
+            <option value="SUBSTANCIAL">SUBSTANCIAL</option>
+            <option value="DESTRUIDA">DESTRUÍDA</option>
+            <option value="***">***</option>
+
+        </select>
+
+
+    </div>
+
+
+
+</div>
+
+<div class="form-group">
+    <label class="control-label col-md-2 col-sm-4" for="message">Informações sobre os danos:</label>
+    <div class="col-md-8 col-sm-4">
+        <textarea class="form-control" id="message" name="obsevacoes_danos_aeronave[]" rows="4" data-parsley-range="[20,200]" placeholder="Digite o texto aqui"></textarea>
+    </div>
+</div>
+
+
+
+
+
+<div class="form-group">
+    <div class="note note-info">
+        <h5>Tripulantes:</h5>
+    </div>
+
+
+
+
+    <div class="panel-body">
+        <div id="tripulante1" class="clonedTripulante" rel="1">
+            <div class="form-group">
+                <div class="col-md-2 pull-center">
+                    <label class="label_trip control-label">Função do tripulante: </label>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-info-sign"></i></span>
+                        <select class="input_trip form-control primary" id="funcao" name="funcao[]" >
+                            <option value="***"selected>SELECIONE</option>
+                            <option value="COMANDANTE">COMANDANTE </option>
+                            <option value="COPILOTO">COPILOTO </option>
+                            <option value="INSTRUTOR">INSTRUTOR </option>
+                            <option value="MECÂNICO">MECÂNICO </option>
+                            <option value="PILOTO-ALUNO">PILOTO-ALUNO </option>
+                            <option value="EXAMINADOR">EXAMINADOR </option>
+                            <option value="COMISSÁRIO">COMISSÁRIO </option>
+
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-2 pull-center">
+                    <label class="label_codigo control-label">Código ANAC: </label>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-tags"></i></span>
+                        <input class="input_cod_anac form-control" type="text" name="cod_anac[]" id="cod_anac" placeholder="Ex: 124578" />
+                    </div>
+                </div>
+
+                <div class="col-md-2 pull-center">
+                    <label class="label_nacionalidade control-label">Nacionalidade: </label>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                        <input class="input_nacionalidade form-control" type="text" name="nacionalidade[]" id="nacionalidade" />
+                    </div>
+                </div>
+
+
+                <div class="col-md-4 pull-center">
+                    <label class="label_nome control-label">Nome completo: </label>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input class="input_nome_completo form-control" type="text" name="nome_completo[]" id="nome_completo" />
+                        <input class="input_id form-control" type="hidden" name="id_cod_anac[]" id="id_anac" />
+                    </div>
+                </div>
+                <div class="col-md-1">
+                    <input class= "form-control" type="hidden" name="count_tripulante" id="count_tripulante" value="1"/>
+                </div>
+
+                <div class="col-md-1">
+
+                </div>
+            </div>
+
+
+        </div>
+
+        <p>
+            <button type="button" id="adicionar-tripulante" name="btnAdd" reladt="1" class="btn btn-success btn-xs"><i class="fa fa-plus"></i> Adicionar Tripulante</button>
+        </p>
+    </div>
+
+
+
+</div>
+
+
+<div class="form-group">
+    <div class="note note-info">
+        <h5>POB/LESÕES:</h5>
+    </div>
+
+    <div class="panel-body">
+
+        <div class="form-group">
+
+
+
+            <div class="panel-body">
+                <div id="lesao1" class="clonedlesao" rell="1">
+                    <div class="form-group">
+                        <div class="col-md-3 pull-center">
+                            <label class="label_trip control-label">Grau da Lesão: </label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-info-sign"></i></span>
+                                <select class="input_grau_lesao form-control primary" id="grau_lesao" name="grau_lesao[]" >
+                                    <option value="***"selected>SELECIONE</option>
+                                    <option value="ILESO">ILESO</option>
+                                    <option value="LEVE">LEVE </option>
+                                    <option value="GRAVE">GRAVE </option>
+                                    <option value="FATAL">FATAL </option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 pull-center">
+                            <label class="label_codigo control-label">Função a bordo: </label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-info-sign"></i></span>
+                                <select class="input_funcao_bordo form-control primary" id="funcao_bordo" name="funcao_bordo[]" >
+                                    <option value="***"selected>SELECIONE</option>
+                                    <option value="TRIPULANTE">TRIPULANTE </option>
+                                    <option value="PASSAGEIRO">PASSAGEIRO </option>
+                                    <option value="TERCEIRO">TERCEIRO </option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 pull-center">
+                            <label class="label_nacionalidade control-label">Quantidade: </label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-info-sign"></i></span>
+                                <input class="input_quantidade form-control" type="numeric" name="quantidade[]" id="quantidade" />
+                            </div>
+                        </div>
+
+                        <div class="col-md-1">
+                            <input class= "form-control" type="hidden" name="count_lesao" id="count_lesao" value="1"/>
+                        </div>
+                    </div>
+
+
+                </div>
+                <p>
+                    <button type="button" id="adicionar-lesao" name="btnAdd" reladt="1" class="btn btn-success btn-xs"><i class="fa fa-plus"></i> Adicionar Lesão</button>
+                </p>
+
+
+            </div>
+
+
+
+        </div>
+
+
+
+
+
+    </div>
+
+
+</div>
+
+
+
+</div>
+
+</div><!--fim secao-->
+
+
+</div>
+<p>
+    <button type="button" id="addAer" name="" class="adicionar-aeronave btn btn-warning btn-lg"><i class="fa fa-plane"></i> Adicionar outra Aeronave</button>
+</p>
+
+<!--fim secao-->
+
+
+
+
+
+</div><!--fin detalhado-->
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h4 class="panel-title">Dados do Emissor em: {{ 'now'|date('d/m/Y  H:i:s') }} </h4>
+    </div>
+    <div class="panel-body">
+
+        <div class="form-group">
+            <div class="note note-info">
+                <h5>Emitida por:</h5>
+            </div>
+            <div class="col-md-3 pull-center">
+                <label class="control-label">Nome: </label>
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                    <input class="form-control" type="text" name="nome_notificador" id="sname" placeholder="Digite seu Nome completo" data-rule-required="true" data-msg-required="Campo Nome é obrigatório!" />
+                </div>
+            </div>
+            <div class="col-md-3 pull-center">
+                <label class="control-label">Email: </label>
+                <div class="input-group">
+                    <span class="input-group-addon" id="sizing-addon2">@</span>
+                    <input class="form-control" type="text" name="email_notificante" id="email" placeholder="Digite seu email para receber uma cópia da notificação" />
+                </div>
+            </div>
+
+            <div class="col-md-2 pull-center">
+                <label class="control-label">Telefone: </label>
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-ok"></i></span>
+                    <input class="form-control" type="text" name="telefone" id="telefone1" placeholder="DDD - 0000-0000" data-rule-required="true" data-msg-required="Campo Telefone é obrigatório!" />
+                </div>
+            </div>
+            <div class="col-md-2 pull-center">
+                <label class="control-label">Celular: </label>
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-ok"></i></span>
+                    <input class="form-control" type="text" name="telefone2"  id="telefone2" placeholder="DDD - 0000-0000"/>
+                </div>
+            </div>
+
+
+        </div>
+
+
+
+
+    </div>
+</div><!--fim secao-->
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="form-group form-inline">
+            <div class="col-md-3">
+				
+				
+
+               <div class="g-recaptcha" data-sitekey="6LfmNSoUAAAAAATCdlypxdf1og8i1GO_OPpoyZWZ" data-rule-required="true" data-msg-required="Campo Telefone é obrigatório!"></div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+</div><!--fim panel-->
+<div class="col-md-10 col-md-offset-1 ui-sortable">
+    <button type="submit" id="" name="submit" class="btn btn-success btn-lg"><i class="fa fa-check"></i> Cadastrar Ocorrência</button>
+</div>
+</div><!--fim row-->
+
+</div>
+<!--fim content -->
+
+</form>
+<!--fim class row-->
+</div>
+
+
+
+
+
+<!-- end panel -->
+{% include 'Site/Partials/footer_teste_funcional.html' %}

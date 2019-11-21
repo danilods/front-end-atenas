@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+
+<!--[if !IE]><!-->
+
+<html lang="en">
+
+<!--<![endif]-->
+
+<head>
+
+    <meta charset="utf-8" />
+
+    <title>{% block titulo %} {{titulo }} {% endblock %}</title>
+
+	<meta name="robots" content="noindex">
+
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+
+    <meta content="" name="description" />
+
+    <meta content="" name="author" />
+
+
+
+
+
+    <!-- ================== BEGIN BASE CSS STYLE ================== -->
+
+    <link href="{{site_url}}/Public/color_admin_v1.5/admin/template_content_html/assets/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css" rel="stylesheet" />
+
+
+
+    <link href="{{site_url}}/Public/color_admin_v1.5/admin/template_content_html/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+    <link href="{{site_url}}/Public/color_admin_v1.5/admin/template_content_html/assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+
+    <link href="{{site_url}}/Public/color_admin_v1.5/admin/template_content_html/assets/css/animate.min.css" rel="stylesheet" />
+
+    <link href="{{site_url}}/Public/color_admin_v1.5/admin/template_content_html/assets/css/style.min.css" rel="stylesheet" />
+
+    <link href="{{site_url}}/Public/color_admin_v1.5/admin/template_content_html/assets/css/style-responsive.min.css" rel="stylesheet" />
+
+    <link href="{{site_url}}/Public/color_admin_v1.5/admin/template_content_html/assets/css/theme/default.css" rel="stylesheet" id="theme" />
+
+    <!-- ================== END BASE CSS STYLE ================== -->
+
+
+
+    <!-- ================== BEGIN PAGE LEVEL STYLE ================== -->
+
+    <link href="{{site_url}}/Public/color_admin_v1.5/admin/template_content_html/assets/plugins/bootstrap-datepicker/css/datepicker.css" rel="stylesheet" />
+
+    <link href="{{site_url}}/Public/color_admin_v1.5/admin/template_content_html/assets/plugins/bootstrap-datepicker/css/datepicker3.css" rel="stylesheet" />
+		<link href="{{site_url}}/Public/css/jquery-ui.css" rel="stylesheet" />
+		<script src="{{site_url}}/Public/js/jquery.min.1.7.2.js"></script>
+		<script src="{{site_url}}/Public/js/jquery.min.1.5.0.js"></script>
+
+
+
+
+
+    <link href="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/plugins/DataTables/css/data-table.css" rel="stylesheet" />
+
+	
+    <style type="text/css">
+
+
+
+        .ocultar{display:none}
+		
+
+
+
+    </style>
+
+
+
+
+
+
+
+</head>
+
+
+
+
+
+<body>
+
+<div class="col-lg-10 col-lg-offset-1 col-xs-12">
+
+<!-- begin #page-loader -->
+
+<div id="logo" class="logo">
+
+    <img src="{{site_url}}Public/Images/barra_rf.gif" border="10" alt="0" width="100%" align="center" >
+
+</div>
+
+<div id="page-loader" class="fade in"><span class="spinner"></span></div>
+
+<!-- end #page-loader -->
+
+
+
+<!-- begin #page-container -->
+
+<div id="page-container" class="ffade page-without-sidebar">
+
+    <!-- begin #header -->
+
+
+
+<!-- begin #content -->
+
+<div id="content" class="content">
+
+
+
+    <!-- begin breadcrumb -->
+
+   
+
+    <!-- begin page-header -->
+
+
+
+
+
+    <div class="panel panel-default " data-sortable-id="form-stuff-1">
+
+        <div class="panel-heading">
+
+            <div class="panel-heading-btn">
+
+
+
+                 <a href="javascript:;" class="btn btn-success" data-click="panel-collapse1"><i class="glyphicon glyphicon-search"></i> Filtros para pesquisa avançada</a>
+
+
+
+               
+
+
+
+            </div>
+
+           
+
+        </div>
+
+        <div class="panel-body ">
+
+            <Legend>Pesquisar Relatórios Finais </Legend>
+
+            <div class="alert alert-info fade in">
+
+
+
+
+
+
+
+                Consulte Recomendações de Segurança de Voo publicadas. Você poderá utilizar os campos abaixo para filtrar dinamicamente a sua pesquisa e encontrar os registros na tabela.
+
+                </div>
+
+
+
+            <div class="row">
+<form action="/filtrorf/page/{% block paginaatual %}{{ paginaatual }}{% endblock %}/"  method="GET">
+            </div>
+			
+			                <div class="row margin"> 
+                            
+                                <div id="filter_col1" data-column="2" class="form-group col-sm-1">
+                                    <label>Matrícula</label>
+									<input name="matricula" class="column_filter col-md-6 form-control" id="col2_filter" type="text" placeholder="PRPTN">
+                                </div>
+								
+								<div id="filter_col2" data-column="0" class="form-group col-sm-2">
+                                    <label>Número</label>
+									<input class="column_filter col-md-6 form-control" id="col0_filter" type="text" placeholder="A-075/CENIPA/2015 ">
+                                </div>
+								
+								<div id="filter_col3" data-column="1" class="form-group col-sm-2">
+                                    <label>Data por período</label>
+									
+									    <div class="input-daterange input-group" id="datepicker">
+											<input type="text" class="column_filter_date form-control" id="col_filter_date_from" placeholder="Data inicial" />
+											<span class="input-group-addon">a</span>
+											<input type="text" class="column_filter_date form-control" id="col_filter_date_to" placeholder="data final" />
+										</div>
+									
+                                </div>
+                                                                  
+                                <div id="filter_col4" data-column="4" class="form-group col-sm-2">
+                                    <label>Equipamento</label>
+									<select name="" class="column_filter_select col-md-6 form-control" id="col4_filter">
+										<option value="">Selecione equipamento</option>
+										<option value="AVIÃO">AVIÃO</option>
+										<option value="HELICÓPTERO">HELICÓPTERO</option>
+										<option value="EXPERIMENTAL">EXPERIMENTAL</option>
+										<option value="PLANADOR">PLANADOR</option>
+										<option value="ULTRALEVE">ULTRALEVE</option>
+										<option value="ANFÍBIO">ANFÍBIO</option>
+										<option value="HIDROAVIÃO">HIDROAVIÃO</option>
+										<option value="BALÃO">BALÃO</option>
+										<option value="GIROCÓPTERO">GIROCÓPTERO</option>
+										<option value="DIRIGÍVEL">DIRIGÍVEL</option>
+										<option value="TRIKE">TRIKE</option>
+										<option value="***">***</option>
+									
+									</select>
+                                </div>
+								
+								<div id="filter_col5" data-column="3" class="form-group col-sm-2">
+                                    <label>Modelo</label>
+									<input class="column_filter col-md-6 form-control" id="col3_filter" type="text" placeholder="CESSNA AIRCRAFT">
+                                </div>
+                               
+
+                            </div> <!--col-xs-12-->
+							
+							<div class="row margin"> 
+                                <div id="filter_col6" data-column="5" class="form-group col-sm-2">
+                                    <label>Classificação</label>
+									<select name="classificacao" class="column_filter_select col-md-6 form-control" id="col5_filter">
+										<option value="">Selecione classificação</option>
+										<option value="ACIDENTE">ACIDENTE</option>
+										<option value="INCIDENTE GRAVE">INCIDENTE GRAVE </option>
+								
+									</select>
+                                </div>
+								
+								<div id="filter_col7" data-column="6" class="form-group col-sm-2">
+                                    <label>Tipo</label>
+									<select name="" class="column_filter_select col-md-6 form-control" id="col6_filter">
+										<option value="">Selecione tipo</option>
+										{% for taxonomia_tipos in taxonomia_tipo %}
+											<option value="{{taxonomia_tipos.tipo|convert_encoding('UTF-8', 'iso-8859-1')}}">{{taxonomia_tipos.tipo|convert_encoding('UTF-8', 'iso-8859-1')}}</option>
+										{% endfor %}
+									</select>
+                                </div>
+								
+								<div id="filter_col8" data-column="8" class="form-group col-sm-1">
+                                    <label>Estado</label>
+									<select name="" class="column_filter_select col-md-6 form-control" id="col8_filter">
+										<option value="">Selecione estado</option>
+										{% for uf in estado %}
+											<option value="{{uf.nome_codigo|convert_encoding('UTF-8', 'iso-8859-1')}}">{{uf.nome_codigo|convert_encoding('UTF-8', 'iso-8859-1')}}</option>
+										{% endfor %}
+									</select>
+                                </div>
+								
+								<div id="filter_col9" data-column="7" class="form-group col-sm-2">
+                                    <label>Cidade</label>
+									<input class="column_filter col-md-6 form-control" id="col7_filter" type="text" placeholder="Formosa">
+                                </div>
+                              
+
+                            </div> <!--col-xs-12-->
+                            <div class="footer">
+                            	<input type="submit" value="Pesquisar"/>
+                            </div>
+			
+		</form>
+
+					</div>
+
+            </div>
+	
+
+
+            <!-- begin row -->
+
+            <div class="row">
+
+                <!-- begin col-12 -->
+
+                <div class="col-sm-offset-0 col-md-13">
+
+                    <!-- begin panel -->
+
+                    <div class="panel panel-primary">
+
+                        <div class="panel-heading">
+
+                            <div class="panel-heading-btn">
+
+                               
+
+                            </div>
+
+                            <h3 class="panel-title">Relatórios Finais Publicados | total de registros: {% block total %} {{total }} {% endblock %}</h3>
+
+                        </div>
+
+
+
+                        <div class="panel-body">
+
+
+
+                            <div class="table-responsive">
+
+                                <table id="lista12364" class="table table-striped table-bordered table-hover" role="grid">
+
+                                    <thead>
+
+                                        <tr>
+
+                                            <th width="10%">NUMERO</th>
+
+                                            <th>DATA</th>
+
+                                            <th>MATRICULA</th>
+
+                                            <th>MODELO</th>
+											
+											<th>EQUIPAMENTO</th>
+
+                                            <th>CLASSIFICAÇÃO</th>
+
+                                            <th>TIPO</th>
+
+                                            <th>CIDADE</th>
+
+                                            <th>ESTADO</th>
+
+                                            <th>RELATÓRIO</th>
+
+                                            <th>RECOMENDAÇÃO  </th>
+
+
+                                        </tr>
+
+                                    </thead>
+
+
+
+                                    <tbody>
+
+                                        {% block content %}
+
+
+
+                                        {% for relatorios in relatorios%}
+
+                                        <tr class="odd gradeX">
+
+
+
+                                            <td> {{relatorios.numero_relatorio}} </td>
+
+
+
+
+
+                                            <td> {{relatorios.dia_ocorrencia}}  </td> 
+
+
+
+                                            <td>  {{relatorios.matricula}}</td>
+
+
+
+                                            <td>  {{relatorios.fabricante}} - {{relatorios.modelo}} </td>
+											
+											
+											<td>  {{relatorios.equipamento|convert_encoding('UTF-8', 'iso-8859-1')}} </td>
+
+
+
+                                            <td>  {{relatorios.classificacao}}  </td>
+
+
+
+                                            <td>  {{relatorios.tipo_ocorrencia|convert_encoding('UTF-8', 'iso-8859-1')}}  </td>
+
+
+
+                                            
+
+                                            <td>  {{relatorios.cidade|convert_encoding('UTF-8', 'iso-8859-1') }}</td>
+
+
+
+                                            <td>  {{relatorios.estado}}  </td>
+
+
+
+                                            
+
+                                            
+
+
+
+                                            <td>
+
+                                                {% if relatorios.anexo_pt == true %}
+
+                                                    <a href="{{site_url}}/Public/media/media/{{relatorios.anexo_pt}}" rel="" title="Visualizar PDF" data-toggle="tooltip"> <i><img border="0" alt="" src="{{site_url}}Public/Images/button_br.png" width="25" height="25"></i></a>
+
+                                                    {% else %}
+
+                                                         
+
+
+
+                                                {% endif %}
+
+                                                
+
+                                               {% if relatorios.anexo_en == true %}
+
+                                                    <a href="{{site_url}}/Public/media/media/{{relatorios.anexo_en}}" rel="" title="Visualizar PDF" data-toggle="tooltip"><i><img border="0" alt="" src="{{site_url}}Public/Images/button_us.png" width="25" height="25"></i></a>
+
+                                                    {% else %}
+
+                                                      
+
+
+
+                                                {% endif %}
+
+                                                {% if relatorios.anexo_es == true %}
+
+                                                    <a href="{{site_url}}/Public/media/media/{{relatorios.anexo_es}}" rel="" title="Visualizar PDF"  data-toggle="tooltip"><i><img border="0" alt="" src="{{site_url}}Public/Images/button_es.png" width="25" height="25"></i></a>
+
+                                                    {% else %}
+
+
+
+
+
+                                                {% endif %}
+
+                                               
+
+                                            </td>
+
+                                              <td>
+
+                                                  {% if relatorios.ocorrencia_id == false   %}
+
+
+
+
+
+                                                  {% elseif relatorios.ocorrencia_id ==true   %}
+
+
+
+                                                     <a href="/detalhe/{{relatorios.ocorrencia_id}}/{{relatorios.matricula}}" rel=""  class="alert" title="Clique para visualizar a(s) Recomendação(ões)" data-toggle="tooltip"><i class="fa fa-2x fa-file-text"></i></a>
+
+
+
+                                                 
+
+                                                  {% endif %}
+
+                                               
+
+                                              
+
+                                               
+
+                                            </td>
+
+											
+
+											
+
+											
+
+
+
+
+
+                                        </tr>
+
+                                        {% endfor %}
+
+
+
+                                        {% endblock %}
+
+
+
+                                    </tbody>
+
+                                </table>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- end panel -->
+
+					
+{% if paginator.numPages > 1 %}
+    <ul class="pagination">
+        {% if paginator.prevUrl %}
+            <li><a href="{{ paginator.prevUrl }}">&laquo; Anterior</a></li>
+        {% endif %}
+
+        {% for page in paginator.pages %}
+            {% if page.url %}
+                <li {{ page.isCurrent ? 'class="active"' : '' }}><a href="{{ page.url }}">{{ page.num }}</a></li>
+            {% else %}
+                <li class="disabled"><span>{{ page.num }}</span></li>
+            {% endif %}
+        {% endfor %}
+
+        {% if paginator.nextUrl %}
+            <li><a href="{{ paginator.nextUrl }}">Próximo &raquo;</a></li>
+        {% endif %}
+    </ul>
+{% endif %}	
+
+
+
+
+					
+                </div>
+
+                <!-- end col-12 -->
+
+            </div>
+
+            <!-- end row -->
+
+            <!-- begin scroll to top btn -->
+
+            <a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i class="fa fa-angle-up"></i></a>
+
+            <!-- end scroll to top btn -->
+
+        </div>
+
+	 </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- end panel -->
+<!--<script src="{{site_url}}Public/rf-data-table.js"></script>-->
+{% include 'Site/Partials/footer1.html' %}

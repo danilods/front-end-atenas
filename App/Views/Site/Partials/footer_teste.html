@@ -1,0 +1,1581 @@
+
+
+
+
+
+
+<!-- ================== BEGIN BASE JS ================== -->
+
+<script src="{{site_url}}/Public/color_admin_v1.5/admin/template_content_html/assets/plugins/jquery/jquery-1.9.1.min.js"></script>
+
+<script src="{{site_url}}/Public/color_admin_v1.5/admin/template_content_html/assets/plugins/jquery/jquery-migrate-1.1.0.min.js"></script>
+
+<script src="{{site_url}}/Public/color_admin_v1.5/admin/template_content_html/assets/plugins/jquery-ui/ui/minified/jquery-ui.min.js"></script>
+
+<script src="{{site_url}}/Public/color_admin_v1.5/admin/template_content_html/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+<!--[if lt IE 9]>
+
+    <script src="assets/crossbrowserjs/html5shiv.js"></script>
+
+    <script src="assets/crossbrowserjs/respond.min.js"></script>
+
+    <script src="assets/crossbrowserjs/excanvas.min.js"></script>
+
+    <![endif]{{site_url}}-->
+
+<script src="{{site_url}}/Public/color_admin_v1.5/admin/template_content_html/assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+<script src="{{site_url}}/Public/color_admin_v1.5/admin/template_content_html/assets/plugins/jquery-cookie/jquery.cookie.js"></script>
+
+
+
+<script src="{{site_url}}/Public/color_admin_v1.5/admin/template_content_html/assets/js/apps.min.js"></script>
+
+
+
+<script src="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/plugins/gritter/js/jquery.gritter.js"></script>
+
+<script src="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/js/ui-modal-notification.demo.min.js"></script>
+
+<script src="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/js/jquery.validate.min.js"></script>
+
+<script src="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/js/jquery.validate.unobtrusive.min.js"></script>
+
+<script src="{{site_url}}/Public/color_admin_v1.5/admin/template_content_html/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+
+<script src="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/plugins/bootstrap-datepicker/js/locales/bootstrap-datepicker.pt-BR.js"></script>
+
+<script src="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/plugins/masked-input/masked-input.js"></script>
+
+<script src="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/plugins/masked-input/masked-input.min.js"></script>
+
+
+
+<script src="{{site_url}}Public/color_admin_v1.5/admin/template_content_ajax/assets/js/form-plugins.demo.min.js"></script>
+<script src="{{site_url}}Public/color_admin_v1.5/admin/template_content_html/assets/plugins/parsley/dist/parsley.js"></script>
+
+<script src="{{site_url}}Public/color_admin_v1.5/admin/template_content_ajax/assets/plugins/bootstrap-tagsinput/bootstrap-tagsinput-typeahead.js"></script>
+
+<script src="{{site_url}}Public/color_admin_v1.5/admin/template_content_ajax/assets/plugins/jquery-tag-it/js/tag-it.min.js"></script>
+
+
+
+
+
+	
+
+
+
+<!-- ================== END GE LEVEL JS ================== -->
+
+<!-- ================== END PAGE LEVEL JS  ->>> pegar filtro da tabela  ================== -->
+
+
+
+
+
+
+
+<script>
+
+    $(document).ready(function () {
+
+   
+
+        App.init();
+
+        
+
+        FormPlugins.init();
+
+
+
+        //BEGIN PAGE LEVEL JS  ->>> pegar filtro da tabela
+
+        //TableManageDefault.init();
+
+        // END PAGE LEVEL JS  ->>> pegar filtro da tabela 
+
+
+
+        //BEGIN PAGE LEVEL JS  ->>> janela modal( inserir desconto anuncio)
+
+        Notification.init();
+
+        // END PAGE LEVEL JS  ->>> janela modal( inserir desconto anuncio)
+
+
+		$('.box-text').remove();
+		
+		var url_atual = window.location.href;
+      
+		$('input, radio, checkbox, select, textarea').click(function(){
+
+			if(url_atual=='http://os.cenipa.intraer/'){
+				if (! $('[name="passagem_aerea"]').is(':checked') ){
+							alert('Deseja solicitar passagem Aérea? confirme sua escolha no primeiro campo do formulário.');
+						}
+			}
+		
+		
+			});
+		$(".uso_popover").popover({
+			trigger: 'focus'
+		})
+		
+		if(url_atual=='http://dev.os.cenipa.intraer/exterior'){
+			var dataAtual = new Date();
+			var dia = dataAtual.getDate()-1;
+			var mes = dataAtual.getMonth()+1;
+			var ano = dataAtual.getFullYear();
+			$.get("https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata/CotacaoDolarDia(dataCotacao=@dataCotacao)?", "@dataCotacao='"+mes+"-"+dia+"-"+ano+"'&$top=100&$format=json&$select=cotacaoVenda", function( data ) {
+				$("#valor_dolar").val(data['value'][0]['cotacaoVenda']);
+			});
+		}
+		
+		
+    });
+	
+
+		
+
+
+
+
+
+
+</script>
+
+
+
+
+
+            
+
+   
+
+
+
+<script type="text/javascript">
+
+
+    function verifica() {
+
+        if (document.forms[0].email.value.length == 0) {
+
+            alert('Por favor, informe o seu EMAIL.');
+
+            document.frmEnvia.email.focus();
+
+            return false;
+
+        }
+
+        return true;
+
+    }
+
+
+
+    function checarEmail(){
+
+        if( document.forms[0].email.value==""
+
+                || document.forms[0].email.value.indexOf('@')==-1
+
+                || document.forms[0].email.value.indexOf('.')==-1 )
+
+        {
+
+            alert( "Por favor, informe um E-MAIL válido!" );
+
+            return false;
+
+        }
+
+    }
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+
+	
+	
+	
+	var TotalRoteiro=1;
+	var CountRoteiro=1;		
+	
+
+	var TotalCount=1;
+	
+
+
+	var TotalTrecho=1;
+
+	var NumTrecho=1;
+
+	var NumTrechomin=1;
+
+	
+
+	var trecho=1;
+	
+	var emissao_passagem=1;
+	
+	        $("input[name='passagem_aerea']").click(function(){
+            var radioValue = $("input[name='passagem_aerea']:checked").val();
+
+            if(radioValue=='NAO'){
+				emissao_passagem=0;
+				
+            }else{
+				emissao_passagem=1;
+			}
+			console.log(radioValue);
+
+        });
+	
+
+	
+
+	$('#nomes').tagit({
+
+		
+
+		singleField: true,
+
+        singleFieldNode: $('#nomes'),
+
+        allowSpaces: true,
+
+        minLength: 2,
+
+        removeConfirmation: true,
+
+		beforeTagAdded: function(event, ui) {
+
+			var name = ui.tagLabel;			
+			var cpf = name.substr(name.length - 11);
+			
+			if(emissao_passagem==1){
+				var campo_obrigatorio = 'required';
+				var display = 'style="display: hidden;"';
+			}else{
+				var campo_obrigatorio = '';
+				var display = 'style="display: none;"';
+			}
+			
+			var conteudo = '<div id="item" '+display+' class="col-md-12 pass'+TotalCount+'" relPass="'+TotalCount+'" rel="'+ui.tagLabel+'">'+
+
+					'<div class="panel panel-inverse" data-sortable-id="form-validation-2">'+
+
+						'<div class="panel-heading">'+
+
+							'<div class="panel-heading-btn">	'+							
+
+							'</div>'+
+
+							'<h4 class="panel-title">Passagem Aérea #'+TotalCount+' | '+ui.tagLabel+'</h4>'+
+
+						'</div>'+
+
+						'<div class="panel-body panel-form">'+
+
+							'<div class="form-horizontal form-bordered">'+
+
+								'<input type="hidden" id="numtrecho'+TotalTrecho+'" name="numtrecho'+TotalTrecho+'" value="'+TotalTrecho+''+NumTrecho+'"/>'+
+
+								'<div id="trecho'+TotalTrecho+'" class="trecho-'+TotalTrecho+''+NumTrecho+'">'+
+
+								'<div class="form-group">'+
+
+									'<input type="hidden" class="usuario" name="usuario[]" value="'+ui.tagLabel+'" />'+
+
+									'<label class="control-label col-md-4 col-sm-4">Aeroporto Origem*:</label>'+
+
+									'<div class="col-md-7 col-sm-7">'+
+
+									'<div class="input-group">'+
+
+											
+
+						                    '<span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>'+
+
+						                    '<input class="form-control input_aerodromo1" type="text" name="trecho_origem" rel="input_aerodromo1" id="trecho_origem"  placeholder="Digite o nome ou código iata do aeroporto"  '+campo_obrigatorio+' data-msg-required="Campo Nome é obrigatório!" />'+
+
+											'<input class="input_aerodromo1_hidden" type="hidden" id="trecho_origem" name="id_trecho_origem[]" rel="input_aerodromo1_hidden" value="" />'+
+											'<input class="cpf" type="hidden" id="cpf" name="cpf[]" value="'+cpf+'" />'+
+
+
+									   ' </div>'+
+
+                					'</div>'+
+
+								'</div>'+
+								
+								'<div class="form-group">'+
+
+									'<label class="control-label col-md-4 col-sm-4">Aeroporto Destino*:</label>'+
+
+									'<div class="col-md-7 col-sm-7">'+
+
+									'<div class="input-group">'+
+
+						                    '<span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>'+
+
+						                    '<input class="form-control input_aerodromo2" type="text" name="trecho_destino" rel="input_aerodromo2" id="trecho_destino"  placeholder="Digite o nome ou código iata do aeroporto" '+campo_obrigatorio+' data-msg-required="Campo Nome é obrigatório!" />'+
+
+						                    '<input class="input_aerodromo2_hidden" type="hidden" id="trecho_destino" name="id_trecho_destino[]" rel="input_aerodromo2_hidden" value="" />'+
+
+									   '</div>'+
+
+                					'</div>'+
+
+								'</div>'+
+								
+
+								'<div class="form-group">'+
+
+									'<label class="control-label col-md-4 col-sm-4">Data *:</label>'+
+
+									'<div class="col-md-3 col-sm-3">'+
+
+                    					'<input type="text" class="form-control calendario1" id="calendario1" '+campo_obrigatorio+' placeholder="escolha a data" name="data[]" rel="calendario1"  data-msg-required="Campo Data é obrigatório!" />'+
+
+                					'</div>'+
+
+									'<label class="control-label col-md-2 col-sm-2">Hora* :</label>'+
+
+									'<div class="col-md-2 col-sm-2">'+
+
+								        '<input class="form-control col-md-2 hora1" type="text" name="hora[]"  id="hora1" rel="hora1" '+campo_obrigatorio+' data-msg-required="Campo Hora é obrigatório!" />'+
+
+										
+
+                					'</div>'+
+
+								'</div>'+
+
+								
+
+								
+
+
+
+								
+
+
+								'</div>'+
+
+								
+
+								
+
+								'<div class="form-group">'+
+
+									'<div class="col-md-3 col-sm-3">'+
+
+									'<p>'+
+
+						            '<button type="button" id="adicionar-trecho" name="btnAdd" rel="'+TotalTrecho+'" cpf="'+cpf+'" class="btn btn-success addtrecho btn-xs"><i class="fa fa-plus"></i> Adicionar outro trecho</button>'+
+
+						       		' </p>'+
+
+						   		' </div>'+
+
+						   		'</div>'+
+
+								
+
+							'</div>'+
+
+						'</div>'+
+
+					'</div>'+					
+
+				'</div>';
+
+				
+
+			
+			
+			
+
+			var novoclone = $("#passagem").fadeIn('slow').append(conteudo);
+
+				novoclone.find(".input_aerodromo1").attr('id', 'ID'+TotalCount+''+trecho+ '_trecho_origem');
+
+				novoclone.find(".input_aerodromo1").attr('class', 'form-control input_aerodromo'+TotalCount+''+trecho+ '');
+
+				novoclone.find(".input_aerodromo1_hidden").attr('id', 'IID'+TotalCount+''+trecho+ '_trecho_origem');
+				
+				//novoclone.find(".input_aerodromo1_hidden").attr('name', 'id_trecho_origem_'+cpf+'[]');
+				
+				novoclone.find(".input_aerodromo1_hidden").attr('class', 'input_aerodromo1_hidden'+TotalCount+''+trecho+ '');
+				
+				
+				
+
+				novoclone.find(".input_aerodromo2").attr('id', 'ID'+TotalCount+''+trecho+ '_trecho_destino');
+
+				novoclone.find(".input_aerodromo2").attr('class', 'form-control input_aerodromo'+TotalCount+''+trecho+ '');
+
+				novoclone.find(".input_aerodromo2_hidden").attr('id', 'IID'+TotalCount+''+trecho+ '_trecho_destino');
+				
+				//novoclone.find(".input_aerodromo2_hidden").attr('name', 'id_trecho_destino_'+cpf+'[]');
+				
+				novoclone.find(".input_aerodromo2_hidden").attr('class', 'input_aerodromo2_hidden'+TotalCount+''+trecho+ '');
+
+				
+
+				novoclone.find(".calendario1").attr('id', 'ID'+TotalCount+''+trecho+ '_calendario');
+
+				novoclone.find(".calendario1").attr('class', 'form-control calendario'+TotalCount+''+trecho+ '');
+				
+
+				novoclone.find(".hora1").attr('id', 'ID'+TotalCount+''+trecho+ '_hora');
+
+				novoclone.find(".hora1").attr('class', 'form-control hora'+TotalCount+''+trecho+ '');
+
+				
+
+
+
+
+			var aerodromoClonado1 = novoclone.find('#ID'+TotalCount+''+trecho+'_trecho_origem');
+
+            enable_autocomplete_aerodromo_origem(aerodromoClonado1,TotalCount+''+trecho);
+
+			
+
+			var aerodromoClonado2 = novoclone.find('#ID'+TotalCount+''+trecho+'_trecho_destino');
+
+            enable_autocomplete_aerodromo_destino(aerodromoClonado2,TotalCount+''+trecho);
+
+			
+
+			var calendarioClonado1 = novoclone.find('#ID'+TotalCount+''+trecho+'_calendario');
+
+            enable_calendario(calendarioClonado1);
+
+			
+
+			var horaClonado1 = novoclone.find('#ID'+TotalCount+''+trecho+'_hora');
+
+            enable_hora(horaClonado1);
+
+
+			$("#total_usuario").val(TotalCount);
+
+			
+
+			TotalCount++;
+
+			TotalTrecho++;
+
+			trecho++;
+
+			
+
+		},
+
+		beforeTagRemoved: function(event, ui) {
+
+			$("[rel='"+ui.tagLabel+"']").remove().fadeOut('slow');
+
+			TotalCount--;
+
+			$("#total_usuario").val(TotalCount);
+
+			
+
+		},
+
+		  tagSource: function( request, response ) {
+
+			$.ajax({
+
+			  url:        "Public/jsonUsuarios.php",
+
+			  dataType:   "json",
+
+			  data:       { term: request.term },
+
+			  success:    function(data) {
+
+				  response( $.map( data, function( item ) {
+
+						return {
+
+							label: item.nome_guerra,
+							cpf: item.cpf,
+
+							value: item.value
+
+						}
+
+					}));
+
+			  }
+
+			});
+
+		}
+
+    });
+	
+	
+	
+	$('#nomes_exterior').tagit({
+
+		
+
+		singleField: true,
+
+        singleFieldNode: $('#nomes_exterior'),
+
+        allowSpaces: true,
+
+        minLength: 2,
+
+        removeConfirmation: true,
+
+		beforeTagAdded: function(event, ui) {
+
+			var name = ui.tagLabel;			
+			var cpf = name.substr(name.length - 11);
+			
+			if(emissao_passagem==1){
+				var campo_obrigatorio = 'required';
+				var display = 'style="display: hidden;"';
+			}else{
+				var campo_obrigatorio = '';
+				var display = 'style="display: none;"';
+			}
+			
+			var conteudo = '<div id="item" '+display+' class="col-md-12 pass'+TotalCount+'" relPass="'+TotalCount+'" rel="'+ui.tagLabel+'">'+
+
+					'<div class="panel panel-inverse" data-sortable-id="form-validation-2">'+
+
+						'<div class="panel-heading">'+
+
+							'<div class="panel-heading-btn">	'+							
+
+							'</div>'+
+
+							'<h4 class="panel-title">#'+TotalCount+' Integrante </h4>'+
+
+						'</div>'+
+
+						'<div class="panel-body panel-form">'+
+
+							'<div class="form-horizontal form-bordered">'+
+
+								'<input type="hidden" id="numtrecho'+TotalTrecho+'" name="numtrecho'+TotalTrecho+'" value="'+TotalTrecho+''+NumTrecho+'"/>'+
+
+								'<div id="trecho'+TotalTrecho+'" class="trecho-'+TotalTrecho+''+NumTrecho+'">'+
+
+								'<div class="form-group">'+
+
+									'<input type="hidden" class="usuario" name="usuario[]" value="'+ui.tagLabel+'" />'+
+
+									
+
+									'<div class="col-md-7 col-sm-7">'+
+
+									'<div class="input-group">'+
+
+											
+
+											''+ui.tagLabel+''+
+
+											'<input class="cpf" type="hidden" id="cpf" name="cpf[]" value="'+cpf+'" />'+
+
+
+									   ' </div>'+
+
+                					'</div>'+
+
+								'</div>'+
+								
+								
+
+								
+
+								
+
+
+
+								
+
+
+								'</div>'+
+
+								
+
+								
+
+							'</div>'+
+
+						'</div>'+
+
+					'</div>'+					
+
+				'</div>';
+
+				
+
+			
+			
+			
+
+			var novoclone = $("#passagem").fadeIn('slow').append(conteudo);
+
+				novoclone.find(".input_aerodromo1").attr('id', 'ID'+TotalCount+''+trecho+ '_trecho_origem');
+
+				novoclone.find(".input_aerodromo1").attr('class', 'form-control input_aerodromo'+TotalCount+''+trecho+ '');
+
+				novoclone.find(".input_aerodromo1_hidden").attr('id', 'IID'+TotalCount+''+trecho+ '_trecho_origem');
+				
+				//novoclone.find(".input_aerodromo1_hidden").attr('name', 'id_trecho_origem_'+cpf+'[]');
+				
+				novoclone.find(".input_aerodromo1_hidden").attr('class', 'input_aerodromo1_hidden'+TotalCount+''+trecho+ '');
+				
+				
+				
+
+				novoclone.find(".input_aerodromo2").attr('id', 'ID'+TotalCount+''+trecho+ '_trecho_destino');
+
+				novoclone.find(".input_aerodromo2").attr('class', 'form-control input_aerodromo'+TotalCount+''+trecho+ '');
+
+				novoclone.find(".input_aerodromo2_hidden").attr('id', 'IID'+TotalCount+''+trecho+ '_trecho_destino');
+				
+				//novoclone.find(".input_aerodromo2_hidden").attr('name', 'id_trecho_destino_'+cpf+'[]');
+				
+				novoclone.find(".input_aerodromo2_hidden").attr('class', 'input_aerodromo2_hidden'+TotalCount+''+trecho+ '');
+
+				
+
+				novoclone.find(".calendario1").attr('id', 'ID'+TotalCount+''+trecho+ '_calendario');
+
+				novoclone.find(".calendario1").attr('class', 'form-control calendario'+TotalCount+''+trecho+ '');
+				
+
+				novoclone.find(".hora1").attr('id', 'ID'+TotalCount+''+trecho+ '_hora');
+
+				novoclone.find(".hora1").attr('class', 'form-control hora'+TotalCount+''+trecho+ '');
+
+				
+
+
+
+
+			var aerodromoClonado1 = novoclone.find('#ID'+TotalCount+''+trecho+'_trecho_origem');
+
+            enable_autocomplete_aerodromo_origem(aerodromoClonado1,TotalCount+''+trecho);
+
+			
+
+			var aerodromoClonado2 = novoclone.find('#ID'+TotalCount+''+trecho+'_trecho_destino');
+
+            enable_autocomplete_aerodromo_destino(aerodromoClonado2,TotalCount+''+trecho);
+
+			
+
+			var calendarioClonado1 = novoclone.find('#ID'+TotalCount+''+trecho+'_calendario');
+
+            enable_calendario(calendarioClonado1);
+
+			
+
+			var horaClonado1 = novoclone.find('#ID'+TotalCount+''+trecho+'_hora');
+
+            enable_hora(horaClonado1);
+
+
+			$("#total_usuario").val(TotalCount);
+
+			
+
+			TotalCount++;
+
+			TotalTrecho++;
+
+			trecho++;
+
+			
+
+		},
+
+		beforeTagRemoved: function(event, ui) {
+
+			$("[rel='"+ui.tagLabel+"']").remove().fadeOut('slow');
+
+			TotalCount--;
+
+			$("#total_usuario").val(TotalCount);
+
+			
+
+		},
+
+		  tagSource: function( request, response ) {
+
+			$.ajax({
+
+			  url:        "Public/jsonUsuarios.php",
+
+			  dataType:   "json",
+
+			  data:       { term: request.term },
+
+			  success:    function(data) {
+
+				  response( $.map( data, function( item ) {
+
+						return {
+
+							label: item.nome_guerra,
+							cpf: item.cpf,
+
+							value: item.value
+
+						}
+
+					}));
+
+			  }
+
+			});
+
+		}
+
+    });
+
+	
+
+	
+
+	$('body').on('click', '#adicionar-trecho',function(e){
+
+		e.preventDefault();
+
+		var id = $(this).attr('rel');
+		var cpf = $(this).attr('cpf');
+
+		var lastTrecho = $('#numtrecho'+id).val();
+
+		NumTrecho++;
+
+		var remov = id+''+NumTrecho;
+
+		var novoclone = $("#trecho"+id).clone().attr('class', "trecho-"+remov).fadeIn('slow');
+
+			novoclone.find('[rel="input_aerodromo1"]').attr('id', 'ID'+remov+ '_trecho_origem');
+			
+			novoclone.find('[rel="input_aerodromo1_hidden"]').attr('id', 'IID'+remov+ '_trecho_origem');
+
+			novoclone.find('[rel="input_aerodromo2"]').attr('id', 'ID'+remov+ '_trecho_destino');
+
+			novoclone.find('[rel="input_aerodromo2_hidden"]').attr('id', 'IID'+remov+ '_trecho_destino');
+
+			
+
+			
+
+				novoclone.find('[rel="calendario1"]').attr('id', 'ID'+remov+ '_calendario');
+
+				novoclone.find('[rel="calendario1"]').attr('class', 'form-control calendario'+remov+ '');
+
+				
+
+				novoclone.find('[rel="calendario2"]').attr('id', 'ID'+remov+ ''+remov+ '_calendario');
+
+				novoclone.find('[rel="calendario2"]').attr('class', 'form-control calendario'+remov+ ''+remov+ '');
+
+				
+
+				novoclone.find('[rel="hora1"]').attr('id', 'ID'+remov+ '_hora');
+
+				novoclone.find('[rel="hora1"]').attr('class', 'form-control hora'+remov+ '');
+
+				
+
+				novoclone.find('[rel="hora2"]').attr('id', 'ID'+remov+ ''+remov+ '_hora');
+
+				novoclone.find('[rel="hora2"]').attr('class', 'form-control hora'+remov+ ''+remov+ '');
+
+				
+
+			novoclone.find('input, select').val('');
+			
+			novoclone.find('.cpf').val(cpf);
+			
+			novoclone.insertAfter(".trecho-"+lastTrecho).append('<button href="#" style="float:right; margin:12px 12px" class="removeclass btn btn-danger btn-xs removerCampo" inq="'+id+'" rel="'+remov+'"><i class="fa fa-times-circle"></i></button>')
+
+		
+
+		var aerodromoClonado = novoclone.find('#ID'+remov+'_trecho_origem');
+
+            enable_autocomplete_aerodromo_origem(aerodromoClonado,remov);
+
+			
+
+		var aerodromoClonado11 = novoclone.find('#ID'+remov+'_trecho_destino');
+
+            enable_autocomplete_aerodromo_destino(aerodromoClonado11,remov);
+
+			
+
+		var calendarioClonado1 = novoclone.find('#ID'+remov+'_calendario');
+
+            enable_calendario(calendarioClonado1);
+
+			
+
+		var calendarioClonado2 = novoclone.find('#ID'+remov+ ''+remov+'_calendario');
+
+		enable_calendario(calendarioClonado2);
+
+		
+
+		var horaClonado1 = novoclone.find('#ID'+remov+'_hora');
+
+		enable_hora(horaClonado1);
+
+		
+
+		var horaClonado2 = novoclone.find('#ID'+remov+ ''+remov+'_hora');
+
+		enable_hora(horaClonado2);
+
+		
+
+		NumTrechomin++;
+
+			$('#numtrecho'+id).val(id+""+NumTrechomin);
+
+
+
+
+
+	});
+
+	
+
+	$("body").on("click",".removeclass", function(e){
+
+		e.preventDefault();
+
+		id = $(this).attr('rel');
+
+		inq = $(this).attr('inq');
+
+		$(this).parent(".trecho-"+id).remove().fadeOut('slow');
+
+		$('#numtrecho'+inq).val(id-1);
+
+		NumTrecho--;
+
+		NumTrechomin--;
+
+
+
+	});
+	
+	
+		$('body').on('click', '.adicionar-roteiro',function(e){
+
+		e.preventDefault();
+		TotalRoteiro++;
+		
+
+		var novoclone = $("#roteiro_missao").clone().attr('rel', TotalRoteiro).attr('class', 'roteiroMiss'+TotalRoteiro).fadeIn('slow')
+			novoclone.find('#contexto').attr('class', 'note note-success text-center');
+			novoclone.find('#contexto').html('ROTEIRO #'+TotalRoteiro+'<button href="#" style="float:right;" class="removeRoteiro btn btn-danger btn-xs" rel="'+TotalRoteiro+'"><i class="fa fa-times-circle"></i></button>');
+			
+			novoclone.find('input, select').val('');
+			novoclone.find('#deslocamento').attr('checked', false);
+			novoclone.find('#pernoite').attr('checked', false);
+			
+			novoclone.find('#data_ida').attr('id', 'data_ida'+TotalRoteiro);
+			novoclone.find('#data_volta').attr('id', 'data_volta'+TotalRoteiro);
+			
+			novoclone.find('#hora_inicio_missao').attr('id', 'hora_inicio_missao'+TotalRoteiro);					
+			novoclone.find('#hora_retorno_missao').attr('id', 'hora_retorno_missao'+TotalRoteiro);
+			
+			
+			novoclone.find('#cidade').attr('id', 'cidade'+TotalRoteiro);			
+			novoclone.find('#cidade_hidden').attr('id', 'cidade_hidden'+TotalRoteiro);
+			
+			novoclone.insertAfter(".roteiroMiss"+CountRoteiro);
+
+			console.log('adicionado roteiroMiss'+TotalRoteiro);
+			
+			//Calendário
+			var calendarioDataIda = novoclone.find('#data_ida'+TotalRoteiro);
+            enable_calendario(calendarioDataIda);
+			
+			var calendarioDataVolta = novoclone.find('#data_volta'+TotalRoteiro);
+            enable_calendario(calendarioDataVolta);
+			
+			//Cidade
+			var cidadeClone = novoclone.find('#cidade'+TotalRoteiro);
+            enable_autocomplete_cidade(cidadeClone,TotalRoteiro);
+			
+			//hora
+			var horaInicio = novoclone.find('#hora_inicio_missao'+TotalRoteiro);
+            enable_hora(horaInicio);
+			
+			var horaRetorno = novoclone.find('#hora_retorno_missao'+TotalRoteiro);
+            enable_hora(horaRetorno);
+			
+			$("#total_roteiro").val(TotalRoteiro);
+			
+		CountRoteiro++;
+
+
+	});
+
+	
+
+	$("body").on("click",".removeRoteiro", function(e){
+
+		e.preventDefault();
+
+		id = $(this).attr('rel');
+
+		//$(this).parent('[rel="'+id+'"]').remove().fadeOut('slow');
+		$('[rel="'+id+'"]').remove().fadeOut('slow');
+		TotalRoteiro--;
+		CountRoteiro--;
+		$('#total_roteiro').val(TotalRoteiro);
+		
+		console.log('removido roteiroMiss'+id);
+
+
+	});
+
+	
+
+	
+
+	
+
+		function enable_autocomplete_aerodromo_origem(input,novoNumero){
+
+
+
+				$(input).autocomplete({
+
+					source: function( request, response ) {
+
+						$.ajax({
+
+							url: "Public/select2/jsonAerodromo.php",
+
+							dataType: "json",
+
+							
+
+							data: {term: request.term},
+
+							success: function(data) {
+
+										response($.map(data, function(item) {
+
+										return {
+
+											id: item.id,
+
+											label: item.cidade_estado + ' - '+ item.iata, 
+
+											cidade_estado: item.cidade_estado
+
+										  
+
+											};
+
+									}));
+
+								}
+
+							   
+
+							});
+
+						},
+
+						autoFocus:true,
+
+						minLength: 1,
+
+						select: function(event, ui){
+
+						$("#ID"+novoNumero+"_trecho_origem").val(ui.item.label);
+
+						$("#IID"+novoNumero+"_trecho_origem").val(ui.item.id);
+
+
+
+				}
+
+			 });
+
+		}
+		
+		
+		function enable_autocomplete_aerodromo_destino(input,novoNumero){
+
+
+
+				$(input).autocomplete({
+
+					source: function( request, response ) {
+
+						$.ajax({
+
+							url: "Public/select2/jsonAerodromo.php",
+
+							dataType: "json",
+
+							
+
+							data: {term: request.term},
+
+							success: function(data) {
+
+										response($.map(data, function(item) {
+
+										return {
+
+											id: item.id,
+
+											label: item.cidade_estado + ' - '+ item.iata,
+
+											cidade_estado: item.cidade_estado
+
+										  
+
+											};
+
+									}));
+
+								}
+
+							   
+
+							});
+
+						},
+
+						autoFocus:true,
+
+						minLength: 1,
+
+						select: function(event, ui){
+
+						$("#ID"+novoNumero+"_trecho_destino").val(ui.item.label);
+
+						$("#IID"+novoNumero+"_trecho_destino").val(ui.item.id);
+
+
+
+				}
+
+			 });
+
+		}
+		
+		
+		
+		
+		function enable_autocomplete_cidade(input,novoNumero){
+		
+		 $(input).autocomplete({
+
+     	minLength: 1,
+
+     	delay:0,
+
+        source: function( request, response ) {
+
+                $.ajax({
+
+                    url: "Public/select2/jsonCidade.php",
+
+                    dataType: "json",
+
+                    
+
+                    data: {term: request.term},
+
+                    success: function(data) {
+
+					
+
+                                response($.map(data, function(item) {
+
+                                return {
+
+                                    id: item.id,
+									id_uniq: item.id_uniq,
+                                    label: item.cidade_estado
+                                    };
+
+                            }));
+
+                        }
+
+                       
+
+                    });
+
+                },
+
+                autoFocus:true,
+                select: function(event, ui){
+						$("#cidade"+TotalRoteiro).val(ui.item.label);
+
+						$("#cidade_hidden"+TotalRoteiro).val(ui.item.id_uniq);
+				 //$("#cidade"+TotalRoteiro).val(ui.item.id_uniq);
+
+					}
+
+            
+
+            })
+			
+			}
+
+		
+
+		
+
+		function enable_calendario(input){
+
+			$(input).datepicker({
+
+				format: 'dd/mm/yyyy',                
+
+				autoclose:true,
+
+				todayHighlight:true,
+
+				language: "pt-BR",
+
+				todayBtn: "linked",
+
+
+
+			});
+
+		
+
+		}
+
+		
+
+		
+
+		function enable_hora(input){
+
+		$(input).mask("99:99");
+
+		
+
+		}
+
+	
+
+	
+
+	
+
+	
+
+
+
+    $(".calendario").datepicker({
+
+		format: 'dd/mm/yyyy',                
+
+		autoclose:true,
+
+		todayHighlight:true,
+
+		language: "pt-BR",
+
+		todayBtn: "linked",
+
+
+
+	});
+	
+	$(".hora").mask("99:99");
+
+
+
+
+
+
+
+</script>
+
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+	
+
+
+
+
+
+	
+
+	
+
+	
+
+     $('.input_aerodromo').autocomplete({
+
+     	minLength: 1,
+
+     	delay:0,
+
+    source: function( request, response ) {
+
+                $.ajax({
+
+                    url: "Public/select2/jsonAerodromo.php",
+
+                    dataType: "json",
+
+                    
+
+                    data: {term: request.term},
+
+                    success: function(data) {
+
+                                response($.map(data, function(item) {
+
+                                return {
+
+                                    id: item.id,
+
+                                    label: item.iata, 
+
+                                    cidade_estado: item.cidade_estado
+
+                                  
+
+                                    };
+
+                            }));
+
+                        }
+
+                       
+
+                    });
+
+                },
+
+              
+
+                select: function(event, ui){
+
+           
+
+        }
+
+               
+
+            
+
+            });
+
+    });
+
+    
+
+    
+
+    
+
+</script>
+
+
+
+
+
+<!-- <script type="text/javascript">
+
+    $(document).ready(function () {
+
+     $('.input_aerodromo').autocomplete({
+
+     	minLength: 1,
+
+     	delay:0,
+
+    source: function( request, response ) {
+
+                $.ajax({
+
+                    url: "Public/select2/jsonAerodromo.php",
+
+                    dataType: "json",
+
+                    
+
+                    data: {term: request.term},
+
+                    success: function(data) {
+
+                                response($.map(data, function(item) {
+
+                                return {
+
+                                    id: item.id,
+
+                                    label: item.iata, 
+
+                                    cidade_estado: item.cidade_estado
+
+                                  
+
+                                    };
+
+                            }));
+
+                        }
+
+                       
+
+                    });
+
+                },
+
+              
+
+                select: function(event, ui){
+
+           
+
+        }
+
+               
+
+            
+
+            });
+
+    });
+
+    
+
+    
+
+    
+
+</script> -->
+
+
+
+
+
+<script type="text/javascript">
+
+
+
+ $('#cidade').autocomplete({
+
+     	minLength: 1,
+
+     	delay:0,
+
+        source: function( request, response ) {
+
+                $.ajax({
+
+                    url: "Public/select2/jsonCidade.php",
+
+                    dataType: "json",
+
+                    
+
+                    data: {term: request.term},
+
+                    success: function(data) {
+
+					
+
+                                response($.map(data, function(item) {
+
+                                return {
+
+                                    id: item.id,
+									id_uniq: item.id_uniq,
+                                    label: item.cidade_estado
+                                    };
+
+                            }));
+
+                        }
+
+                       
+
+                    });
+
+                },
+
+                autoFocus:true,
+                select: function(event, ui){
+
+             //$(".estado_cidade").val(ui.item.cidade_estado);
+
+             //$("#estado_cidade_oculto").val(ui.item.cidade_estado);
+
+			 $(".input_cidade_hidden").val(ui.item.id_uniq);
+ 
+
+        }
+
+            
+
+            });
+
+			
+			
+$('#pais').autocomplete({
+
+     	minLength: 1,
+
+     	delay:0,
+
+        source: function( request, response ) {
+
+                $.ajax({
+
+                    url: "Public/select2/jsonPais.php",
+
+                    dataType: "json",
+
+                    
+
+                    data: {term: request.term},
+
+                    success: function(data) {
+
+					
+
+                                response($.map(data, function(item) {
+
+                                return {
+
+                                    id: item.id,
+									id_uniq: item.id_uniq,
+                                    label: item.pais
+                                    };
+
+                            }));
+
+                        }
+
+                       
+
+                    });
+
+                },
+
+                autoFocus:true,
+                select: function(event, ui){
+
+             //$(".estado_cidade").val(ui.item.cidade_estado);
+
+             //$("#estado_cidade_oculto").val(ui.item.cidade_estado);
+
+			 $(".input_pais_hidden").val(ui.item.id_uniq);
+ 
+
+        }
+
+            
+
+            });
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ================== END PAGE LEVEL JS ================== -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>
